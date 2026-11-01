@@ -38,9 +38,9 @@ a { -webkit-tap-highlight-color: transparent; }
             rgba(3, 40, 31, 0.5) 60%,
             rgba(3, 40, 31, 0.15) 85%,
             rgba(3, 40, 31, 0) 100%),
-       url("../images/court-header.jpeg");
+       url("../images/banner-account.avif");
     background-size: cover;
-    background-position: center;
+    background-position: center 60%;
     background-repeat: no-repeat;
 }
 
@@ -399,447 +399,678 @@ a { -webkit-tap-highlight-color: transparent; }
 .footer-bottom-links a:hover {
     color: #B5E853;
 }
-/* =========================================
-   1. COURTS PAGE - BỐ CỤC TỔNG THỂ
-========================================= */
+/* =====================================
+   4. TRANG THÔNG TIN CÁ NHÂN
+===================================== */
 
-/* Nội dung trang */
-.courts-section {
-    width: 90%;
-    max-width: var(--container-width);
+/* Khu vực Main */
+
+.profile-main {
+    width: 100%;
+    background-color: #FAFAF6;
+    padding: 40px 7% 45px;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 0 40px;
-}
 
-/* Tiêu đề và mô tả trang */
-.courts-heading {
-    margin-bottom: 22px;
-}
-
-.courts-heading h1 {
-    margin: 0 0 6px;
-    color: var(--color-dark);
-    font-size: 30px;
-}
-
-.courts-heading p {
-    margin: 0;
-    color: #68736e;
-    font-size: 15px;
-}
-
-/* Chia nội dung thành 2 cột:
-   Cột trái: Bộ lọc
-   Cột phải: Danh sách sân */
-.courts-layout {
     display: grid;
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: 22px;
+    grid-template-columns: 295px 1fr;
+    gap: 12px;
+
     align-items: start;
 }
 
-/* Cho phép nội dung bên phải co giãn */
-.courts-content {
-    min-width: 0;
+
+/* =====================================
+   SIDEBAR - THÔNG TIN NGƯỜI DÙNG
+===================================== */
+
+.profile-sidebar {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9E5;
+    border-radius: 24px;
+
+    padding: 24px;
+
+    min-height: 400px;
 }
 
+/* Ảnh đại diện */
 
-/* =========================================
-   2. COURT FILTERS - BỘ LỌC TÌM KIẾM
-========================================= */
+.profile-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-/* Khung bộ lọc bên trái */
-.court-filters {
-    min-width: 0;
-    height: fit-content;
-    padding: 18px;
-    background-color: var(--color-white);
-    border: 1px solid #e5e9e6;
-    border-radius: 12px;
+    margin-bottom: 25px;
 }
 
-/* Tiêu đề bộ lọc */
-.court-filters-title {
-    margin: 0 0 18px;
-    padding: 10px;
-    background-color: #f1f4f2;
-    border-radius: 10px;
-    color: var(--color-dark);
-    font-size: 18px;
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #E1EBD2;
+    border-radius: 50%;
+
+    margin-bottom: 15px;
 }
 
-/* Khoảng cách giữa các nhóm điều kiện lọc */
-.filter-group {
-    margin-bottom: 17px;
+.profile-avatar i {
+    font-size: 78px;
+    color: #174B39;
 }
 
-/* Tiêu đề từng nhóm: Địa chỉ, Khoảng giá, Tiện ích, Đánh giá */
-.filter-group-title {
-    margin: 0 0 9px;
-    color: #202a26;
-    font-size: 15px;
+.profile-user h2 {
+    margin: 0 0 4px;
+
+    color: #082D25;
+    font-size: 19px;
     font-weight: 700;
 }
 
-/* Ô chọn tỉnh/thành phố và quận/huyện */
-.filter-group select {
-    display: block;
-    width: 100%;
-    margin-bottom: 8px;
-    padding: 10px;
-    border: 1px solid #dce3de;
-    border-radius: 9px;
-    background-color: white;
-    color: #68736e;
-    font-family: var(--font-main);
-    font-size: 13px;
-}
+.profile-user p {
+    margin: 0;
 
-/* Sắp xếp 2 ô nhập giá trên cùng một hàng */
-.filter-price {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-}
-
-/* Ô nhập giá thấp nhất và giá cao nhất */
-.filter-price input {
-    width: 100%;
-    min-width: 0;
-    padding: 10px;
-    border: 1px solid #dce3de;
-    border-radius: 9px;
-    font-family: var(--font-main);
-    font-size: 12px;
-}
-
-/* Các lựa chọn tiện ích và đánh giá */
-.filter-option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    color: #444e49;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-/* Tùy chỉnh ô checkbox */
-.filter-option input {
-    width: 17px;
-    height: 17px;
-    accent-color: var(--color-dark);
-}
-
-/* Nút tìm kiếm trong bộ lọc */
-.filter-submit {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 9px;
-    background-color: #08713e;
-    color: white;
-    font-family: var(--font-main);
+    color: #59645F;
     font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.filter-submit:hover {
-    background-color: var(--color-dark);
-}
-
-/* Ẩn label trên giao diện nhưng vẫn hỗ trợ trình đọc màn hình */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
 }
 
 
-/* =========================================
-   3. SPORT CATEGORIES - DANH MỤC MÔN THỂ THAO
-========================================= */
+/* Menu sidebar */
 
-/* Khung chứa các danh mục */
-.sport-categories {
+.profile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-menu-item {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f8f9f8;
-    border: 1px solid #e5e9e6;
-    border-radius: 12px;
+    gap: 14px;
+
+    padding: 12px 16px;
+
+    border-radius: 10px;
+
+    color: #303B36;
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+    transition: 0.25s;
 }
 
-/* Từng danh mục môn thể thao */
-.sport-category {
-    padding: 9px 20px;
-    border-radius: 25px;
-    color: #202a26;
+.profile-menu-item i {
+    width: 20px;
+    font-size: 17px;
+    text-align: center;
+    color: #174B39;
+}
+
+.profile-menu-item:hover {
+    background-color: #EDF4E8;
+    color: #174B39;
+}
+
+/* Menu đang được chọn */
+
+.profile-menu-item.active {
+    background-color: #15543F;
+    color: #FFFFFF;
+}
+
+.profile-menu-item.active i {
+    color: #FFFFFF;
+}
+
+
+/* =====================================
+   THÔNG TIN CÁ NHÂN
+===================================== */
+
+.profile-content {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9E5;
+    border-radius: 24px;
+
+    padding: 28px 35px 15px;
+
+    min-height: 368px;
+}
+
+/* Tiêu đề và nút chỉnh sửa */
+
+.profile-content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 14px;
+    border-bottom: 1px solid #B8D4C3;
+}
+
+.profile-content-header h2 {
+    margin: 0;
+
+    color: #082D25;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* Nút chỉnh sửa */
+
+.edit-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px 20px;
+
+    border: 1.5px solid #174B39;
+    border-radius: 30px;
+
+    background-color: #FFFFFF;
+    color: #174B39;
+
+    font-size: 14px;
+    font-weight: 600;
+
     text-decoration: none;
+    white-space: nowrap;
+
+    transition: 0.25s;
+}
+
+.edit-profile-btn:hover {
+    background-color: #174B39;
+    color: #FFFFFF;
+}
+
+
+/* Danh sách thông tin */
+
+.profile-info-list {
+    width: 100%;
+}
+
+.profile-info-row {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    align-items: center;
+
+    min-height: 62px;
+
+    border-bottom: 1px solid #E8EAE6;
+}
+
+.profile-info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #27332E;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.info-value {
+    color: #202A26;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* =====================================
+   4. TRANG LỊCH SỬ ĐẶT SÂN
+===================================== */
+
+.booking-content {
+    min-width: 0;
+}
+
+/* Bộ lọc trạng thái */
+
+.booking-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.filter-label {
+    color: #27332E;
     font-size: 14px;
     font-weight: 600;
 }
 
-/* Hiệu ứng khi rê chuột và danh mục đang chọn */
-.sport-category:hover,
-.sport-category--active {
-    background-color: var(--color-dark);
-    color: var(--color-white);
-}
-
-
-/* =========================================
-   4. COURTS TOOLBAR - THANH THÔNG TIN VÀ SẮP XẾP
-========================================= */
-
-/* Khung hiển thị số lượng sân và tùy chọn sắp xếp */
-.courts-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 15px;
-    margin-bottom: 12px;
-    background-color: #f8f9f8;
-    border: 1px solid #e5e9e6;
-    border-radius: 10px;
-}
-
-/* Dòng thông tin số lượng sân */
-.courts-toolbar p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* Nhóm nhãn và ô chọn cách sắp xếp */
-.courts-sort {
+.filter-options {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
-    font-size: 14px;
 }
 
-/* Ô chọn thứ tự sắp xếp */
-.courts-sort select {
-    padding: 8px 12px;
-    border: 1px solid #dce3de;
-    border-radius: 8px;
-    background-color: white;
-    font-family: var(--font-main);
-}
-
-
-/* =========================================
-   5. COURT GRID - LƯỚI HIỂN THỊ SÂN
-========================================= */
-
-/* Sắp xếp 9 thẻ sân thành 3 cột */
-/* Lưới hiển thị 9 thẻ sân */
-.court-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    width: 100%;
-    align-items: stretch;
-}
-
-/* =========================================
-   6. COURT CARD - THẺ THÔNG TIN SÂN
-========================================= */
-
-/* Khung tổng thể của mỗi thẻ sân */
-.court-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    background-color: var(--color-white);
-    border: 2px solid #e5e9e6;
-    border-radius: 12px;
-} 
-/* Khu vực hiển thị ảnh sân và nhãn trạng thái */
-.court-card-image {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 180px;
-    background-color: #e8eee9;
-    color: #68736e;
-}
-
-/* Nhãn trạng thái còn sân */
-.court-card-status {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 6px 12px;
+.filter-item {
+    padding: 8px 15px;
+    border: 1px solid #DCE5DD;
     border-radius: 20px;
-    background-color: var(--color-accent);
-    color: var(--color-dark);
-    font-size: 12px;
-    font-weight: 700;
-}
-
-/* Khu vực nội dung bên dưới ảnh */
-.court-card-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 15px;
-} 
-
-/* Tên sân */
-.court-card-title {
-    margin: 0 0 10px;
-    color: var(--color-dark);
-    font-size: 17px;
-}
-
-/* Thông tin địa chỉ và đánh giá */
-.court-card-address,
-.court-card-rating {
-    margin: 7px 0;
-    color: #68736e;
+    background: #FFFFFF;
+    color: #43534A;
     font-size: 13px;
+    text-decoration: none;
+    transition: 0.25s;
 }
 
-/* Biểu tượng địa chỉ */
-.court-card-address i {
-    margin-right: 5px;
-    color: var(--color-dark);
+.filter-item:hover {
+    background: #EDF4E8;
+    color: #15543F;
 }
 
-/* Biểu tượng đánh giá sao */
-.court-card-rating i {
-    margin-right: 5px;
-    color: #f4b400;
+.filter-item.active {
+    background: #15543F;
+    border-color: #15543F;
+    color: #FFFFFF;
 }
 
-/* Hàng chứa giá thuê và nút xem chi tiết */
-.court-card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-    margin-top: auto;
-    padding-top: 15px;
+
+/* Bảng lịch sử */
+
+.booking-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
 }
 
-/* Giá thuê sân */
-.court-card-price {
-    margin: 0;
-    color: #397b39;
-    font-size: 15px;
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.booking-table th {
+    padding: 14px 10px;
+    background: #EDF4E8;
+    color: #174B39;
+    font-size: 12px;
     font-weight: 700;
     white-space: nowrap;
 }
 
+.booking-table td {
+    padding: 16px 10px;
+    border-bottom: 1px solid #E8EAE6;
+    color: #303B36;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.booking-table td strong {
+    display: block;
+    color: #174B39;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.booking-table td small {
+    display: block;
+    color: #78847D;
+    font-size: 11px;
+}
+
+.booking-table tbody tr:hover {
+    background: #FAFCF8;
+}
+
+
+/* Trạng thái đặt sân */
+
+.booking-status {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.booking-status.confirmed {
+    background: #E5F3E8;
+    color: #247A43;
+}
+
+.booking-status.completed {
+    background: #E7EEF8;
+    color: #345E91;
+}
+
+.booking-status.cancelled {
+    background: #FBE8E6;
+    color: #B84036;
+}
+
+
 /* Nút xem chi tiết */
-.court-card-button {
+
+.booking-detail-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #174B39;
+    border-radius: 20px;
+    color: #174B39;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.booking-detail-btn:hover {
+    background: #174B39;
+    color: #FFFFFF;
+}
+
+
+/* Ghi chú */
+
+.booking-note {
+    margin: 20px 0 5px;
+    color: #78847D;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.booking-note i {
+    color: #7C9B68;
+    margin-right: 5px;
+}
+
+
+/* =====================================
+   5. TRANG ĐỔI MẬT KHẨU
+===================================== */
+
+.password-content {
+    min-width: 0;
+}
+
+/* Phần giới thiệu */
+
+.password-description {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin: 22px 0 25px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #F0F5EB;
+}
+
+.password-description i {
+    color: #174B39;
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.password-description p {
+    margin: 0;
+    color: #43534A;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* Form */
+
+.password-form {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.password-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.password-form-group label {
+    color: #27332E;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.password-form-group input {
+    width: 100%;
+    height: 46px;
+    padding: 0 15px;
+    border: 1px solid #D9E1DA;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #202A26;
+    font-family: var(--font-main);
+    font-size: 13px;
+    outline: none;
+    transition: 0.25s;
+}
+
+.password-form-group input::placeholder {
+    color: #A0AAA3;
+}
+
+.password-form-group input:focus {
+    border-color: #174B39;
+    box-shadow: 0 0 0 3px rgba(23, 75, 57, 0.1);
+}
+
+
+/* Hướng dẫn mật khẩu */
+
+.password-requirements {
+    margin: 10px 0 25px;
+    padding: 15px;
+    border: 1px solid #E3EAE1;
+    border-radius: 10px;
+    background: #FAFCF8;
+}
+
+.password-requirements p {
+    margin: 0 0 10px;
+    color: #174B39;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.password-requirements p i {
+    margin-right: 5px;
+}
+
+.password-requirements ul {
+    margin: 0;
+    padding-left: 25px;
+}
+
+.password-requirements li {
+    margin-bottom: 6px;
+    color: #68766D;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* Nút thao tác */
+
+.password-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.password-cancel-btn,
+.password-submit-btn {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0;
-    padding: 9px 13px;
-    border-radius: 20px;
-    background-color: var(--color-dark);
-    color: var(--color-white);
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-.court-card-button:hover {
-    background-color: #145344;
-}
-
-
-/* =========================================
-   7. COURTS PAGINATION - PHÂN TRANG
-========================================= */
-
-/* Khung điều hướng giữa các trang */
-.courts-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 8px;
-    margin-top: 22px;
-}
-
-/* Nút chuyển trang và số trang */
-.pagination-link {
-    display: inline-block;
-    min-width: 38px;
-    padding: 9px 12px;
-    border: 1px solid #e5e9e6;
-    border-radius: 9px;
-    color: #202a26;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
+    min-height: 42px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family: var(--font-main);
+    font-size: 13px;
     font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-/* Trang đang chọn và hiệu ứng rê chuột */
-.pagination-link:hover,
-.pagination-link--active {
-    background-color: var(--color-dark);
-    color: white;
+.password-cancel-btn {
+    border: 1px solid #D9E1DA;
+    background: #FFFFFF;
+    color: #43534A;
+}
+
+.password-cancel-btn:hover {
+    background: #F0F3EF;
+}
+
+.password-submit-btn {
+    border: 1px solid #15543F;
+    background: #15543F;
+    color: #FFFFFF;
+}
+
+.password-submit-btn:hover {
+    background: #0C392B;
+}
+
+.password-note {
+    margin: 22px 0 5px;
+    color: #78847D;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.password-note i {
+    color: #174B39;
+    margin-right: 5px;
 }
 
 
-/* =========================================
-   8. RESPONSIVE - ĐIỀU CHỈNH THEO KÍCH THƯỚC MÀN HÌNH
-========================================= */
+/* =====================================
+   6. RESPONSIVE
+===================================== */
 
-/* Máy tính bảng và màn hình nhỏ hơn 1100px:
-   Bộ lọc thu hẹp, danh sách sân còn 2 cột */
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
 
-    .courts-layout {
-        grid-template-columns: 240px minmax(0, 1fr);
-        gap: 16px;
+    .booking-table th,
+    .booking-table td {
+        padding: 12px 8px;
     }
 
-    .court-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .booking-table th,
+    .booking-table td {
+        font-size: 11px;
+    }
+
+    .password-form {
+        max-width: 100%;
     }
 }
 
-/* Điện thoại và màn hình nhỏ hơn 768px:
-   Bộ lọc chuyển lên trên, thẻ sân hiển thị 1 cột */
-@media (max-width: 768px) {
 
-    .courts-layout {
-        grid-template-columns: 1fr;
+@media (max-width: 600px) {
+
+    /* Lịch sử đặt sân */
+
+    .filter-options {
+        gap: 7px;
     }
 
-    .court-grid {
-        grid-template-columns: 1fr;
+    .filter-item {
+        padding: 7px 11px;
+        font-size: 11px;
     }
 
-    .courts-toolbar {
-        align-items: flex-start;
-        flex-direction: column;
+    .booking-table-wrapper {
+        overflow-x: visible;
     }
 
-    .sport-categories {
-        justify-content: flex-start;
+    .booking-table,
+    .booking-table tbody {
+        display: block;
+        width: 100%;
     }
+
+    .booking-table thead {
+        display: none;
+    }
+
+    .booking-table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        padding: 12px 15px;
+        border: 1px solid #E5E9E5;
+        border-radius: 12px;
+        background: #FFFFFF;
+    }
+
+    .booking-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid #EEF0EC;
+        text-align: right;
+        font-size: 12px;
+    }
+
+    .booking-table td:last-child {
+        border-bottom: none;
+    }
+
+    .booking-table td::before {
+        content: attr(data-label);
+        color: #68766D;
+        font-size: 11px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .booking-table td strong,
+    .booking-table td small {
+        text-align: right;
+    }
+
+
+    /* Đổi mật khẩu */
+
+    .password-description {
+        padding: 12px;
+    }
+
+    .password-form-group input {
+        height: 44px;
+    }
+
+    .password-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .password-cancel-btn,
+    .password-submit-btn {
+        width: 100%;
+    }
+
 }
