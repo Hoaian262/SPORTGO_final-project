@@ -399,3 +399,442 @@ a { -webkit-tap-highlight-color: transparent; }
 .footer-bottom-links a:hover {
     color: #B5E853;
 }
+/* =========================================
+   1. COURTS PAGE - BỐ CỤC TỔNG THỂ
+========================================= */
+
+/* Nội dung trang */
+.courts-section {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 30px 0 40px;
+}
+
+/* Tiêu đề và mô tả trang */
+.courts-heading {
+    margin-bottom: 22px;
+}
+
+.courts-heading h1 {
+    margin: 0 0 6px;
+    color: var(--color-dark);
+    font-size: 30px;
+}
+
+.courts-heading p {
+    margin: 0;
+    color: #68736e;
+    font-size: 15px;
+}
+
+/* Chia nội dung thành 2 cột:
+   Cột trái: Bộ lọc
+   Cột phải: Danh sách sân */
+.courts-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+}
+
+/* Cho phép nội dung bên phải co giãn */
+.courts-content {
+    min-width: 0;
+}
+
+
+/* =========================================
+   2. COURT FILTERS - BỘ LỌC TÌM KIẾM
+========================================= */
+
+/* Khung bộ lọc bên trái */
+.court-filters {
+    min-width: 0;
+    height: fit-content;
+    padding: 18px;
+    background-color: var(--color-white);
+    border: 1px solid #e5e9e6;
+    border-radius: 12px;
+}
+
+/* Tiêu đề bộ lọc */
+.court-filters-title {
+    margin: 0 0 18px;
+    padding: 10px;
+    background-color: #f1f4f2;
+    border-radius: 10px;
+    color: var(--color-dark);
+    font-size: 18px;
+}
+
+/* Khoảng cách giữa các nhóm điều kiện lọc */
+.filter-group {
+    margin-bottom: 17px;
+}
+
+/* Tiêu đề từng nhóm: Địa chỉ, Khoảng giá, Tiện ích, Đánh giá */
+.filter-group-title {
+    margin: 0 0 9px;
+    color: #202a26;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Ô chọn tỉnh/thành phố và quận/huyện */
+.filter-group select {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 10px;
+    border: 1px solid #dce3de;
+    border-radius: 9px;
+    background-color: white;
+    color: #68736e;
+    font-family: var(--font-main);
+    font-size: 13px;
+}
+
+/* Sắp xếp 2 ô nhập giá trên cùng một hàng */
+.filter-price {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+/* Ô nhập giá thấp nhất và giá cao nhất */
+.filter-price input {
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #dce3de;
+    border-radius: 9px;
+    font-family: var(--font-main);
+    font-size: 12px;
+}
+
+/* Các lựa chọn tiện ích và đánh giá */
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: #444e49;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Tùy chỉnh ô checkbox */
+.filter-option input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--color-dark);
+}
+
+/* Nút tìm kiếm trong bộ lọc */
+.filter-submit {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 9px;
+    background-color: #08713e;
+    color: white;
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.filter-submit:hover {
+    background-color: var(--color-dark);
+}
+
+/* Ẩn label trên giao diện nhưng vẫn hỗ trợ trình đọc màn hình */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* =========================================
+   3. SPORT CATEGORIES - DANH MỤC MÔN THỂ THAO
+========================================= */
+
+/* Khung chứa các danh mục */
+.sport-categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f9f8;
+    border: 1px solid #e5e9e6;
+    border-radius: 12px;
+}
+
+/* Từng danh mục môn thể thao */
+.sport-category {
+    padding: 9px 20px;
+    border-radius: 25px;
+    color: #202a26;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Hiệu ứng khi rê chuột và danh mục đang chọn */
+.sport-category:hover,
+.sport-category--active {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+}
+
+
+/* =========================================
+   4. COURTS TOOLBAR - THANH THÔNG TIN VÀ SẮP XẾP
+========================================= */
+
+/* Khung hiển thị số lượng sân và tùy chọn sắp xếp */
+.courts-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    background-color: #f8f9f8;
+    border: 1px solid #e5e9e6;
+    border-radius: 10px;
+}
+
+/* Dòng thông tin số lượng sân */
+.courts-toolbar p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Nhóm nhãn và ô chọn cách sắp xếp */
+.courts-sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+/* Ô chọn thứ tự sắp xếp */
+.courts-sort select {
+    padding: 8px 12px;
+    border: 1px solid #dce3de;
+    border-radius: 8px;
+    background-color: white;
+    font-family: var(--font-main);
+}
+
+
+/* =========================================
+   5. COURT GRID - LƯỚI HIỂN THỊ SÂN
+========================================= */
+
+/* Sắp xếp 9 thẻ sân thành 3 cột */
+/* Lưới hiển thị 9 thẻ sân */
+.court-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* =========================================
+   6. COURT CARD - THẺ THÔNG TIN SÂN
+========================================= */
+
+/* Khung tổng thể của mỗi thẻ sân */
+.court-card {
+    overflow: hidden;
+    background-color: var(--color-white);
+    border: 2px solid #e5e9e6;
+    border-radius: 12px;
+}
+
+/* Khu vực hiển thị ảnh sân và nhãn trạng thái */
+.court-card-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 180px;
+    background-color: #e8eee9;
+    color: #68736e;
+}
+
+/* Nhãn trạng thái còn sân */
+.court-card-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Khu vực nội dung bên dưới ảnh */
+.court-card-content {
+    padding: 15px;
+}
+
+/* Tên sân */
+.court-card-title {
+    margin: 0 0 10px;
+    color: var(--color-dark);
+    font-size: 17px;
+}
+
+/* Thông tin địa chỉ và đánh giá */
+.court-card-address,
+.court-card-rating {
+    margin: 7px 0;
+    color: #68736e;
+    font-size: 13px;
+}
+
+/* Biểu tượng địa chỉ */
+.court-card-address i {
+    margin-right: 5px;
+    color: var(--color-dark);
+}
+
+/* Biểu tượng đánh giá sao */
+.court-card-rating i {
+    margin-right: 5px;
+    color: #f4b400;
+}
+
+/* Hàng chứa giá thuê và nút xem chi tiết */
+.court-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+/* Giá thuê sân */
+.court-card-price {
+    margin: 0;
+    color: #397b39;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Nút xem chi tiết */
+.court-card-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 9px 13px;
+    border-radius: 20px;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.court-card-button:hover {
+    background-color: #145344;
+}
+
+
+/* =========================================
+   7. COURTS PAGINATION - PHÂN TRANG
+========================================= */
+
+/* Khung điều hướng giữa các trang */
+.courts-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+}
+
+/* Nút chuyển trang và số trang */
+.pagination-link {
+    display: inline-block;
+    min-width: 38px;
+    padding: 9px 12px;
+    border: 1px solid #e5e9e6;
+    border-radius: 9px;
+    color: #202a26;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Trang đang chọn và hiệu ứng rê chuột */
+.pagination-link:hover,
+.pagination-link--active {
+    background-color: var(--color-dark);
+    color: white;
+}
+
+
+/* =========================================
+   8. RESPONSIVE - ĐIỀU CHỈNH THEO KÍCH THƯỚC MÀN HÌNH
+========================================= */
+
+/* Máy tính bảng và màn hình nhỏ hơn 1100px:
+   Bộ lọc thu hẹp, danh sách sân còn 2 cột */
+@media (max-width: 1100px) {
+
+    .courts-layout {
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .court-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Điện thoại và màn hình nhỏ hơn 768px:
+   Bộ lọc chuyển lên trên, thẻ sân hiển thị 1 cột */
+@media (max-width: 768px) {
+
+    .courts-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .court-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .courts-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .sport-categories {
+        justify-content: flex-start;
+    }
+}

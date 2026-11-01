@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="SportGo giúp bạn tìm kiếm và đặt sân thể thao tại TP.HCM.">
+
+    <title>SportGo | Danh sách sân tập</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo-light.png">
+
+    <!-- Font chữ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS chung -->
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <!-- ================================
+         1. HEADER
+    ================================= -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="index.html" class="header-logo" aria-label="SportGo, về trang chủ">
+                <img src="images/logo-light.png" alt="SportGo">
+            </a>
+
+            <nav class="main-nav" aria-label="Menu chính">
+
+                <ul>
+                    <li>
+                        <a href="index.html">Trang chủ</a>
+                    </li>
+
+                    <li>
+                        <a href="courts.html" aria-current="page">Danh sách sân tập</a>
+                    </li>
+
+                    <li>
+                        <a href="about.html">Về SportGo</a>
+                    </li>
+                </ul>
+
+            </nav>
+
+            <div class="header-actions header-actions--guest">
+
+                <a href="login.html" class="auth-link">Đăng nhập</a>
+
+                <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+
+            </div>
+
+        </div>
+
+        <!-- Banner -->
+        <div class="hero-content">
+
+            <h1>FIND YOUR COURT</h1>
+
+            <p>Kết nối đam mê thể thao. Tìm kiếm và đặt sân dễ dàng cùng SportGo.</p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         2. NỘI DUNG CHÍNH
+    ================================= -->
+
+    
+<main id="main-content">
+
+    <section class="courts-section">
+
+        <!-- Tiêu đề trang -->
+        <div class="courts-heading">
+            <h1>Danh sách sân thể thao</h1>
+            <p>Tìm kiếm sân thể thao phù hợp với nhu cầu của bạn.</p>
+        </div>
+
+        <!-- Bố cục bộ lọc và danh sách sân -->
+        <div class="courts-layout">
+
+            <!-- CỘT TRÁI: BỘ LỌC -->
+       <aside class="court-filters">
+
+    <h2 class="court-filters-title">Bộ lọc tìm kiếm</h2>
+
+    <!-- Lọc theo địa điểm -->
+    <div class="filter-group">
+        <h3 class="filter-group-title">Địa điểm</h3>
+
+        <label for="filter-city">Tỉnh / Thành phố</label>
+        <select id="filter-city" name="city">
+            <option value="">Chọn tỉnh / thành phố</option>
+            <option value="hcm">TP. Hồ Chí Minh</option>
+        </select>
+
+        <label for="filter-district">Quận / Huyện</label>
+        <select id="filter-district" name="district">
+            <option value="">Chọn quận / huyện</option>
+            <option value="quan-7">Quận 7</option>
+            <option value="binh-thanh">Bình Thạnh</option>
+            <option value="thu-duc">TP. Thủ Đức</option>
+            <option value="go-vap">Gò Vấp</option>
+        </select>
+    </div>
+
+    <!-- Lọc theo giá -->
+    <div class="filter-group">
+        <h3 class="filter-group-title">Khoảng giá (đ/giờ)</h3>
+
+        <div class="filter-price">
+            <input type="number" name="min-price"
+                   placeholder="Giá thấp nhất">
+
+            <input type="number" name="max-price"
+                   placeholder="Giá cao nhất">
+        </div>
+    </div>
+
+    <!-- Lọc theo tiện ích -->
+    <div class="filter-group">
+        <h3 class="filter-group-title">Tiện ích</h3>
+
+        <label class="filter-option">
+            <input type="checkbox" name="amenities" value="wifi">
+            Wifi
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox" name="amenities" value="parking">
+            Bãi giữ xe
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox" name="amenities" value="changing-room">
+            Phòng thay đồ
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox" name="amenities" value="toilet">
+            Nhà vệ sinh
+        </label>
+    </div>
+
+    <!-- Lọc theo đánh giá -->
+    <div class="filter-group">
+        <h3 class="filter-group-title">Đánh giá</h3>
+
+        <label class="filter-option">
+            <input type="checkbox" name="rating" value="5">
+            5 sao
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox" name="rating" value="4">
+            4 - 5 sao
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox" name="rating" value="3">
+            Dưới 4 sao
+        </label>
+    </div>
+
+    <button type="button" class="filter-submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Tìm kiếm
+    </button>
+
+</aside>
+            <!-- CỘT PHẢI: DANH SÁCH SÂN -->
+            <div class="courts-content">
+
+                <!-- Danh mục môn thể thao -->
+                <nav class="sport-categories" aria-label="Danh mục môn thể thao">
+                    <a href="#" class="sport-category sport-category--active">Tất cả</a>
+                    <a href="#" class="sport-category">Bóng đá</a>
+                    <a href="#" class="sport-category">Bóng rổ</a>
+                    <a href="#" class="sport-category">Cầu lông</a>
+                    <a href="#" class="sport-category">Pickleball</a>
+                </nav>
+
+                <!-- Thanh số lượng và sắp xếp -->
+                <div class="courts-toolbar">
+
+                    <p>Hiển thị 9 sân thể thao</p>
+
+                    <div class="courts-sort">
+                        <label for="sort-courts">Sắp xếp:</label>
+                        <select id="sort-courts" name="sort">
+                            <option value="default">Mặc định</option>
+                            <option value="price-low">Giá thấp đến cao</option>
+                            <option value="price-high">Giá cao đến thấp</option>
+                            <option value="rating">Đánh giá cao nhất</option>
+                        </select>
+                    </div>
+                </div>
+
+             <div class="court-grid">
+
+    <!-- Court Card 1 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân bóng đá</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân bóng đá SportGo a
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Quận 7, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.8 (120 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">250.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 2 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân bóng rổ</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân bóng rổ SportGo BBB1
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Quận 7, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.7 (98 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">200.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 3 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân cầu lông</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân cầu lông SportGo C1
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Quận 7, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.9 (156 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">180.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 4 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân pickleball</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân pickleball SportGo D1
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Quận 7, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.8 (85 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">220.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 5 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân bóng đá</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân bóng đá SportGo A2
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Bình Thạnh, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.6 (92 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">250.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 6 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân bóng rổ</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân bóng rổ SportGo B2
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Bình Thạnh, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.7 (110 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">200.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 7 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân cầu lông</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân cầu lông SportGo C2
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                TP. Thủ Đức, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.8 (134 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">180.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 8 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân pickleball</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân pickleball SportGo D2
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                TP. Thủ Đức, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.9 (76 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">220.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Court Card 9 -->
+    <article class="court-card">
+        <div class="court-card-image">
+            <span>Ảnh sân bóng đá</span>
+        </div>
+
+        <div class="court-card-content">
+            <h3 class="court-card-title">
+                Sân bóng đá SportGo A3
+            </h3>
+
+            <p class="court-card-address">
+                <i class="fa-solid fa-location-dot"></i>
+                Gò Vấp, TP.HCM
+            </p>
+
+            <p class="court-card-rating">
+                <i class="fa-solid fa-star"></i>
+                4.7 (105 đánh giá)
+            </p>
+
+            <div class="court-card-bottom">
+                <p class="court-card-price">250.000đ/giờ</p>
+                <a href="#" class="court-card-button">Xem chi tiết</a>
+            </div>
+        </div>
+    </article>
+
+</div>
+                <!-- Phân trang -->
+                <nav class="courts-pagination" aria-label="Phân trang">
+                    <a href="#" class="pagination-link">Trước</a>
+                    <a href="#" class="pagination-link pagination-link--active">1</a>
+                    <a href="#" class="pagination-link">2</a>
+                    <a href="#" class="pagination-link">3</a>
+                    <a href="#" class="pagination-link">Tiếp</a>
+                </nav>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+    <!-- ================================
+         3. FOOTER
+    ================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <!-- Cột 1: Thương hiệu -->
+            <div class="footer-brand">
+
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo-light.png" alt="SportGo">
+                </a>
+
+                <p class="footer-slogan">
+                    Tìm sân dễ dàng - Đặt lịch nhanh chóng - Ra sân ngay.
+                </p>
+
+                <h3>Kết nối với SportGo</h3>
+
+                <div class="footer-socials">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Cột 2: Khám phá -->
+            <div class="footer-column">
+
+                <h3>Khám phá</h3>
+
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+
+            </div>
+
+
+            <!-- Cột 3: CSKH -->
+            <div class="footer-column">
+
+                <h3>CSKH</h3>
+
+                <ul>
+                    <li><a href="#">Hướng dẫn đặt sân</a></li>
+                    <li><a href="#">Chính sách hủy và hoàn tiền</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Báo cáo sự cố</a></li>
+                </ul>
+
+            </div>
+
+
+            <!-- Cột 4: Thông tin liên hệ -->
+            <div class="footer-column footer-contact">
+
+                <h3>Thông tin liên hệ</h3>
+
+                <ul>
+
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0123 456 789</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@sportgo.vn</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>6:00 - 22:00 hằng ngày</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer bottom -->
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 SportGo. Đồ án môn Phát triển ứng dụng
+                thương mại điện tử, UEH.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">Chính sách bảo mật</a>
+
+                <a href="#">Điều khoản sử dụng</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
