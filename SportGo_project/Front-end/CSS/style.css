@@ -661,12 +661,14 @@ a { -webkit-tap-highlight-color: transparent; }
 
 /* Khung tổng thể của mỗi thẻ sân */
 .court-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     overflow: hidden;
     background-color: var(--color-white);
     border: 2px solid #e5e9e6;
     border-radius: 12px;
-}
-
+} 
 /* Khu vực hiển thị ảnh sân và nhãn trạng thái */
 .court-card-image {
     position: relative;
@@ -694,8 +696,11 @@ a { -webkit-tap-highlight-color: transparent; }
 
 /* Khu vực nội dung bên dưới ảnh */
 .court-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     padding: 15px;
-}
+} 
 
 /* Tên sân */
 .court-card-title {
