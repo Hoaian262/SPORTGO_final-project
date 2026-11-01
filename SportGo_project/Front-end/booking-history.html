@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SportGo - Lịch sử đặt sân của người dùng">
+    <title>SportGo | Lịch sử đặt sân</title>
+
+    <link rel="icon" type="image/png" href="images/logo-light.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER GIỮ NGUYÊN -->
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="index.html" class="header-logo" aria-label="SportGo, về trang chủ">
+                <img src="images/logo-light.png" alt="SportGo">
+            </a>
+
+            <nav class="main-nav" aria-label="Menu chính">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions header-actions--guest">
+                <a href="login.html" class="auth-link">Đăng nhập</a>
+                <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+            </div>
+
+        </div>
+
+        <!-- BANNER GIỮ NGUYÊN -->
+        <div class="hero-content">
+            <h1>TÀI KHOẢN NGƯỜI DÙNG</h1>
+            <p>Quản lý thông tin tài khoản và lịch sử đặt sân của bạn.</p>
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main id="main-content" class="profile-main">
+
+        <div class="profile-container">
+
+            <!-- SIDEBAR GIỮ NGUYÊN -->
+            <aside class="profile-sidebar">
+
+                <div class="profile-user">
+
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <h2>Khánh Linh Ngô</h2>
+                    <p>khanhlinh@gmail.com</p>
+
+                </div>
+
+                <nav class="profile-menu" aria-label="Quản lý tài khoản">
+
+                    <a href="profile.html" class="profile-menu-item">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Thông tin cá nhân</span>
+                    </a>
+
+                    <a href="booking-history.html"
+                       class="profile-menu-item active"
+                       aria-current="page">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Lịch sử đặt sân</span>
+                    </a>
+
+                    <a href="change-password.html" class="profile-menu-item">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Đổi mật khẩu</span>
+                    </a>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- NỘI DUNG LỊCH SỬ ĐẶT SÂN -->
+            <section class="profile-content booking-content">
+
+                <div class="profile-content-header">
+                    <h2>Lịch sử đặt sân</h2>
+                </div>
+
+                <!-- BỘ LỌC TRẠNG THÁI -->
+                <div class="booking-filter">
+
+                    <span class="filter-label">Trạng thái đặt sân:</span>
+
+                    <div class="filter-options">
+                        <a href="#all" class="filter-item active">Tất cả</a>
+                        <a href="#confirmed" class="filter-item">Đã xác nhận</a>
+                        <a href="#completed" class="filter-item">Hoàn thành</a>
+                        <a href="#cancelled" class="filter-item">Đã hủy</a>
+                    </div>
+
+                </div>
+
+
+                <!-- BẢNG LỊCH SỬ -->
+                <div class="booking-table-wrapper">
+
+                    <table class="booking-table">
+
+                        <thead>
+                            <tr>
+                                <th>Mã đặt sân</th>
+                                <th>Thông tin sân</th>
+                                <th>Ngày đặt</th>
+                                <th>Giờ đặt</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td data-label="Mã đặt sân">SG001</td>
+
+                                <td data-label="Thông tin sân">
+                                    <strong>Sân cầu lông A1</strong>
+                                    <small>Quận 7, TP.HCM</small>
+                                </td>
+
+                                <td data-label="Ngày đặt">05/11/2026</td>
+                                <td data-label="Giờ đặt">18:00 - 20:00</td>
+                                <td data-label="Tổng tiền">200.000đ</td>
+
+                                <td data-label="Trạng thái">
+                                    <span class="booking-status confirmed">
+                                        Đã xác nhận
+                                    </span>
+                                </td>
+
+                                <td data-label="Chi tiết">
+                                    <a href="#detail-SG001" class="booking-detail-btn">Xem</a>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td data-label="Mã đặt sân">SG002</td>
+
+                                <td data-label="Thông tin sân">
+                                    <strong>Sân bóng đá mini B2</strong>
+                                    <small>Quận 7, TP.HCM</small>
+                                </td>
+
+                                <td data-label="Ngày đặt">28/10/2026</td>
+                                <td data-label="Giờ đặt">19:00 - 21:00</td>
+                                <td data-label="Tổng tiền">500.000đ</td>
+
+                                <td data-label="Trạng thái">
+                                    <span class="booking-status completed">
+                                        Hoàn thành
+                                    </span>
+                                </td>
+
+                                <td data-label="Chi tiết">
+                                    <a href="#detail-SG002" class="booking-detail-btn">Xem</a>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td data-label="Mã đặt sân">SG003</td>
+
+                                <td data-label="Thông tin sân">
+                                    <strong>Sân cầu lông C3</strong>
+                                    <small>Quận 4, TP.HCM</small>
+                                </td>
+
+                                <td data-label="Ngày đặt">20/10/2026</td>
+                                <td data-label="Giờ đặt">17:00 - 19:00</td>
+                                <td data-label="Tổng tiền">180.000đ</td>
+
+                                <td data-label="Trạng thái">
+                                    <span class="booking-status cancelled">
+                                        Đã hủy
+                                    </span>
+                                </td>
+
+                                <td data-label="Chi tiết">
+                                    <a href="#detail-SG003" class="booking-detail-btn">Xem</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="booking-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Thông tin đặt sân được hiển thị dưới dạng dữ liệu minh họa.
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER GIỮ NGUYÊN -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo-light.png" alt="SportGo">
+                </a>
+
+                <p class="footer-slogan">
+                    Tìm sân dễ dàng - Đặt lịch nhanh chóng - Ra sân ngay.
+                </p>
+
+                <h3>Kết nối với SportGo</h3>
+
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+                <h3>Khám phá</h3>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column">
+                <h3>CSKH</h3>
+                <ul>
+                    <li><a href="#">Hướng dẫn đặt sân</a></li>
+                    <li><a href="#">Chính sách hủy và hoàn tiền</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Báo cáo sự cố</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column footer-contact">
+                <h3>Thông tin liên hệ</h3>
+
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0123 456 789</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@sportgo.vn</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>6:00 - 22:00 hằng ngày</span>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 SportGo. Đồ án môn Phát triển ứng dụng
+                thương mại điện tử, UEH.
+            </p>
+
+            <div class="footer-bottom-links">
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản sử dụng</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
