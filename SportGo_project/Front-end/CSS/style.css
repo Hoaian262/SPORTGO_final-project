@@ -572,26 +572,30 @@ a { -webkit-tap-highlight-color: transparent; }
 .sport-categories {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 12px;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #f8f9f8;
     border: 1px solid #e5e9e6;
     border-radius: 12px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 
 /* Từng danh mục môn thể thao */
 .sport-category {
+    flex-shrink: 0;
     padding: 9px 20px;
     border-radius: 25px;
     color: #202a26;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
-
 /* Hiệu ứng khi rê chuột và danh mục đang chọn */
 .sport-category:hover,
 .sport-category--active {
