@@ -1,0 +1,401 @@
+/* ================================
+   1. THIET LAP CHUNG
+================================ */
+:root {
+    --color-dark: #082d25;
+    --color-footer: #082d25;
+    --color-footer-text: #e8f0ec;
+    --color-footer-muted: #b8c9c1;
+    --color-accent: #b7ed62;
+    --color-white: #ffffff;
+    --font-main: 'Be Vietnam Pro', sans-serif;
+    --container-width: 1200px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    color: #202a26;
+    font-family: var(--font-main);
+}
+
+a { -webkit-tap-highlight-color: transparent; }
+
+/* ================================
+   2. HEADER VA BANNER
+   Giữ thiết kế nền ảnh và lớp phủ ban đầu
+================================ */
+.site-header {
+    width: 100%;
+    min-height: 500px;
+    background-image:
+        linear-gradient(90deg,
+            rgba(2, 25, 20, 0.98) 0%,
+            rgba(3, 40, 31, 0.85) 30%,
+            rgba(3, 40, 31, 0.5) 60%,
+            rgba(3, 40, 31, 0.15) 85%,
+            rgba(3, 40, 31, 0) 100%),
+       url("../images/court-header.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    min-height: 90px;
+    padding: 10px 40px;
+}
+
+.header-logo {
+    display: flex;
+    flex: 0 0 150px;
+    align-items: center;
+}
+
+.header-logo img {
+    display: block;
+    width: 200px;
+    max-width: 100%;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+}
+
+.main-nav { flex: 0 1 auto; min-width: 0; }
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-nav a {
+    display: inline-block;
+    color: var(--color-white);
+    font-size: 16px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.main-nav a:hover { color: #d5f5b8; }
+
+.main-nav a[aria-current="page"] {
+    padding: 10px 16px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.header-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.auth-link {
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--color-white);
+    font-size: 16px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.auth-link:hover { background-color: rgba(255, 255, 255, 0.15); }
+.auth-link--primary { background-color: rgba(255, 255, 255, 0.16); }
+.auth-link[aria-current="page"] { background-color: rgba(255, 255, 255, 0.3); font-weight: 700; }
+
+.hero-content {
+    padding: 75px 8% 100px;
+    color: var(--color-white);
+}
+
+.hero-content h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.hero-content p {
+    max-width: 620px;
+    margin: 0;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* Header cho trạng thái đã đăng nhập, dùng trong các trang tương ứng */
+.notification-link,
+.avatar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-white);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.bell-image { width: 23px; height: 23px; object-fit: contain; }
+.avatar-image { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+.notification-link[aria-current="page"] span,
+.avatar-link[aria-current="page"] span { color: var(--color-accent); font-weight: 700; }
+
+.header-logo:focus-visible,
+.main-nav a:focus-visible,
+.header-actions a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+
+
+/* ================================
+   3. FOOTER
+================================ */
+
+.footer {
+    background-color: var(--color-footer);
+    color: var(--color-footer-text);
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.site-footer {
+    width: 100%;
+    background: #082D25;
+    color: #FFFFFF;
+    padding: 55px 7% 22px;
+    box-sizing: border-box;
+}
+
+/* ================================
+   FOOTER CONTAINER
+================================ */
+
+.footer-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    display: grid;
+
+    /* Phân chia không gian 4 cột */
+    grid-template-columns:
+        1.3fr
+        0.85fr
+        1.2fr
+        1.35fr;
+
+    gap: 30px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+/* ================================
+   CỘT 1: THƯƠNG HIỆU SPORTGO
+================================ */
+
+.footer-logo img {
+    width: 210px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.footer-slogan {
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.footer-brand h3 {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+/* SOCIAL ICONS */
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.footer-socials a {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #315148;
+    border-radius: 50%;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-socials a:hover {
+    background: #B5E853;
+    color: #082D25;
+    border-color: #B5E853;
+}
+
+/* ================================
+   CỘT 2, 3, 4: NỘI DUNG
+================================ */
+
+.footer-column {
+    min-width: 0;
+}
+
+.footer-column h3 {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 8px 0 22px;
+    white-space: nowrap;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 14px;
+    color: #B8CBC5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-column a {
+    color: #B8CBC5;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: #B5E853;
+}
+
+/* ================================
+   CỘT 4: THÔNG TIN LIÊN HỆ
+================================ */
+
+.footer-contact {
+    min-width: 0;
+}
+
+.footer-contact h3 {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 8px 0 22px;
+
+    /* Tiêu đề luôn trên một dòng */
+    white-space: nowrap;
+}
+
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 14px;
+    color: #B8CBC5;
+    font-size: 14px;
+    line-height: 1.6;
+
+    /* Toàn bộ nội dung không xuống dòng */
+    white-space: nowrap;
+}
+
+.footer-contact i {
+    color: #B5E853;
+    font-size: 16px;
+    min-width: 20px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* ================================
+   FOOTER BOTTOM
+================================ */
+
+.footer-bottom {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    padding-top: 22px;
+    border-top: 1px solid #315148;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    color: #B8CBC5;
+    font-size: 13px;
+    margin: 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: nowrap;
+}
+
+.footer-bottom-links a {
+    color: #B8CBC5;
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.footer-bottom-links a:hover {
+    color: #B5E853;
+}
