@@ -765,24 +765,6 @@ a.information-value:hover {
         padding-top: 12px;
     }
 
-    .court-cover {
-        height: 170px;
-    }
-
-    .court-profile-card {
-        gap: 14px;
-        margin-right: 12px;
-        margin-left: 12px;
-        padding: 20px 16px 20px 100px;
-    }
-
-    .court-avatar {
-        left: 12px;
-        width: 82px;
-        height: 82px;
-        font-size: 28px;
-    }
-
     .court-profile-info h1 {
         font-size: 20px;
     }
@@ -826,27 +808,6 @@ a.information-value:hover {
 
     .back-link {
         gap: 5px;
-    }
-
-    .court-cover {
-        height: 135px;
-    }
-
-    .court-profile-card {
-        margin-top: -35px;
-        padding: 55px 14px 16px;
-        align-items: flex-start;
-    }
-
-    .court-avatar {
-        top: 0;
-        left: 14px;
-        transform: translateY(-40%);
-
-        width: 68px;
-        height: 68px;
-        border-width: 4px;
-        font-size: 24px;
     }
 
     .court-profile-info h1 {
