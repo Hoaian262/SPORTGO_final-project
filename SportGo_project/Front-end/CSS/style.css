@@ -448,8 +448,14 @@ a {
 .filter-group-title {
     margin: 0 0 9px;
     color: #202a26;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
 }
 
 .filter-group select {
@@ -1734,8 +1740,8 @@ a {
  /* =========================================
     7. HOVER, FOCUS VÀ TRẢI NGHIỆM TƯƠNG TÁC
     ========================================= */
-
-    /* 7.1. TRANSITION - Hiệu ứng chuyển đổi mượt mà */
+    
+    /* 71. TRANSITION - CHUYỂN ĐỔI MƯỢT MÀ */
 
     .main-nav a,
     .auth-link,
@@ -1744,25 +1750,48 @@ a {
     .footer-socials a,
     .footer-column a,
     .footer-bottom-links a,
-    .filter-submit,
     .sport-category,
-    .court-card-button,
     .pagination-link,
+    .profile-menu-item,
+    .filter-item,
     .about-breadcrumb a,
     .about-back,
-    .about-info a,
-    .filter-group select,
-    .filter-price input,
-    .courts-sort select {
+    .about-info a {
         transition:
             color 0.2s ease,
             background-color 0.2s ease,
             border-color 0.2s ease;
-    }
+     }
 
+    /* Nút chức năng */
+    .court-card-button,
+    .booking-detail-btn,
+    .booking-button,
+    .filter-submit,
+    .edit-profile-btn,
+    .password-submit-btn,
+    .password-cancel-btn {
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+    /* Ô nhập liệu và bộ lọc */
+    .filter-group select,
+    .filter-price input,
+    .courts-sort select,
+    .password-form-group input {
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+    
     /* 7.2. HOVER - MENU ĐIỀU HƯỚNG */
 
     .main-nav a:not([aria-current="page"]):hover {
+        color: var(--color-accent);
         text-decoration: underline;
         text-decoration-thickness: 2px;
         text-underline-offset: 6px;
@@ -1776,59 +1805,30 @@ a {
     }
 
     /* 7.4. HOVER - THẺ SÂN THỂ THAO */
-
     .court-card {
-        transition:
+        transition: 
             transform 0.2s ease,
             box-shadow 0.2s ease,
             border-color 0.2s ease;
     }
 
     /* Chỉ áp dụng hiệu ứng hover trên thiết bị có chuột */
+    /* Hiệu ứng khi rê chuột vào thẻ sân */
     @media (hover: hover) {
         .court-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             box-shadow: 0 8px 20px rgba(8, 45, 37, 0.15);
             border-color: var(--color-focus);
         }
     }
-
-    /* HOVER EFFECT - COURT CARD */
-
-    /* Trạng thái mặc định của thẻ sân */
-    .court-card {
-        position: relative;
-        transition: transform 0.3s ease,
-                    box-shadow 0.3s ease,
-                    border-color 0.3s ease;
-    }
-
-    /* Hiệu ứng khi rê chuột vào thẻ sân */
-    .court-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(8, 45, 37, 0.18);
-        border-color: var(--color-accent);
-    }
-
     /* Hiệu ứng khi rê chuột vào hình ảnh */
     .court-card-image img {
-        transition: transform 0.4s ease;
+        transition: transform 0.3s ease;
     }
-
     .court-card:hover .court-card-image img {
-        transform: scale(1.04);
+        transform: scale(1.03);
     }
 
-    /* Hiệu ứng nút xem chi tiết */
-    .court-card-button {
-        transition: background-color 0.3s ease,
-                    color 0.3s ease,
-                    transform 0.2s ease;
-    }
-
-    .court-card-button:hover {
-        transform: translateY(-2px);
-    }
 
     /* 7.5. HOVER VÀ ACTIVE - CÁC NÚT CHỨC NĂNG */
 
@@ -1839,23 +1839,6 @@ a {
     }
 
     .court-card-button:active {
-        background-color: #0b3d33;
-    }
-
-    /* Nút Đặt sân - sử dụng nếu HTML có class booking-button */
-    .booking-button {
-        transition:
-            background-color 0.2s ease,
-            color 0.2s ease,
-            border-color 0.2s ease;
-    }
-
-    .booking-button:hover {
-        background-color: #145344;
-        color: var(--color-white);
-    }
-
-    .booking-button:active {
         background-color: #0b3d33;
     }
 
@@ -1893,6 +1876,8 @@ a {
     .filter-group select:focus-visible,
     .filter-price input:focus-visible,
     .courts-sort select:focus-visible {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 0;
         border-color: var(--color-focus);
     }
 
