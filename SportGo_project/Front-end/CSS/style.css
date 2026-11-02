@@ -1728,4 +1728,129 @@ a {
         width: 100%;
     }
 
+    /* =========================================
+        7. HOVER, FOCUS VA TRAI NGHIEM TUONG TAC
+       ========================================= */
+
+    :root {
+        --color-focus: #08713e;   /* viền focus trên nền sáng */
+    }
+
+    /* 7.1 Focus dùng chung (bàn phím).
+    Header và trang giới thiệu đã có focus riêng nên không bị ảnh hưởng */
+    a:focus-visible,
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 3px;
+    }
+
+    /* Footer có nền tối nên đổi sang viền màu sáng */
+    .site-footer a:focus-visible {
+        outline-color: var(--color-accent);
+        border-radius: 4px;
+    }
+
+    /* 7.2 Transition cho các nút và liên kết */
+    .court-card-button,
+    .booking-button,             /* TODO: đổi thành class thật của nút Đặt sân */
+    .sport-category,
+    .pagination-link,
+    .filter-submit {
+        transition: background-color 0.2s ease, color 0.2s ease,
+                    border-color 0.2s ease;
+    }
+
+    /* 7.3 Menu: gạch chân khi rê chuột, không làm xê dịch chữ */
+    .main-nav a:not([aria-current="page"]):hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 6px;
+    }
+
+    /* Header đã đăng nhập: biểu tượng thông báo và hồ sơ */
+    .notification-link span,
+    .avatar-link span {
+        transition: color 0.2s ease;
+    }
+
+    .notification-link:hover span,
+    .avatar-link:hover span {
+        color: var(--color-accent);
+    }
+
+    /* 7.4 Nút Xem chi tiết và nút Đặt sân */
+    .court-card-button:active {
+        background-color: #0b3d33;
+    }
+
+    /* ---------------------------------------------------------
+    NÚT ĐẶT SÂN (trang chi tiết sân) - CHƯA CÓ TRANG, CHỪA SẴN
+    TODO khi làm xong courts-details.html:
+    1. Đổi ".booking-button" thành class thật của nút (ở cả mục 7.2).
+    2. Chỉnh màu hover/active nếu nền nút khác xanh đậm #082d25.
+    3. Kiểm tra tương phản chữ/nút bằng DevTools, chụp ảnh minh chứng.
+    --------------------------------------------------------- */
+    .booking-button:hover {
+        background-color: #145344;      /* cùng tông với nút Xem chi tiết */
+    }
+
+    .booking-button:active {
+        background-color: #0b3d33;
+    }
+
+    .booking-button:focus-visible {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 3px;
+    }
+
+    /* 7.5 Thẻ sân: nhấc nhẹ bằng transform nên không đẩy thẻ khác;
+    viền sẵn có 2px, chỉ đổi màu nên không làm lệch kích thước */
+    .court-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+                    border-color 0.2s ease;
+    }
+
+    @media (hover: hover) {             /* chỉ áp dụng trên thiết bị có chuột */
+        .court-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(8, 45, 37, 0.15);
+            border-color: var(--color-focus);
+        }
+    }
+
+    /* Khi nút bên trong nhận focus bằng Tab, làm nổi cả thẻ */
+    .court-card:focus-within {
+        border-color: var(--color-focus);
+        box-shadow: 0 8px 20px rgba(8, 45, 37, 0.15);
+    }
+
+    /* 7.6 Ô chọn và ô nhập trong bộ lọc */
+    .filter-group select,
+    .filter-price input,
+    .courts-sort select {
+        transition: border-color 0.2s ease;
+    }
+
+    .filter-group select:focus-visible,
+    .filter-price input:focus-visible,
+    .courts-sort select:focus-visible {
+        border-color: var(--color-focus);
+    }
+
+    /* 7.7 Người dùng tắt hiệu ứng chuyển động trong hệ điều hành */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            transition: none !important;
+        }
+        .court-card:hover {
+            transform: none;
+        }
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+
 }
