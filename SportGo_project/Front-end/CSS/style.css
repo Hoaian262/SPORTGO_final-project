@@ -334,7 +334,12 @@ a {
     color: #B8CBC5;
     font-size: 14px;
     line-height: 1.6;
-    white-space: nowrap;
+    white-space: normal;
+}
+
+.footer-contact span {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .footer-contact i {
@@ -941,6 +946,10 @@ a {
 
 /* Máy tính bảng và màn hình nhỏ hơn 1100px */
 @media (max-width: 1100px) {
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .courts-layout {
         grid-template-columns: 240px minmax(0, 1fr);
         gap: 16px;
@@ -986,41 +995,6 @@ a {
         grid-template-columns: 1fr;
         gap: 2px;
         padding: 10px 14px;
-    }
-
-    /* Header: logo + nút tài khoản, menu xuống hàng dưới */
-    .site-header {
-        min-height: auto;
-    }
-
-    .header-container {
-        flex-wrap: wrap;
-        gap: 10px 16px;
-        padding: 10px 16px;
-    }
-
-    .header-logo {
-        flex: 0 0 auto;
-    }
-
-    .header-logo img {
-        width: 140px;
-        height: 60px;
-    }
-
-    .main-nav {
-        order: 3;
-        flex-basis: 100%;
-    }
-
-    .main-nav ul {
-        flex-wrap: wrap;
-        gap: 6px 18px;
-    }
-
-    .auth-link {
-        padding: 8px 14px;
-        font-size: 14px;
     }
 
     .hero-content {
@@ -1073,7 +1047,7 @@ a {
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 295px 1fr;
+    grid-template-columns: 295px minmax(0, 1fr);
     gap: 12px;
 
     align-items: start;
@@ -1194,6 +1168,7 @@ a {
 ===================================== */
 
 .profile-content {
+    min-width: 0;
     background-color: #FFFFFF;
     border: 1px solid #E5E9E5;
     border-radius: 24px;
@@ -1628,6 +1603,52 @@ a {
 
 @media (max-width: 900px) {
 
+    /* Cho menu xuống hàng trước khi chồng lên nhóm nút tài khoản. */
+    .site-header {
+        min-height: auto;
+    }
+
+    .header-container {
+        flex-wrap: wrap;
+        gap: 10px 16px;
+        padding: 10px 16px;
+    }
+
+    .header-logo {
+        flex: 0 0 auto;
+    }
+
+    .header-logo img {
+        width: 140px;
+        height: 60px;
+    }
+
+    .main-nav {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        gap: 6px 18px;
+    }
+
+    .auth-link {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+    /* Xếp sidebar phía trên để nội dung tài khoản có đủ chiều rộng. */
+    .profile-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .profile-sidebar {
+        min-width: 0;
+        min-height: auto;
+    }
+
     .booking-table th,
     .booking-table td {
         padding: 12px 8px;
@@ -1646,6 +1667,30 @@ a {
 
 @media (max-width: 600px) {
 
+    .profile-main {
+        padding: 24px 4% 32px;
+    }
+
+    .profile-sidebar,
+    .profile-content {
+        padding: 20px 16px;
+    }
+
+    .profile-content-header {
+        flex-wrap: wrap;
+    }
+
+    .profile-info-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 6px;
+        padding: 12px 0;
+    }
+
+    .profile-user p,
+    .info-value {
+        overflow-wrap: anywhere;
+    }
+
     /* Lịch sử đặt sân */
 
     .filter-options {
@@ -1655,6 +1700,9 @@ a {
     .filter-item {
         padding: 7px 11px;
         font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
     }
 
     .booking-table-wrapper {
