@@ -1053,3 +1053,679 @@ a {
     font-weight: 700;
     text-decoration: none;
 }
+
+/* =====================================
+   4. TRANG THÔNG TIN CÁ NHÂN
+===================================== */
+
+/* Khu vực Main */
+
+.profile-main {
+    width: 100%;
+    background-color: #FAFAF6;
+    padding: 40px 7% 45px;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 295px 1fr;
+    gap: 12px;
+
+    align-items: start;
+}
+
+
+/* =====================================
+   SIDEBAR - THÔNG TIN NGƯỜI DÙNG
+===================================== */
+
+.profile-sidebar {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9E5;
+    border-radius: 24px;
+
+    padding: 24px;
+
+    min-height: 400px;
+}
+
+/* Ảnh đại diện */
+
+.profile-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #E1EBD2;
+    border-radius: 50%;
+
+    margin-bottom: 15px;
+}
+
+.profile-avatar i {
+    font-size: 78px;
+    color: #174B39;
+}
+
+.profile-user h2 {
+    margin: 0 0 4px;
+
+    color: #082D25;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.profile-user p {
+    margin: 0;
+
+    color: #59645F;
+    font-size: 14px;
+}
+
+
+/* Menu sidebar */
+
+.profile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 12px 16px;
+
+    border-radius: 10px;
+
+    color: #303B36;
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.profile-menu-item i {
+    width: 20px;
+    font-size: 17px;
+    text-align: center;
+    color: #174B39;
+}
+
+.profile-menu-item:hover {
+    background-color: #EDF4E8;
+    color: #174B39;
+}
+
+/* Menu đang được chọn */
+
+.profile-menu-item.active {
+    background-color: #15543F;
+    color: #FFFFFF;
+}
+
+.profile-menu-item.active i {
+    color: #FFFFFF;
+}
+
+
+/* =====================================
+   THÔNG TIN CÁ NHÂN
+===================================== */
+
+.profile-content {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9E5;
+    border-radius: 24px;
+
+    padding: 28px 35px 15px;
+
+    min-height: 368px;
+}
+
+/* Tiêu đề và nút chỉnh sửa */
+
+.profile-content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 14px;
+    border-bottom: 1px solid #B8D4C3;
+}
+
+.profile-content-header h2 {
+    margin: 0;
+
+    color: #082D25;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* Nút chỉnh sửa */
+
+.edit-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px 20px;
+
+    border: 1.5px solid #174B39;
+    border-radius: 30px;
+
+    background-color: #FFFFFF;
+    color: #174B39;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: 0.25s;
+}
+
+.edit-profile-btn:hover {
+    background-color: #174B39;
+    color: #FFFFFF;
+}
+
+
+/* Danh sách thông tin */
+
+.profile-info-list {
+    width: 100%;
+}
+
+.profile-info-row {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    align-items: center;
+
+    min-height: 62px;
+
+    border-bottom: 1px solid #E8EAE6;
+}
+
+.profile-info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #27332E;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.info-value {
+    color: #202A26;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* =====================================
+   4. TRANG LỊCH SỬ ĐẶT SÂN
+===================================== */
+
+.booking-content {
+    min-width: 0;
+}
+
+/* Bộ lọc trạng thái */
+
+.booking-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.filter-label {
+    color: #27332E;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-item {
+    padding: 8px 15px;
+    border: 1px solid #DCE5DD;
+    border-radius: 20px;
+    background: #FFFFFF;
+    color: #43534A;
+    font-size: 13px;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.filter-item:hover {
+    background: #EDF4E8;
+    color: #15543F;
+}
+
+.filter-item.active {
+    background: #15543F;
+    border-color: #15543F;
+    color: #FFFFFF;
+}
+
+
+/* Bảng lịch sử */
+
+.booking-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.booking-table th {
+    padding: 14px 10px;
+    background: #EDF4E8;
+    color: #174B39;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.booking-table td {
+    padding: 16px 10px;
+    border-bottom: 1px solid #E8EAE6;
+    color: #303B36;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.booking-table td strong {
+    display: block;
+    color: #174B39;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.booking-table td small {
+    display: block;
+    color: #78847D;
+    font-size: 11px;
+}
+
+.booking-table tbody tr:hover {
+    background: #FAFCF8;
+}
+
+
+/* Trạng thái đặt sân */
+
+.booking-status {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.booking-status.confirmed {
+    background: #E5F3E8;
+    color: #247A43;
+}
+
+.booking-status.completed {
+    background: #E7EEF8;
+    color: #345E91;
+}
+
+.booking-status.cancelled {
+    background: #FBE8E6;
+    color: #B84036;
+}
+
+
+/* Nút xem chi tiết */
+
+.booking-detail-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #174B39;
+    border-radius: 20px;
+    color: #174B39;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.booking-detail-btn:hover {
+    background: #174B39;
+    color: #FFFFFF;
+}
+
+
+/* Ghi chú */
+
+.booking-note {
+    margin: 20px 0 5px;
+    color: #78847D;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.booking-note i {
+    color: #7C9B68;
+    margin-right: 5px;
+}
+
+
+/* =====================================
+   5. TRANG ĐỔI MẬT KHẨU
+===================================== */
+
+.password-content {
+    min-width: 0;
+}
+
+/* Phần giới thiệu */
+
+.password-description {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin: 22px 0 25px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #F0F5EB;
+}
+
+.password-description i {
+    color: #174B39;
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.password-description p {
+    margin: 0;
+    color: #43534A;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* Form */
+
+.password-form {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.password-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.password-form-group label {
+    color: #27332E;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.password-form-group input {
+    width: 100%;
+    height: 46px;
+    padding: 0 15px;
+    border: 1px solid #D9E1DA;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #202A26;
+    font-family: var(--font-main);
+    font-size: 13px;
+    outline: none;
+    transition: 0.25s;
+}
+
+.password-form-group input::placeholder {
+    color: #A0AAA3;
+}
+
+.password-form-group input:focus {
+    border-color: #174B39;
+    box-shadow: 0 0 0 3px rgba(23, 75, 57, 0.1);
+}
+
+
+/* Hướng dẫn mật khẩu */
+
+.password-requirements {
+    margin: 10px 0 25px;
+    padding: 15px;
+    border: 1px solid #E3EAE1;
+    border-radius: 10px;
+    background: #FAFCF8;
+}
+
+.password-requirements p {
+    margin: 0 0 10px;
+    color: #174B39;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.password-requirements p i {
+    margin-right: 5px;
+}
+
+.password-requirements ul {
+    margin: 0;
+    padding-left: 25px;
+}
+
+.password-requirements li {
+    margin-bottom: 6px;
+    color: #68766D;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* Nút thao tác */
+
+.password-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.password-cancel-btn,
+.password-submit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.password-cancel-btn {
+    border: 1px solid #D9E1DA;
+    background: #FFFFFF;
+    color: #43534A;
+}
+
+.password-cancel-btn:hover {
+    background: #F0F3EF;
+}
+
+.password-submit-btn {
+    border: 1px solid #15543F;
+    background: #15543F;
+    color: #FFFFFF;
+}
+
+.password-submit-btn:hover {
+    background: #0C392B;
+}
+
+.password-note {
+    margin: 22px 0 5px;
+    color: #78847D;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.password-note i {
+    color: #174B39;
+    margin-right: 5px;
+}
+
+
+/* =====================================
+   6. RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+
+    .booking-table th,
+    .booking-table td {
+        padding: 12px 8px;
+    }
+
+    .booking-table th,
+    .booking-table td {
+        font-size: 11px;
+    }
+
+    .password-form {
+        max-width: 100%;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    /* Lịch sử đặt sân */
+
+    .filter-options {
+        gap: 7px;
+    }
+
+    .filter-item {
+        padding: 7px 11px;
+        font-size: 11px;
+    }
+
+    .booking-table-wrapper {
+        overflow-x: visible;
+    }
+
+    .booking-table,
+    .booking-table tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .booking-table thead {
+        display: none;
+    }
+
+    .booking-table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        padding: 12px 15px;
+        border: 1px solid #E5E9E5;
+        border-radius: 12px;
+        background: #FFFFFF;
+    }
+
+    .booking-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid #EEF0EC;
+        text-align: right;
+        font-size: 12px;
+    }
+
+    .booking-table td:last-child {
+        border-bottom: none;
+    }
+
+    .booking-table td::before {
+        content: attr(data-label);
+        color: #68766D;
+        font-size: 11px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .booking-table td strong,
+    .booking-table td small {
+        text-align: right;
+    }
+
+
+    /* Đổi mật khẩu */
+
+    .password-description {
+        padding: 12px;
+    }
+
+    .password-form-group input {
+        height: 44px;
+    }
+
+    .password-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .password-cancel-btn,
+    .password-submit-btn {
+        width: 100%;
+    }
+
+}
