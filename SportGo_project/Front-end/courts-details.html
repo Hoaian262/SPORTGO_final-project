@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Thông tin chi tiết, bảng giá, hình ảnh và nhận xét về sân thể thao SportGo.">
+
+    <title>SportGo | Chi tiết sân</title>
+
+    <link rel="icon" type="image/png" href="images/logo-light.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/court-detail.css">
+</head>
+
+<body>
+
+    <!-- 1. HEADER -->
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="index.html"
+               class="header-logo"
+               aria-label="SportGo - Trang chủ">
+                <img src="images/logo-light.png" alt="SportGo">
+            </a>
+
+            <nav class="main-nav" aria-label="Menu chính">
+                <ul>
+                    <li>
+                        <a href="index.html">Trang chủ</a>
+                    </li>
+
+                    <li>
+                        <a href="courts.html">Danh sách sân tập</a>
+                    </li>
+
+                    <li>
+                        <a href="my-bookings.html">Về SportGo</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-actions header-actions--guest">
+
+                <a href="login.html" class="auth-link">Đăng nhập</a>
+
+                <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+
+            </div>
+
+        </div>
+
+        <!-- Banner -->
+        <div class="hero-content">
+
+            <h1>ĐẶT SÂN THỂ THAO</h1>
+
+        </div>
+
+            
+    </header>
+
+
+<main class="court-detail-page">
+
+    <!-- THẺ THÔNG TIN SÂN NẰM ĐÈ LÊN HERO BANNER -->
+    <section class="court-profile">
+
+        <div class="court-profile-card">
+
+            <!-- Ảnh sân bên trái -->
+            <div class="court-feature-image">
+                <img src="images/phong vũ.jpg"
+                     alt="Hình ảnh sân thể thao">
+
+                <span class="court-image-badge">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Đang cập nhật khoảng cách
+                </span>
+            </div>
+
+            <!-- Thông tin bên phải -->
+            <div class="court-profile-info">
+
+                <div class="court-profile-top">
+                    <div>
+                        <span class="court-sport-tag">Cầu lông</span>
+
+                        <h1>Sân cầu lông Phong Vũ</h1>
+                    </div>
+
+                    <div class="court-profile-actions">
+                        <button type="button" aria-label="Chia sẻ sân">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+
+                        <button type="button" aria-label="Yêu thích sân">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <p class="court-profile-address">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>2 Lê Quát, Quận Tân Phú, TP. Hồ Chí Minh</span>
+                    <a href="https://maps.app.goo.gl/VsZQ3nzMoTdpkNuu5" class="court-map-link">
+                        <br>
+                        <i class="fa-solid fa-map"></i> 
+                        Xem bản đồ
+                    </a>
+                </p>
+
+                <p class="court-profile-description">
+                    Sân thể thao SportGo với không gian tập luyện rộng rãi,
+                    phù hợp cho nhu cầu luyện tập và giao lưu thể thao.
+                </p>
+
+                <a href="#court-information" class="court-more-link">
+                    Xem thêm ↓
+                </a>
+
+                <div class="court-profile-divider"></div>
+
+                <div class="court-quick-info">
+
+                    <div>
+                        <span class="quick-info-label">GIỜ MỞ CỬA</span>
+                        <strong>05:00–24:00 | Hằng ngày</strong>
+                    </div>
+
+                    <div>
+                        <span class="quick-info-label">ĐÁNH GIÁ</span>
+                        <strong class="quick-rating">
+                            <i class="fa-solid fa-star"></i> 4.8
+                            <small>(120)</small>
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span class="quick-info-label">TRẠNG THÁI</span>
+                        <strong class="quick-status">
+                            <i class="fa-solid fa-circle"></i> Đang mở
+                        </strong>
+                    </div>
+                    <div>
+                        <!-- Nút CTA đặt sân -->
+            <a href="#court-pricing" class="court-booking-cta">
+                 <span>Đặt sân ngay</span>
+             </a>
+
+                    </div>
+    
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- THANH ĐIỀU HƯỚNG -->
+    <nav class="detail-breadcrumb" aria-label="Điều hướng">
+        <div class="breadcrumb-path">
+            <a href="index.html">Trang chủ</a>
+            <span>/</span>
+            <a href="profile.html">Chi tiết sân</a>
+        </div>
+
+        <a href="courts.html" class="back-link">Quay về</a>
+    </nav>
+
+    <!-- TAB -->
+    <nav class="detail-tabs" aria-label="Thông tin sân">
+        <a href="#court-information"
+           class="detail-tab detail-tab--active">Thông tin sân</a>
+    </nav>
+
+    <!-- THÔNG TIN CHI TIẾT -->
+    <section class="detail-section" id="court-information">
+        <h2 class="section-title">Thông tin chi tiết</h2>
+
+        <div class="information-list">
+            <div class="information-item">
+                <span class="information-label">Địa chỉ</span>
+                <span class="information-value">
+                    2 Lê Quát, Quận Tân Phú, TP. Hồ Chí Minh
+                </span>
+            </div>
+
+            <div class="information-item">
+                <span class="information-label">Số điện thoại</span>
+                <a href="tel:0123456789" class="information-value">
+                    0775 267 069
+                </a>
+            </div>
+
+            <div class="information-item">
+                <span class="information-label">Giờ hoạt động</span>
+                <span class="information-value">05:00–24:00 hằng ngày</span>
+            </div>
+
+            <div class="information-item">
+                <span class="information-label">Số sân</span>
+                <span class="information-value">4 sân thể thao</span>
+            </div>
+
+            <div class="information-item">
+                <span class="information-label">Tiện ích</span>
+                <div class="amenities-list">
+                    <span>Wifi</span>
+                    <span>Bãi giữ xe</span>
+                    <span>Phòng thay đồ</span>
+                    <span>Nhà vệ sinh</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="court-description">
+            <h3>Giới thiệu sân</h3>
+            <p>
+                Bổ sung nội dung giới thiệu dựa trên thông tin thực tế
+                của sân thể thao.
+            </p>
+        </div>
+    </section>
+
+    <!-- BẢNG GIÁ -->
+    <section class="detail-section" id="court-pricing">
+        <h2 class="section-title">Bảng giá sân</h2>
+
+        <div class="price-table-wrapper">
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Khung giờ</th>
+                        <th>Thời gian</th>
+                        <th>Giá thuê</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sáng</td>
+                        <td>05:00–12:00</td>
+                        <td>34.000đ</td>
+                    </tr>
+                    <tr>
+                        <td>Chiều</td>
+                        <td>12:00–17:00</td>
+                        <td>60.000đ</td>
+                    </tr>
+                    <tr>
+                        <td>Tối</td>
+                        <td>17:00–24:00</td>
+                        <td>89.000đ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ALBUM ẢNH -->
+    <section class="detail-section">
+        <h2 class="section-title">Album ảnh</h2>
+
+        <div class="court-gallery">
+            <figure class="gallery-item">
+                <img src="images/phong vũ 1.jpg"
+                     alt="Phong vũ 1">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/phong vũ 2.jpg"
+                     alt="Phong vũ 2">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/phong vũ 3.jpg"
+                     alt="Phong vũ 3">
+            </figure>
+        </div>
+    </section>
+
+    <!-- NHẬN XÉT -->
+    <section class="detail-section review-section">
+        <div class="section-heading-row">
+            <div>
+                <h2 class="section-title">Nhận xét</h2>
+                <p class="section-description">
+                    Đánh giá từ khách hàng đã trải nghiệm sân.
+                </p>
+            </div>
+
+            <div class="review-summary">
+                <i class="fa-solid fa-star"></i>
+                <strong>4.8/5</strong>
+                <span>(120 đánh giá)</span>
+            </div>
+        </div>
+
+        <div class="review-grid">
+            <article class="review-card">
+                <div class="review-card-header">
+                    <div class="review-avatar">M</div>
+                    <div class="review-user">
+                        <h3>Minh Nguyễn</h3>
+                        <span>Khách hàng</span>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-comment">
+                    Sân sạch sẽ, nhân viên hỗ trợ nhiệt tình.
+                </p>
+            </article>
+
+            <article class="review-card">
+                <div class="review-card-header">
+                    <div class="review-avatar">A</div>
+                    <div class="review-user">
+                        <h3>Anh Trần</h3>
+                        <span>Khách hàng</span>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★☆</div>
+                <p class="review-comment">
+                    Vị trí dễ tìm và có chỗ gửi xe.
+                </p>
+            </article>
+
+            <article class="review-card">
+                <div class="review-card-header">
+                    <div class="review-avatar">L</div>
+                    <div class="review-user">
+                        <h3>Lan Phạm</h3>
+                        <span>Khách hàng</span>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-comment">
+                    Không gian phù hợp để tập luyện thể thao.
+                </p>
+            </article>
+        </div>
+    </section>
+
+</main>
+
+    <!-- 3. FOOTER SPORTGO -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <!-- Thương hiệu -->
+            <div class="footer-brand">
+
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo-light.png" alt="SportGo">
+                </a>
+
+                <p class="footer-slogan">
+                    Tìm sân dễ dàng - Đặt lịch nhanh chóng - Ra sân ngay.
+                </p>
+
+                <h3>Kết nối với SportGo</h3>
+
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- Khám phá -->
+            <div class="footer-column">
+
+                <h3>Khám phá</h3>
+
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+
+            </div>
+
+
+            <!-- CSKH -->
+            <div class="footer-column">
+
+                <h3>CSKH</h3>
+
+                <ul>
+                    <li><a href="#">Hướng dẫn đặt sân</a></li>
+                    <li><a href="#">Chính sách hủy và hoàn tiền</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Báo cáo sự cố</a></li>
+                </ul>
+
+            </div>
+
+
+            <!-- Thông tin liên hệ -->
+            <div class="footer-column footer-contact">
+
+                <h3>Thông tin liên hệ</h3>
+
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0123 456 789</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@sportgo.vn</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>05:00 – 24:00 hằng ngày</span>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer bottom -->
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 SportGo. Đồ án môn Phát triển ứng dụng
+                thương mại điện tử, UEH.
+            </p>
+
+            <div class="footer-bottom-links">
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản sử dụng</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
