@@ -2415,12 +2415,24 @@ a {
 
 /* Hướng dẫn đặt sân */
 .home-booking-section {
-    padding: 52px 0 58px;
-    background: #edf3e9;
+    padding: 65px 0 70px;
+    background: #0B332A;
 }
 
 .home-booking-section .home-section-heading {
     margin-bottom: 30px;
+}
+
+.home-booking-section .home-eyebrow {
+    color: #B7ED62;
+}
+
+.home-booking-section .home-section-heading h2 {
+    color: #FFFFFF;
+}
+
+.home-booking-section .home-section-heading p {
+    color: #C5D8CD;
 }
 
 .home-booking-steps {
@@ -2433,24 +2445,45 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 18px;
-    border: 1px solid #e0e9dd;
-    border-radius: 14px;
-    background: #ffffff;
+    padding: 30px 22px;
+    border: none;
+    border-radius: 18px;
+    background: #E8F4DC;
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.home-booking-step:nth-child(2) {
+    background: #DDF0EA;
+}
+
+.home-booking-step:nth-child(3) {
+    background: #FFF3CE;
+}
+
+.home-booking-step:hover {
+    transform: translateY(-7px);
 }
 
 .home-step-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 65px;
-    height: 65px;
-    margin-bottom: 13px;
-    border-radius: 18px;
-    background: #eaf3e3;
-    color: #1b5a3d;
-    font-size: 25px;
+    width: 75px;
+    height: 75px;
+    margin-bottom: 17px;
+    border-radius: 20px;
+    background: #B7ED62;
+    color: #0B332A;
+    font-size: 28px;
+}
+
+.home-booking-step:nth-child(2) .home-step-icon {
+    background: #A9DCCB;
+}
+
+.home-booking-step:nth-child(3) .home-step-icon {
+    background: #FFE17A;
 }
 
 .home-step-number {
@@ -2461,9 +2494,18 @@ a {
 }
 
 .home-booking-step h3 {
-    margin: 7px 0 5px;
-    color: var(--color-dark);
-    font-size: 16px;
+    margin: 9px 0;
+    color: #0B332A;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.home-booking-step p {
+    max-width: 250px;
+    margin: 0;
+    color: #61736A;
+    font-size: 13px;
+    line-height: 1.7;
 }
 
 .home-booking-step p {
@@ -2484,15 +2526,20 @@ a {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-height: 46px;
-    padding: 12px 30px;
-    border-radius: 8px;
-    background: var(--color-dark);
-    color: #ffffff;
-    font-size: 13px;
+    min-height: 50px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    background: #B7ED62;
+    color: #0B332A;
+    font-size: 14px;
     font-weight: 800;
     text-decoration: none;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: all 0.3s ease;
+}
+
+.home-booking-cta a:hover {
+    background: #D0F58F;
+    transform: translateY(-3px);
 }
 
 .home-booking-cta a:hover {
