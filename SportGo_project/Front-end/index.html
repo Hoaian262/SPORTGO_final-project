@@ -9,13 +9,13 @@
     <link rel="icon" type="image/png" href="images/logo-light.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    
-    <!-- HEADER GUEST: hiển thị khi người dùng chưa đăng nhậP -->
+
+    <!-- HEADER VÀ HERO BANNER DÙNG CHUNG -->
     <header class="site-header">
         <div class="header-container">
             <a href="index.html" class="header-logo" aria-label="SportGo, về trang chủ">
@@ -36,109 +36,316 @@
             </div>
         </div>
 
-        <!-- Banner hiện đang giữ chung nền với Header theo thiết kế ban đầu -->
         <div class="hero-content">
             <h1>FIND YOUR COURT</h1>
             <p>Kết nối đam mê thể thao. Tìm kiếm và đặt sân dễ dàng cùng SportGo.</p>
         </div>
     </header>
 
-    <main id="main-content">
-        <!-- TỤI MÀY TRÌNH BÀY VÔ ĐÂY CHO TAO NHA . -->
+    <main id="main-content" class="home-main">
+
+        <!-- 1. TÌM KIẾM SÂN -->
+        <section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
+            <form class="home-search-form" action="courts.html" method="get">
+                <label class="visually-hidden" for="home-search">Nhập tên sân hoặc khu vực</label>
+                <div class="home-search-input">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input
+                        type="search"
+                        id="home-search"
+                        name="keyword"
+                        placeholder="Nhập tên sân, quận hoặc khu vực bạn muốn tìm..."
+                    >
+                </div>
+                <button type="submit" class="home-search-button">Tìm kiếm</button>
+            </form>
+        </section>
+
+        <!-- 2. DANH MỤC MÔN THỂ THAO -->
+        <section class="home-category-section home-container">
+            <div class="home-section-heading">
+                <span class="home-eyebrow">CHỌN MÔN THỂ THAO</span>
+                <h2>KHÁM PHÁ THEO MÔN THỂ THAO</h2>
+                <p>Tìm sân phù hợp với bộ môn bạn yêu thích.</p>
+            </div>
+
+            <nav class="home-category-list" aria-label="Danh mục môn thể thao">
+                <a href="courts.html" class="home-category-link home-category-link--active">Tất cả</a>
+                <a href="courts.html?sport=bong-da" class="home-category-link">Bóng đá</a>
+                <a href="courts.html?sport=bong-ro" class="home-category-link">Bóng rổ</a>
+                <a href="courts.html?sport=cau-long" class="home-category-link">Cầu lông</a>
+                <a href="courts.html?sport=pickleball" class="home-category-link">Pickleball</a>
+                <a href="courts.html?sport=tennis" class="home-category-link">Tennis</a>
+            </nav>
+        </section>
+
+        <!-- 3. SÂN NỔI BẬT -->
+        <section class="home-featured-section home-container">
+            <div class="home-section-heading">
+                <span class="home-eyebrow">GỢI Ý DÀNH CHO BẠN</span>
+                <h2>SÂN NỔI BẬT</h2>
+                <p>Những địa điểm thể thao được SportGo tuyển chọn.</p>
+            </div>
+
+            <div class="home-court-grid">
+                <article class="home-court-card">
+                    <a href="court-detail.html" class="home-court-image">
+                        <img src="images/bongda.jpg" alt="Sân bóng đá SportGo Arena" loading="lazy">
+                        <span class="home-court-tag">Nổi bật</span>
+                    </a>
+                    <div class="home-court-content">
+                        <div class="home-court-type">BÓNG ĐÁ</div>
+                        <h3><a href="court-detail.html">Sân bóng đá Nam Sài Gòn</a></h3>
+                        <p class="home-court-location">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            Quận 7, TP. Hồ Chí Minh
+                        </p>
+                        <div class="home-court-meta">
+                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.8</span>
+                            <strong>500.000đ <small>/ giờ</small></strong>
+                        </div>
+                        <a href="court-detail.html" class="home-court-button">Xem chi tiết</a>
+                    </div>
+                </article>
+
+                <article class="home-court-card">
+                    <a href="court-detail.html" class="home-court-image">
+                        <img src="images/bongro.jpg" alt="Sân Bóng rổ " loading="lazy">
+                        <span class="home-court-tag">Được yêu thích</span>
+                    </a>
+                    <div class="home-court-content">
+                        <div class="home-court-type">BÓNG RỔ</div>
+                        <h3><a href="court-detail.html">Bóng rổ Lam Sơn</a></h3>
+                        <p class="home-court-location">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            Quận 10, TP. Hồ Chí Minh
+                        </p>
+                        <div class="home-court-meta">
+                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9</span>
+                            <strong>120.000đ <small>/ giờ</small></strong>
+                        </div>
+                        <a href="court-detail.html" class="home-court-button">Xem chi tiết</a>
+                    </div>
+                </article>
+
+                <article class="home-court-card">
+                    <a href="court-detail.html" class="home-court-image">
+                        <img src="images/caulong.webp" alt="Sân pickleball City Pickle" loading="lazy">
+                        <span class="home-court-tag">Mới</span>
+                    </a>
+                    <div class="home-court-content">
+                        <div class="home-court-type">CẦU LÔNG</div>
+                        <h3><a href="court-detail.html">Sân cầu Vy Phong</a></h3>
+                        <p class="home-court-location">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            TP. Thủ Đức, TP. Hồ Chí Minh
+                        </p>
+                        <div class="home-court-meta">
+                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.7</span>
+                            <strong>180.000đ <small>/ giờ</small></strong>
+                        </div>
+                        <a href="court-detail.html" class="home-court-button">Xem chi tiết</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="home-view-all">
+                <a href="courts.html">Xem tất cả sân <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </section>
+
+        <!-- 4. BANNER PHỤ-->
+        <section class="home-promo-banner home-container" aria-label="Banner quảng bá SportGo">
+            <a href="courts.html" class="home-promo-link">
+                <img
+                    src="images/Logo (5).png"
+                    alt="Khám phá và đặt sân thể thao cùng SportGo"
+                    loading="lazy"
+                >
+                <span class="visually-hidden">Khám phá danh sách sân SportGo</span>
+            </a>
+        </section>
+
+        <!-- 5. SÂN GẦN BẠN VÀ SÂN ĐƯỢC TUYỂN CHỌN -->
+        <section class="home-discovery-section home-container">
+            <div class="home-discovery-grid">
+
+                <div class="home-ranking-panel">
+                    <div class="home-panel-heading">
+                        <div>
+                            <span class="home-eyebrow">THUẬN TIỆN CHO BẠN</span>
+                            <h2>SÂN GẦN BẠN</h2>
+                            <p>Tham khảo các sân theo khu vực.</p>
+                        </div>
+                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                    </div>
+
+                    <ol class="home-ranking-list">
+                        <li>
+                            <span class="home-rank-number">1</span>
+                            <div class="home-rank-info">
+                                <strong>SportGo Arena</strong>
+                                <small>Quận 7</small>
+                            </div>
+                            <a href="court-detail.html" aria-label="Xem SportGo Arena"><i class="fa-solid fa-chevron-right"></i></a>
+                        </li>
+                        <li>
+                            <span class="home-rank-number">2</span>
+                            <div class="home-rank-info">
+                                <strong>Green Court</strong>
+                                <small>Quận 10</small>
+                            </div>
+                            <a href="court-detail.html" aria-label="Xem Green Court"><i class="fa-solid fa-chevron-right"></i></a>
+                        </li>
+                        <li>
+                            <span class="home-rank-number">3</span>
+                            <div class="home-rank-info">
+                                <strong>City Pickle</strong>
+                                <small>TP. Thủ Đức</small>
+                            </div>
+                            <a href="court-detail.html" aria-label="Xem City Pickle"><i class="fa-solid fa-chevron-right"></i></a>
+                        </li>
+                    </ol>
+                    <a href="courts.html" class="home-panel-link">Tìm sân quanh bạn</a>
+                </div>
+
+                <div class="home-ranking-panel">
+                    <div class="home-panel-heading">
+                        <div>
+                            <span class="home-eyebrow">SPORTGO ĐỀ XUẤT</span>
+                            <h2>SÂN ĐƯỢC TUYỂN CHỌN</h2>
+                            <p>Những địa điểm đáng để bạn trải nghiệm.</p>
+                        </div>
+                        <i class="fa-solid fa-award" aria-hidden="true"></i>
+                    </div>
+
+                    <ol class="home-ranking-list">
+                        <li>
+                            <span class="home-rank-number">1</span>
+                            <div class="home-rank-info">
+                                <strong>Green Court</strong>
+                                <small>Không gian tập luyện tiện nghi</small>
+                            </div>
+                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.9</span>
+                        </li>
+                        <li>
+                            <span class="home-rank-number">2</span>
+                            <div class="home-rank-info">
+                                <strong>SportGo Arena</strong>
+                                <small>Sân bóng đá chất lượng</small>
+                            </div>
+                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.8</span>
+                        </li>
+                        <li>
+                            <span class="home-rank-number">3</span>
+                            <div class="home-rank-info">
+                                <strong>City Pickle</strong>
+                                <small>Địa điểm pickleball mới</small>
+                            </div>
+                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.7</span>
+                        </li>
+                    </ol>
+                    <a href="courts.html" class="home-panel-link">Khám phá sân nổi bật</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. HƯỚNG DẪN ĐẶT SÂN -->
+        <section class="home-booking-section">
+            <div class="home-container">
+                <div class="home-section-heading">
+                    <span class="home-eyebrow">ĐẶT SÂN TRỰC TUYẾN</span>
+                    <h2>ĐẶT SÂN NHANH CHÓNG</h2>
+                    <p>Chọn sân, chọn lịch và sẵn sàng cho trận đấu của bạn.</p>
+                </div>
+
+                <div class="home-booking-steps">
+                    <div class="home-booking-step">
+                        <div class="home-step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <span class="home-step-number">BƯỚC 1</span>
+                        <h3>Tìm sân</h3>
+                        <p>Chọn môn thể thao và địa điểm phù hợp.</p>
+                    </div>
+                    <div class="home-booking-step">
+                        <div class="home-step-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                        <span class="home-step-number">BƯỚC 2</span>
+                        <h3>Đặt lịch</h3>
+                        <p>Chọn ngày, khung giờ và xác nhận thông tin.</p>
+                    </div>
+                    <div class="home-booking-step">
+                        <div class="home-step-icon"><i class="fa-solid fa-volleyball"></i></div>
+                        <span class="home-step-number">BƯỚC 3</span>
+                        <h3>Ra sân</h3>
+                        <p>Đến sân đúng lịch và tận hưởng trận đấu.</p>
+                    </div>
+                </div>
+
+                <div class="home-booking-cta">
+                    <a href="courts.html">ĐẶT SÂN NGAY <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- FOOTER dùng chung cho các trang -->
-<footer class="site-footer">
-    <div class="footer-container">
-           <!-- CỘT 1: THƯƠNG HIỆU SPORTGO -->
-    <div class="footer-brand">
-        <a href="../index.html" class="footer-logo">
-            <img src="images/logo-light.png" alt="SportGo">
-        </a>
-        <p class="footer-slogan">
-            Tìm sân dễ dàng - Đặt lịch nhanh chóng - Ra sân ngay.
-        </p>
-        <h3>Kết nối với SportGo</h3>
+    <!-- FOOTER DÙNG CHUNG -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo-light.png" alt="SportGo">
+                </a>
+                <p class="footer-slogan">
+                    Tìm sân dễ dàng - Đặt lịch nhanh chóng - Ra sân ngay.
+                </p>
+                <h3>Kết nối với SportGo</h3>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
 
-            <!-- CỘT 2: TRANG MẠNG XÃ HỘI SPORTGO -->
-        <div class="footer-socials">
-            <a href="#" aria-label="Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#" aria-label="YouTube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="#" aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" aria-label="TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-        </div>
-    </div>
-        <!-- CỘT 3: KHÁM PHÁ -->
-        <div class="footer-column">
-            <h3>Khám phá</h3>
-            <ul>
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="../courts.html">Danh sách sân tập</a></li>
-                <li><a href="../about.html">Về SportGo</a></li>
-            </ul>
-        </div>
+            <div class="footer-column">
+                <h3>Khám phá</h3>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+            </div>
 
-        <!-- CỘT 4: CSKH -->
-        <div class="footer-column">
-            <h3>CSKH</h3>
-            <ul>
-                <li><a href="#">Hướng dẫn đặt sân</a></li>
-                <li><a href="#">Chính sách hủy và hoàn tiền</a></li>
-                <li><a href="#">Câu hỏi thường gặp</a></li>
-                <li><a href="#">Báo cáo sự cố</a></li>
-            </ul>
-        </div>
+            <div class="footer-column">
+                <h3>CSKH</h3>
+                <ul>
+                    <li><a href="#">Hướng dẫn đặt sân</a></li>
+                    <li><a href="#">Chính sách hủy và hoàn tiền</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Báo cáo sự cố</a></li>
+                </ul>
+            </div>
 
-        <!-- CỘT 5: THÔNG TIN LIÊN HỆ -->
-        <div class="footer-column footer-contact">
-            <h3>Thông tin liên hệ</h3>
-
-            <ul>
-                <li>
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-phone"></i>
-                    <span>0123 456 789</span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>support@sportgo.vn</span>
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-clock"></i>
-                    <span>6:00 - 22:00 hằng ngày</span>
-                </li>
-            </ul>
+            <div class="footer-column footer-contact">
+                <h3>Thông tin liên hệ</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i><span>123 Nguyễn Văn Linh, Q.7, TP.HCM</span></li>
+                    <li><i class="fa-solid fa-phone"></i><span>0123 456 789</span></li>
+                    <li><i class="fa-solid fa-envelope"></i><span>support@sportgo.vn</span></li>
+                    <li><i class="fa-solid fa-clock"></i><span>6:00 - 22:00 hằng ngày</span></li>
+                </ul>
+            </div>
         </div>
 
-    </div>
-
-    <!-- FOOTER BOTTOM -->
-    <div class="footer-bottom">
-        <p>
-            © 2026 SportGo. Đồ án môn Phát triển ứng dụng
-            thương mại điện tử, UEH.
-        </p>
-
-        <div class="footer-bottom-links">
-            <a href="#">Chính sách bảo mật</a>
-            <a href="#">Điều khoản sử dụng</a>
+        <div class="footer-bottom">
+            <p>© 2026 SportGo. Đồ án môn Phát triển ứng dụng thương mại điện tử, UEH.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản sử dụng</a>
+            </div>
         </div>
-    </div>
+    </footer>
 
-</footer>
 </body>
 </html>
