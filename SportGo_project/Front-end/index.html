@@ -46,22 +46,45 @@
     </div>
 </header>
 
-        <!-- 1. TÌM KIẾM SÂN -->
-        <section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
-            <form class="home-search-form" action="courts.html" method="get">
-                <label class="visually-hidden" for="home-search">Nhập tên sân hoặc khu vực</label>
-                <div class="home-search-input">
-                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <input
-                        type="search"
-                        id="home-search"
-                        name="keyword"
-                        placeholder="Nhập tên sân, quận hoặc khu vực bạn muốn tìm..."
-                    >
-                </div>
-                <button type="submit" class="home-search-button">Tìm kiếm</button>
-            </form>
-        </section>
+      <!-- 1. TÌM KIẾM SÂN -->
+<section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
+    <form class="home-search-form" action="courts.html" method="get">
+
+        <!-- Tìm theo tên sân hoặc địa điểm -->
+        <div class="home-search-input">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label class="visually-hidden" for="home-search">
+                Tên sân hoặc khu vực
+            </label>
+            <input
+                type="search"
+                id="home-search"
+                name="keyword"
+                placeholder="Tên sân, quận hoặc khu vực..."
+            >
+        </div>
+
+        <!-- Chọn ngày đặt sân -->
+        <div class="home-search-date">
+            <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+            <label class="visually-hidden" for="booking-date">
+                Ngày muốn đặt sân
+            </label>
+            <input
+                type="date"
+                id="booking-date"
+                name="date"
+                aria-label="Chọn ngày muốn đặt sân"
+            >
+        </div>
+
+        <!-- Nút tìm kiếm -->
+        <button type="submit" class="home-search-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Tìm kiếm
+        </button>
+    </form>
+</section>
 
         <!-- 2. DANH MỤC MÔN THỂ THAO -->
         <section class="home-category-section home-container">
