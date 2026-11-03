@@ -191,10 +191,6 @@ Trong phạm vi thực hiện, SportGo tập trung vào xây dựng giao diện 
 
 <div align="center">
 
-**SPORTGO – SPORTS COURT WEBSITE**
-
-*E-Commerce Application Development Project*
-
 </div>
 
 
