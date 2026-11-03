@@ -334,7 +334,12 @@ a {
     color: #B8CBC5;
     font-size: 14px;
     line-height: 1.6;
-    white-space: nowrap;
+    white-space: normal;
+}
+
+.footer-contact span {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .footer-contact i {
@@ -948,6 +953,10 @@ a {
 
 /* Máy tính bảng và màn hình nhỏ hơn 1100px */
 @media (max-width: 1100px) {
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .courts-layout {
         grid-template-columns: 240px minmax(0, 1fr);
         gap: 16px;
@@ -993,41 +1002,6 @@ a {
         grid-template-columns: 1fr;
         gap: 2px;
         padding: 10px 14px;
-    }
-
-    /* Header: logo + nút tài khoản, menu xuống hàng dưới */
-    .site-header {
-        min-height: auto;
-    }
-
-    .header-container {
-        flex-wrap: wrap;
-        gap: 10px 16px;
-        padding: 10px 16px;
-    }
-
-    .header-logo {
-        flex: 0 0 auto;
-    }
-
-    .header-logo img {
-        width: 140px;
-        height: 60px;
-    }
-
-    .main-nav {
-        order: 3;
-        flex-basis: 100%;
-    }
-
-    .main-nav ul {
-        flex-wrap: wrap;
-        gap: 6px 18px;
-    }
-
-    .auth-link {
-        padding: 8px 14px;
-        font-size: 14px;
     }
 
     .hero-content {
@@ -1080,7 +1054,7 @@ a {
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 295px 1fr;
+    grid-template-columns: 295px minmax(0, 1fr);
     gap: 12px;
 
     align-items: start;
@@ -1201,6 +1175,7 @@ a {
 ===================================== */
 
 .profile-content {
+    min-width: 0;
     background-color: #FFFFFF;
     border: 1px solid #E5E9E5;
     border-radius: 24px;
@@ -1635,6 +1610,52 @@ a {
 
 @media (max-width: 900px) {
 
+    /* Cho menu xuống hàng trước khi chồng lên nhóm nút tài khoản. */
+    .site-header {
+        min-height: auto;
+    }
+
+    .header-container {
+        flex-wrap: wrap;
+        gap: 10px 16px;
+        padding: 10px 16px;
+    }
+
+    .header-logo {
+        flex: 0 0 auto;
+    }
+
+    .header-logo img {
+        width: 140px;
+        height: 60px;
+    }
+
+    .main-nav {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        gap: 6px 18px;
+    }
+
+    .auth-link {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+    /* Xếp sidebar phía trên để nội dung tài khoản có đủ chiều rộng. */
+    .profile-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .profile-sidebar {
+        min-width: 0;
+        min-height: auto;
+    }
+
     .booking-table th,
     .booking-table td {
         padding: 12px 8px;
@@ -1653,6 +1674,30 @@ a {
 
 @media (max-width: 600px) {
 
+    .profile-main {
+        padding: 24px 4% 32px;
+    }
+
+    .profile-sidebar,
+    .profile-content {
+        padding: 20px 16px;
+    }
+
+    .profile-content-header {
+        flex-wrap: wrap;
+    }
+
+    .profile-info-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 6px;
+        padding: 12px 0;
+    }
+
+    .profile-user p,
+    .info-value {
+        overflow-wrap: anywhere;
+    }
+
     /* Lịch sử đặt sân */
 
     .filter-options {
@@ -1662,6 +1707,9 @@ a {
     .filter-item {
         padding: 7px 11px;
         font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
     }
 
     .booking-table-wrapper {
@@ -2653,5 +2701,48 @@ a {
 
     .home-booking-step {
         padding: 20px 15px;
+    }
+}
+
+/* Bố cục mobile: logo và tài khoản cùng hàng, menu ba ô cân đối. */
+@media (max-width: 600px) {
+    .header-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px 8px;
+        padding: 16px 20px;
+    }
+    .header-logo img { width: 104px; height: 44px; }
+    .header-actions { gap: 6px; margin-left: 0; min-width: 0; }
+    .auth-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 10px; font-size: 12px; }
+    .auth-link--primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-dark); font-weight: 700; }
+    .main-nav { grid-column: 1 / -1; width: 100%; }
+    .main-nav ul { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px; padding: 5px; background: rgba(2, 25, 20, .52); border: 1px solid rgba(255, 255, 255, .16); border-radius: 16px; }
+    .main-nav a, .main-nav a[aria-current="page"] { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 6px; font-size: 11px; border-radius: 11px; }
+    .main-nav a[aria-current="page"] { background: rgba(183, 237, 98, .18); color: var(--color-accent); }
+    .hero-content { padding: 34px 24px 52px; }
+    .hero-content h1 { max-width: 280px; margin-bottom: 16px; font-size: clamp(30px, 8.5vw, 38px); line-height: 1.15; }
+    .hero-content p { max-width: 330px; font-size: 14px; font-style: normal; line-height: 1.7; }
+    .notification-link, .avatar-link { gap: 4px; font-size: 11px; }
+    .avatar-image { width: 32px; height: 32px; }
+    .site-footer { padding: 32px 24px 24px; }
+    .footer-container { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 20px; padding-bottom: 28px; }
+    .footer-brand, .footer-contact { grid-column: 1 / -1; }
+    .footer-logo img { width: 154px; margin-bottom: 0; }
+    .footer-slogan { margin: 10px 0 20px; }
+    .footer-brand h3, .footer-column h3, .footer-contact h3 { margin: 0 0 12px; font-size: 13px; white-space: normal; }
+    .footer-column li { margin-bottom: 8px; font-size: 13px; }
+    .footer-column a { display: inline-block; padding: 6px 0; }
+    .footer-socials { gap: 10px; }
+    .footer-socials a { width: 44px; height: 44px; }
+    .footer-contact { padding-top: 22px; border-top: 1px solid #315148; }
+    .footer-bottom { gap: 14px; }
+    .footer-bottom p { font-size: 12px; line-height: 1.7; }
+    .footer-bottom-links { gap: 8px 16px; }
+    /* Tránh ô tìm kiếm mới của trang chủ che phần mô tả Banner. */
+    .home-search-section {
+        margin-top: 0;
+        transform: translateY(-24px);
+        margin-bottom: -24px;
     }
 }
