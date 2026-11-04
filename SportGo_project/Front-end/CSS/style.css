@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* =========================================
    1. THIẾT LẬP CHUNG
 ========================================= */
@@ -1947,6 +1949,17 @@ a {
     padding: 0 14px;
 }
 
+.home-search-input input {
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    border: 0;
+    outline: none;
+    color: #202a26;
+    font-family: var(--font-main);
+    font-size: 13px;
+}
+
 .home-search-input i {
     color: #668174;
     font-size: 18px;
@@ -1980,6 +1993,36 @@ a {
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
+}
+/* CHỌN NGÀY ĐẶT SÂN */
+.home-search-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 210px;
+    padding: 0 14px;
+    border-left: 1px solid #e4eae4;
+}
+
+.home-search-date i {
+    color: #668174;
+    font-size: 17px;
+}
+
+.home-search-date input {
+    width: 100%;
+    height: 48px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #34443b;
+    font-family: var(--font-main);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.home-search-date input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
 }
 
 .home-search-button:hover {
@@ -2647,5 +2690,1029 @@ a {
 
     .home-booking-step {
         padding: 20px 15px;
+    }
+}
+/* ICON TÌM KIẾM HEADER */
+.header-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-left: auto;
+
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 18px;
+
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.header-search:hover {
+    background: rgba(183, 237, 98, 0.2);
+    color: #B7ED62;
+}
+
+/* ==================================================
+   14. TRANG CHI TIẾT SÂN
+   CSS bổ sung từ file chi tiết sân
+================================================== */
+
+/* =========================================
+   1. COURT DETAIL - OVERLAP HERO
+========================================= */
+
+.court-detail-page {
+    width: 94%;
+    max-width: 1400px;
+    margin: -150px auto 0;
+    padding: 0 0 40px;
+    position: relative;
+    z-index: 2;
+    color: var(--color-dark, #202a26);
+}
+
+.court-profile {
+    margin-bottom: 24px;
+}
+
+.court-profile-card {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    overflow: hidden;
+    background: #f8fafc;
+    border: 1px solid #e6eaf0;
+    border-radius: 26px;
+    box-shadow: 0 8px 24px rgba(20, 40, 30, 0.10);
+}
+
+/* Ảnh chính */
+
+.court-feature-image {
+    position: relative;
+    min-height: 330px;
+    background: #e5ebe7;
+}
+
+.court-feature-image > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    object-fit: cover;
+}
+
+.court-image-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 9px 12px;
+    border-radius: 20px;
+    background: rgba(20, 35, 45, 0.92);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.court-image-badge i {
+    color: #ff8b38;
+    margin-right: 5px;
+}
+
+.court-image-thumbnails {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+.court-image-thumbnails img,
+.court-more-images {
+    width: 58px;
+    height: 58px;
+    border: 3px solid #fff;
+    border-radius: 13px;
+}
+
+.court-image-thumbnails img {
+    object-fit: cover;
+}
+
+/* Phần thông tin bên phải */
+
+.court-profile-info {
+    min-width: 0;
+    padding: 24px;
+}
+
+.court-profile-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.court-sport-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    margin-bottom: 8px;
+    border-radius: 20px;
+    background: #e7ffe4;
+    color: #06380a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.court-profile-info h1 {
+    margin: 0 0 12px;
+    color: #101e35;
+    font-size: clamp(22px, 2.5vw, 36px);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.court-profile-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.court-profile-actions button {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #718096;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.08);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.court-profile-address {
+    margin: 0 0 16px;
+    color: #52647d;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.court-profile-address > i {
+    color: #425b14;
+    margin-right: 5px;
+}
+
+.court-map-link,
+.court-more-link {
+    color: #425b14;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.court-map-link {
+    white-space: nowrap;
+}
+
+.court-profile-description {
+    margin: 0 0 8px;
+    color: #43546c;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.court-more-link {
+    font-size: 13px;
+}
+
+.court-profile-divider {
+    height: 1px;
+    margin: 20px 0;
+    background: #e5eaf1;
+}
+
+.court-quick-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    margin-bottom: 16px;
+}
+
+.court-quick-info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.quick-info-label {
+    color: #8998ac;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.court-quick-info strong {
+    color: #34445b;
+    font-size: 13px;
+}
+
+.quick-rating i {
+    color: #f5c542;
+}
+
+.quick-rating small {
+    color: #8998ac;
+    font-weight: 400;
+}
+
+.court-quick-info .quick-status {
+    color: #08a878;
+}
+
+.quick-status i {
+    font-size: 10px;
+}
+
+.court-amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.court-amenities span {
+    padding: 7px 12px;
+    border-radius: 18px;
+    background: #e9f0fd;
+    color: #2159df;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Breadcrumb nằm bên dưới thẻ thông tin */
+
+.detail-breadcrumb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    background: #f1f4f2;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.breadcrumb-path {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.breadcrumb-path a,
+.back-link {
+    color: var(--color-dark, #202a26);
+    text-decoration: none;
+}
+
+.back-link {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Ảnh album */
+
+.court-gallery .gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+    .court-detail-page {
+        width: 94%;
+        margin-top: -100px;
+    }
+
+    .court-profile-card {
+        grid-template-columns: 240px minmax(0, 1fr);
+        border-radius: 20px;
+    }
+
+    .court-feature-image,
+    .court-feature-image > img {
+        min-height: 360px;
+    }
+
+    .court-profile-info {
+        padding: 20px;
+    }
+
+    .court-profile-actions button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .court-quick-info {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 650px) {
+    .court-detail-page {
+        width: 92%;
+        margin-top: -55px;
+    }
+
+    .court-profile-card {
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+    }
+
+    .court-feature-image,
+    .court-feature-image > img {
+        min-height: 230px;
+        height: 230px;
+    }
+
+    .court-profile-info {
+        padding: 18px;
+    }
+
+    .court-profile-info h1 {
+        font-size: 23px;
+    }
+
+    .court-profile-top {
+        gap: 8px;
+    }
+
+    .court-profile-actions {
+        gap: 5px;
+    }
+
+    .court-profile-actions button {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .court-quick-info {
+        gap: 18px;
+    }
+
+    .detail-breadcrumb {
+        font-size: 11px;
+        padding: 12px;
+    }
+
+    .court-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .court-gallery .gallery-item:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 400px) {
+    .court-profile-top {
+        flex-direction: column;
+    }
+
+    .court-profile-actions {
+        align-self: flex-end;
+    }
+
+    .court-quick-info {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .court-amenities span {
+        font-size: 11px;
+    }
+}
+
+/* =========================================
+   4. DETAIL TABS
+========================================= */
+
+.detail-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 28px;
+}
+
+.detail-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 22px;
+    border-radius: 8px;
+
+    background: #e9eeea;
+    color: #34443b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.detail-tab:hover,
+.detail-tab--active {
+    background: var(--color-dark, #202a26);
+    color: #ffffff;
+}
+
+/* =========================================
+   5. DETAIL SECTION - CÁC KHỐI NỘI DUNG
+========================================= */
+
+.detail-section {
+    padding: 24px;
+    margin-bottom: 18px;
+
+    background: #f2f4f2;
+    border: 1px solid #e5e9e6;
+    border-radius: 12px;
+}
+
+.section-title {
+    margin: 0 0 18px;
+    color: var(--color-dark, #202a26);
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.section-description {
+    margin: -10px 0 18px;
+    color: #68736e;
+    font-size: 13px;
+}
+
+.section-heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.section-heading-row .section-title {
+    margin-bottom: 0;
+}
+
+.section-heading-row .section-description {
+    margin: 6px 0 0;
+}
+
+/* =========================================
+   6. INFORMATION LIST - THÔNG TIN CHI TIẾT
+========================================= */
+
+.information-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.information-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    min-height: 44px;
+    padding: 11px 15px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8e3;
+    border-radius: 8px;
+}
+
+.information-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.information-label i {
+    width: 17px;
+    color: #08713e;
+    text-align: center;
+}
+
+.information-value {
+    color: #4e5b53;
+    font-size: 13px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+a.information-value {
+    text-decoration: none;
+}
+
+a.information-value:hover {
+    color: #08713e;
+}
+
+.amenities-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.amenities-list span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+
+    background: #edf5ee;
+    border-radius: 6px;
+    color: #315a3c;
+    font-size: 12px;
+}
+
+.court-description {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #dce3de;
+}
+
+.court-description h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.court-description p {
+    margin: 0;
+    color: #68736e;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   7. PRICE TABLE - BẢNG GIÁ
+========================================= */
+
+.price-unit {
+    color: #68736e;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.price-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid #dce3de;
+    border-radius: 8px;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.price-table th,
+.price-table td {
+    padding: 15px 18px;
+    border-bottom: 1px solid #e5e9e6;
+    font-size: 13px;
+}
+
+.price-table th {
+    background: #e6eee7;
+    color: #263d2f;
+    font-weight: 700;
+}
+
+.price-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.price-table tbody tr:hover {
+    background: #f8fbf8;
+}
+
+.price-table td:last-child {
+    color: #08713e;
+    font-weight: 700;
+}
+
+.price-note {
+    margin: 12px 0 0;
+    color: #68736e;
+    font-size: 12px;
+}
+
+.price-note i {
+    margin-right: 5px;
+    color: #08713e;
+}
+
+/* =========================================
+   8. COURT GALLERY - ALBUM ẢNH
+========================================= */
+
+.court-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.gallery-item {
+    min-width: 0;
+    margin: 0;
+}
+
+.gallery-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    aspect-ratio: 4 / 3;
+    background: #dce4de;
+    border-radius: 9px;
+    color: #7b8b80;
+    font-size: 28px;
+    transition: background-color 0.2s;
+}
+
+.gallery-placeholder:hover {
+    background: #d0ded2;
+}
+
+.gallery-item figcaption {
+    margin-top: 9px;
+    color: #68736e;
+    font-size: 12px;
+}
+
+/* =========================================
+   9. REVIEWS - NHẬN XÉT
+========================================= */
+
+.review-summary {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 13px;
+}
+
+.review-summary i,
+.review-stars {
+    color: #e5a900;
+}
+
+.review-summary strong {
+    font-size: 18px;
+    color: var(--color-dark, #202a26);
+}
+
+.review-summary span {
+    color: #68736e;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.review-card {
+    min-width: 0;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e2e8e3;
+    border-radius: 9px;
+}
+
+.review-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #dcebe0;
+    color: #225b37;
+    font-weight: 700;
+}
+
+.review-user {
+    min-width: 0;
+}
+
+.review-user h3 {
+    margin: 0;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.review-user span {
+    color: #68736e;
+    font-size: 11px;
+}
+
+.review-stars {
+    margin: 13px 0 8px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.review-comment {
+    min-height: 58px;
+    margin: 0 0 12px;
+    color: #4e5b53;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.review-card time {
+    color: #8a958d;
+    font-size: 11px;
+}
+
+/* =========================================
+   10. RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+    .review-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .court-detail-page {
+        width: 94%;
+    }
+}
+
+@media (max-width: 768px) {
+    .court-detail-page {
+        width: 92%;
+        padding-top: 12px;
+    }
+
+    .court-cover {
+        height: 170px;
+    }
+
+    .court-profile-card {
+        gap: 14px;
+        margin-right: 12px;
+        margin-left: 12px;
+        padding: 20px 16px 20px 100px;
+    }
+
+    .court-avatar {
+        left: 12px;
+        width: 82px;
+        height: 82px;
+        font-size: 28px;
+    }
+
+    .court-profile-info h1 {
+        font-size: 20px;
+    }
+
+    .detail-section {
+        padding: 18px;
+    }
+
+    .section-heading-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .court-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .court-gallery .gallery-item:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-comment {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-breadcrumb {
+        align-items: flex-start;
+        padding: 12px;
+        font-size: 11px;
+    }
+
+    .breadcrumb-path {
+        gap: 5px;
+    }
+
+    .back-link {
+        gap: 5px;
+    }
+
+    .court-cover {
+        height: 135px;
+    }
+
+    .court-profile-card {
+        margin-top: -35px;
+        padding: 55px 14px 16px;
+        align-items: flex-start;
+    }
+
+    .court-avatar {
+        top: 0;
+        left: 14px;
+        transform: translateY(-40%);
+
+        width: 68px;
+        height: 68px;
+        border-width: 4px;
+        font-size: 24px;
+    }
+
+    .court-profile-info h1 {
+        font-size: 18px;
+    }
+
+    .court-profile-info p {
+        font-size: 12px;
+    }
+
+    .detail-tab {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .detail-section {
+        padding: 14px;
+        margin-bottom: 14px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .information-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+    }
+
+    .information-value {
+        text-align: left;
+        padding-left: 27px;
+    }
+
+    .amenities-list {
+        justify-content: flex-start;
+        padding-left: 27px;
+    }
+
+    .price-table th,
+    .price-table td {
+        padding: 12px 10px;
+        font-size: 12px;
+    }
+
+    .price-unit {
+        white-space: normal;
+    }
+
+    .court-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .court-gallery .gallery-item:last-child {
+        grid-column: auto;
+    }
+}
+
+/* =========================================
+   COURT SUMMARY + CTA BUTTON
+========================================= */
+
+/* Font Inter dành riêng cho CTA và label */
+
+/* CTA - Đặt sân ngay */
+.court-booking-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    flex-shrink: 0;
+    min-height: 48px;
+    padding: 0 24px;
+
+
+    background-color: var(--color-dark, #425b14);
+    border: 1px solid var(--color-dark,#425b14);
+    border-radius: 10px;
+
+    color: #ffed87;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 650;
+    text-decoration: none;
+    white-space: nowrap;
+
+    box-shadow: 0 4px 12px rgba(9, 63, 49, 0.12);
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Focus cho thao tác bằng bàn phím */
+.court-booking-cta:focus-visible {
+    outline: 3px solid #a9e5b9;
+    outline-offset: 3px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .court-summary-row {
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .court-summary-info {
+        gap: 20px;
+    }
+
+    .court-booking-cta {
+        padding: 0 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .court-summary-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .court-summary-info {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 12px;
+    }
+
+    .court-summary-item > strong {
+        font-size: 13px;
+    }
+
+    .summary-label {
+        font-size: 11px;
+    }
+
+    .court-booking-cta {
+        width: 100%;
+        min-height: 46px;
+        box-sizing: border-box;
     }
 }
