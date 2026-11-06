@@ -69,9 +69,7 @@ const courts = [
             "Wifi"
         ],
         gallery: [],
-        prices: [
-            { name: "Giá tham khảo", time: "Tùy khung giờ", price: 60000 }
-        ]
+      prices: []
     },
 
     {
@@ -157,9 +155,7 @@ const courts = [
             "Bãi giữ xe"
         ],
         gallery: [],
-        prices: [
-            { name: "Giá tham khảo", time: "Tùy khung giờ", price: 45000 }
-        ]
+       prices: []
     },
 
     {
@@ -203,9 +199,7 @@ const courts = [
             "Phòng thay đồ"
         ],
         gallery: [],
-        prices: [
-            { name: "Giá tham khảo", time: "Tùy khung giờ", price: 120000 }
-        ]
+       prices: []
     }
 ];
 
