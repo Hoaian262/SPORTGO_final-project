@@ -253,6 +253,13 @@ function renderCourts(list) {
         `;
     });
 }
+// ========================================
+// 2. HÀM ĐỊNH DẠNG GIÁ TIỀN
+// ========================================
+
+function formatPrice(price) {
+    return new Intl.NumberFormat("vi-VN").format(price) + "đ/giờ";
+}
 
 // Hiển thị toàn bộ sân khi mở trang
 if (courtGrid && emptyMessage) {
