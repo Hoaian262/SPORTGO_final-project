@@ -3716,3 +3716,118 @@ a.information-value:hover {
         box-sizing: border-box;
     }
 }
+
+/* =================================
+   BOOKING FORM
+================================= */
+
+#court-booking {
+    background: #f3f6f4;
+    border: 1px solid #e0e8e3;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#court-booking h2 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #082d25;
+    margin-bottom: 25px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.booking-field label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #173d32;
+}
+
+.booking-field input,
+.booking-field select {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    color: #173d32;
+
+    background: #ffffff;
+    border: 1px solid #dce5df;
+    border-radius: 10px;
+
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.booking-field input:focus,
+.booking-field select:focus {
+    border-color: #0b5945;
+    box-shadow: 0 0 0 3px rgba(11, 89, 69, 0.1);
+}
+
+.booking-field input:hover,
+.booking-field select:hover {
+    border-color: #9db9aa;
+}
+
+.booking-submit {
+    width: fit-content;
+    min-width: 205px;
+    height: 52px;
+    padding: 0 25px;
+
+    background: #082d25;
+    color: #f5d85e;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 11px;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.booking-submit:hover {
+    background: #10513f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(8, 45, 37, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #court-booking {
+        padding: 22px 18px;
+    }
+
+    .booking-form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .booking-submit {
+        width: 100%;
+    }
+}
