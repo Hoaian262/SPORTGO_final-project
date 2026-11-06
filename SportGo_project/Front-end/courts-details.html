@@ -131,7 +131,7 @@
                     </div>
                     <div>
                         <!-- Nút CTA đặt sân -->
-            <a href="#court-pricing" class="court-booking-cta">
+            <a href="#court-booking" class="court-booking-cta">
                  <span>Đặt sân ngay</span>
              </a>
                     </div>
@@ -199,6 +199,42 @@
             </p>
         </div>
     </section>
+
+    
+<!-- KHU VỰC ĐẶT SÂN -->
+<section class="detail-section" id="court-booking">
+    <h2 class="section-title">Đặt sân</h2>
+
+    <form id="booking-form" class="booking-form">
+
+    <div class="booking-form-grid">
+
+        <div class="booking-field">
+            <label for="booking-date">Ngày đặt sân</label>
+            <input type="date" id="booking-date" required>
+        </div>
+
+        <div class="booking-field">
+            <label for="booking-time">Khung giờ</label>
+            <select id="booking-time" required>
+                <option value="">-- Chọn khung giờ --</option>
+                <option value="morning">Buổi sáng</option>
+                <option value="afternoon">Buổi chiều</option>
+                <option value="evening">Buổi tối</option>
+            </select>
+        </div>
+
+    </div>
+
+    <button type="submit" class="booking-submit">
+        Xác nhận đặt sân
+    </button>
+
+</form>
+</section>
+
+
+
 
     <!-- BẢNG GIÁ -->
     <section class="detail-section" id="court-pricing">
@@ -352,7 +388,6 @@
 
             </div>
 
-
             <!-- Khám phá -->
             <div class="footer-column">
 
@@ -430,6 +465,6 @@
         </div>
 
     </footer>
-
+<script src="JS/court-detail.js"></script>
 </body>
 </html>
