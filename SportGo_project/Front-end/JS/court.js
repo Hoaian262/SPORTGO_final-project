@@ -210,7 +210,7 @@ const courtGrid = document.getElementById("court-grid");
 const emptyMessage = document.getElementById("empty-message");
 
 // Hàm hiển thị danh sách sân
-function renderCourts(list) {
+function renderCourts(list, bookingDate = "") {
     if (!courtGrid || !emptyMessage) return;
 
     // Xóa danh sách cũ trước khi hiển thị
@@ -225,8 +225,10 @@ function renderCourts(list) {
     emptyMessage.hidden = true;
 
     // Tạo thẻ sân từ dữ liệu
-    list.forEach(court => {
-        courtGrid.innerHTML += `
+    courtGrid.innerHTML = list.map(court => {
+        const detailUrl = new URLSearchParams({ id: court.id });
+        if (bookingDate) detailUrl.set("date", bookingDate);
+        return `
             <article class="court-card">
                 <div class="court-card-image">
                     <img src="${court.image}" alt="${court.name}">
@@ -234,16 +236,17 @@ function renderCourts(list) {
 
                 <div class="court-card-content">
                     <h3 class="court-card-title">${court.name}</h3>
-                    <p class="court-card-address">${court.address}</p>
+                    <p class="court-card-address"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${court.address}</p>
                     <p class="court-card-rating">
-                        ★ ${court.rating} (${court.reviews} đánh giá)
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        ${court.rating} (${court.reviews} đánh giá)
                     </p>
 
                     <div class="court-card-bottom">
                         <p class="court-card-price">
-                            ${court.price.toLocaleString("vi-VN")}đ/giờ
+                            ${formatPrice(court.price)}
                         </p>
-                        <a href="courts-details.html?id=${court.id}"
+                        <a href="courts-details.html?${detailUrl}"
                            class="court-card-button">
                             Xem chi tiết
                         </a>
@@ -251,7 +254,7 @@ function renderCourts(list) {
                 </div>
             </article>
         `;
-    });
+    }).join("");
 }
 // ========================================
 // 2. HÀM ĐỊNH DẠNG GIÁ TIỀN
@@ -259,11 +262,6 @@ function renderCourts(list) {
 
 function formatPrice(price) {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ/giờ";
-}
-
-// Hiển thị toàn bộ sân khi mở trang
-if (courtGrid && emptyMessage) {
-    renderCourts(courts);
 }
 
 
