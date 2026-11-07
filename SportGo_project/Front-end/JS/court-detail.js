@@ -253,46 +253,337 @@ if (!selectedCourt) {
     if (bookingForm) {
         const requestedDate = params.get("date");
         const bookingDateInput = document.querySelector("#booking-date");
+        const scheduleGrid = document.querySelector("#booking-schedule-grid");
+        const scheduleMessage = document.querySelector("#booking-schedule-message");
+        const selectionSummary = document.querySelector("#booking-selection-summary");
+        const bookingMessage = document.querySelector("#booking-message");
+        const openingTime = 5 * 60;
+        const closingTime = 24 * 60;
+        const bookingsStorageKey = "sportgoBookings";
+        const selectedSlots = new Map();
+        const courtCount = Math.max(
+            1,
+            Number(String(court.number || "").match(/\d+/)?.[0]) || 1
+        );
+        const subCourts = Array.from({ length: courtCount }, (_, index) => ({
+            id: `${court.id}-${index + 1}`,
+            name: `Sân ${index + 1}`
+        }));
 
         if (requestedDate && bookingDateInput) {
             bookingDateInput.value = requestedDate;
         }
 
-        bookingForm.addEventListener("submit", function(event) {
-            event.preventDefault();
+        function showBookingMessage(message, isError = false) {
+            bookingMessage.textContent = message;
+            bookingMessage.classList.toggle("booking-message--error", isError);
+        }
 
-            const bookingDate =
-                document.querySelector("#booking-date").value;
+        function readBookings() {
+            const storedBookings = localStorage.getItem(bookingsStorageKey);
 
-            const bookingTime =
-                document.querySelector("#booking-time").value;
+            if (!storedBookings) {
+                return [];
+            }
 
-            if (!bookingDate || !bookingTime) {
-                alert("Vui lòng chọn ngày và khung giờ đặt sân.");
+            const bookings = JSON.parse(storedBookings);
+            if (!Array.isArray(bookings)) {
+                throw new Error("Dữ liệu đặt sân không đúng định dạng.");
+            }
+
+            return bookings;
+        }
+
+        function timeToMinutes(value) {
+            if (typeof value !== "string" || !/^\d{2}:\d{2}$/.test(value)) {
+                return null;
+            }
+
+            const [hours, minutes] = value.split(":").map(Number);
+            if (hours > 24 || minutes > 59 || (hours === 24 && minutes !== 0)) {
+                return null;
+            }
+
+            return hours * 60 + minutes;
+        }
+
+        function getBookingInterval(booking) {
+            const start = timeToMinutes(booking.startTime || booking.start);
+            const end = timeToMinutes(booking.endTime || booking.end);
+
+            if (start !== null && end !== null && end > start) {
+                return { start, end };
+            }
+
+            const legacyTime = timeToMinutes(booking.time);
+            return legacyTime !== null
+                ? { start: legacyTime, end: legacyTime + 60 }
+                : null;
+        }
+
+        function getSlotPrice(start, end) {
+            const pricePeriod = court.prices?.find((period) => {
+                const match = period.time.match(/^(\d{2}:\d{2})[–-](\d{2}:\d{2})$/);
+                if (!match) {
+                    return false;
+                }
+
+                const periodStart = timeToMinutes(match[1]);
+                const periodEnd = timeToMinutes(match[2]);
+                return periodStart !== null && periodEnd !== null
+                    && start >= periodStart && end <= periodEnd;
+            });
+
+            return pricePeriod?.price ?? court.price;
+        }
+
+        function getDateBookings(date) {
+            return readBookings().filter((booking) =>
+                Number(booking.courtId) === court.id && booking.date === date
+            );
+        }
+
+        function formatTime(minutes) {
+            return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+        }
+
+        function formatPrice(price) {
+            return `${price.toLocaleString("vi-VN")}đ`;
+        }
+
+        function renderSelectionSummary() {
+            if (!selectionSummary) {
                 return;
             }
 
-            const booking = {
-                courtId: court.id,
-                courtName: court.name,
-                date: bookingDate,
-                time: bookingTime,
-                price: court.price
-            };
+            const selected = Array.from(selectedSlots.values())
+                .sort((first, second) =>
+                    first.subCourtName.localeCompare(second.subCourtName, "vi")
+                    || first.start - second.start
+                );
+            const total = selected.reduce((sum, slot) => sum + slot.price, 0);
 
-            const bookingList =
-                JSON.parse(localStorage.getItem("sportgoBookings")) || [];
+            if (selected.length === 0) {
+                selectionSummary.innerHTML = `
+                    <h4>Chi phí dự kiến</h4>
+                    <p>Chưa chọn khung giờ.</p>
+                `;
+                return;
+            }
 
-            bookingList.push(booking);
+            const selectedRows = selected.map((slot) => `
+                <li>
+                    <span>${slot.subCourtName} · ${formatTime(slot.start)}</span>
+                    <strong>${formatPrice(slot.price)}</strong>
+                </li>
+            `).join("");
 
-            localStorage.setItem(
-                "sportgoBookings",
-                JSON.stringify(bookingList)
+            selectionSummary.innerHTML = `
+                <h4>Chi phí dự kiến</h4>
+                <ul>${selectedRows}</ul>
+                <p class="booking-total">
+                    <span>${selected.length} khung giờ · Tổng cộng</span>
+                    <strong>${formatPrice(total)}</strong>
+                </p>
+            `;
+        }
+
+        function renderSchedule() {
+            if (!scheduleGrid || !bookingDateInput.value) {
+                if (scheduleGrid) {
+                    scheduleGrid.innerHTML =
+                        '<p class="booking-schedule-empty">Vui lòng chọn ngày để xem lịch sân.</p>';
+                }
+                selectedSlots.clear();
+                renderSelectionSummary();
+                return;
+            }
+
+            let dateBookings;
+            try {
+                dateBookings = getDateBookings(bookingDateInput.value);
+            } catch (error) {
+                scheduleGrid.innerHTML =
+                    '<p class="booking-schedule-empty">Không thể đọc dữ liệu lịch đặt sân.</p>';
+                scheduleMessage.textContent = error.message;
+                return;
+            }
+
+            scheduleMessage.textContent = "";
+            const timeSlots = [];
+
+            for (let start = openingTime; start < closingTime; start += 60) {
+                const end = Math.min(start + 60, closingTime);
+                timeSlots.push({ start, end });
+            }
+
+            const headerCells = timeSlots.map(({ start, end }) => `
+                <th scope="col">${formatTime(start)}</th>
+            `).join("");
+            const courtRows = subCourts.map((subCourt) => {
+                const slotCells = timeSlots.map(({ start, end }) => {
+                    const bookingForSlot = dateBookings.find((booking) => {
+                        const belongsToSubCourt = !booking.subCourtId
+                            || String(booking.subCourtId) === subCourt.id;
+                        const interval = getBookingInterval(booking);
+                        return belongsToSubCourt && interval
+                            && start < interval.end && end > interval.start;
+                    });
+                    const isBooked = Boolean(bookingForSlot);
+                    const selectionKey = `${subCourt.id}:${start}`;
+                    const isSelected = selectedSlots.has(selectionKey);
+                    const status = isBooked ? "Đã đặt" : isSelected ? "Đang chọn" : "Còn trống";
+                    const classes = [
+                        "booking-slot",
+                        isBooked ? "booking-slot--booked" : "booking-slot--available",
+                        isSelected && !isBooked ? "booking-slot--selected" : ""
+                    ].filter(Boolean).join(" ");
+
+                    return `
+                        <td>
+                            <button
+                                type="button"
+                                class="${classes}"
+                                data-sub-court-id="${subCourt.id}"
+                                data-sub-court-name="${subCourt.name}"
+                                data-start="${formatTime(start)}"
+                                data-end="${formatTime(end)}"
+                                aria-label="${subCourt.name}, ${formatTime(start)} đến ${formatTime(end)}: ${status}"
+                                ${isBooked ? "disabled" : ""}
+                            >
+                                <span class="visually-hidden">${status}</span>
+                            </button>
+                        </td>
+                    `;
+                }).join("");
+
+                return `
+                    <tr>
+                        <th scope="row">${subCourt.name}</th>
+                        ${slotCells}
+                    </tr>
+                `;
+            }).join("");
+
+            scheduleGrid.innerHTML = `
+                <table class="booking-schedule-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sân / Giờ</th>
+                            ${headerCells}
+                        </tr>
+                    </thead>
+                    <tbody>${courtRows}</tbody>
+                </table>
+            `;
+
+            scheduleGrid.querySelectorAll(".booking-slot").forEach((slot) => {
+                slot.addEventListener("click", () => {
+                    const start = timeToMinutes(slot.dataset.start);
+                    const end = timeToMinutes(slot.dataset.end);
+                    if (start === null || end === null || slot.disabled) {
+                        return;
+                    }
+
+                    const selectionKey = `${slot.dataset.subCourtId}:${start}`;
+                    if (selectedSlots.has(selectionKey)) {
+                        selectedSlots.delete(selectionKey);
+                    } else {
+                        selectedSlots.set(selectionKey, {
+                            subCourtId: slot.dataset.subCourtId,
+                            subCourtName: slot.dataset.subCourtName,
+                            start,
+                            end,
+                            price: getSlotPrice(start, end)
+                        });
+                    }
+
+                    scheduleMessage.textContent = "";
+                    renderSchedule();
+                });
+            });
+
+            renderSelectionSummary();
+        }
+
+        bookingDateInput.addEventListener("change", () => {
+            selectedSlots.clear();
+            renderSchedule();
+        });
+        renderSchedule();
+
+        bookingForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const bookingDate = bookingDateInput.value;
+            const requestedSlots = Array.from(selectedSlots.values());
+
+            if (!bookingDate || requestedSlots.length === 0) {
+                showBookingMessage("Vui lòng chọn ngày và ít nhất một khung giờ còn trống.", true);
+                return;
+            }
+
+            let bookingList;
+            try {
+                bookingList = readBookings();
+            } catch (error) {
+                showBookingMessage(error.message, true);
+                return;
+            }
+
+            const conflictingSlot = requestedSlots.find((slot) =>
+                bookingList.some((booking) => {
+                    if (Number(booking.courtId) !== court.id || booking.date !== bookingDate) {
+                        return false;
+                    }
+
+                    if (booking.subCourtId
+                        && String(booking.subCourtId) !== slot.subCourtId) {
+                        return false;
+                    }
+
+                    const interval = getBookingInterval(booking);
+                    return interval && slot.start < interval.end && slot.end > interval.start;
+                })
             );
 
-            alert("Đặt sân thành công! Thông tin đã được thêm vào danh sách đặt sân.");
+            if (conflictingSlot) {
+                showBookingMessage(
+                    `${conflictingSlot.subCourtName}, khung ${formatTime(conflictingSlot.start)}–${formatTime(conflictingSlot.end)} vừa được đặt. Vui lòng chọn lại.`,
+                    true
+                );
+                selectedSlots.delete(`${conflictingSlot.subCourtId}:${conflictingSlot.start}`);
+                renderSchedule();
+                return;
+            }
 
-            bookingForm.reset();
+            const newBookings = requestedSlots.map((slot) => ({
+                courtId: court.id,
+                courtName: court.name,
+                subCourtId: slot.subCourtId,
+                subCourtName: slot.subCourtName,
+                date: bookingDate,
+                startTime: formatTime(slot.start),
+                endTime: formatTime(slot.end),
+                price: slot.price
+            }));
+
+            try {
+                localStorage.setItem(
+                    bookingsStorageKey,
+                    JSON.stringify([...bookingList, ...newBookings])
+                );
+            } catch (error) {
+                showBookingMessage("Không thể lưu lịch đặt trên trình duyệt. Vui lòng kiểm tra bộ nhớ trình duyệt.", true);
+                return;
+            }
+
+            const total = requestedSlots.reduce((sum, slot) => sum + slot.price, 0);
+            showBookingMessage(
+                `Đặt thành công ${requestedSlots.length} khung giờ ngày ${bookingDate}. Tổng tiền: ${formatPrice(total)}.`
+            );
+            selectedSlots.clear();
+            renderSchedule();
         });
     }
 }

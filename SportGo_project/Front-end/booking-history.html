@@ -45,37 +45,6 @@
     </div>
 </header>
 
-<section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
-    <form class="home-search-form" action="courts.html" method="get">
-        <div class="home-search-input">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <label class="visually-hidden" for="site-search-keyword">Tên sân hoặc khu vực</label>
-            <input
-                type="search"
-                id="site-search-keyword"
-                name="keyword"
-                placeholder="Tên sân, quận hoặc khu vực..."
-            >
-        </div>
-
-        <div class="home-search-date">
-            <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
-            <label class="visually-hidden" for="site-search-date">Ngày muốn đặt sân</label>
-            <input
-                type="date"
-                id="site-search-date"
-                name="date"
-                aria-label="Chọn ngày muốn đặt sân"
-            >
-        </div>
-
-        <button type="submit" class="home-search-button">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            Tìm kiếm
-        </button>
-    </form>
-</section>
-
     <!-- MAIN -->
     <main id="main-content" class="profile-main">
 
@@ -126,94 +95,21 @@
                     <h2>Lịch sử đặt sân</h2>
                 </div>
 
-                <!-- BỘ LỌC TRẠNG THÁI -->
-                <div class="booking-filter">
-                    <span class="filter-label">Trạng thái đặt sân:</span>
-                    <div class="filter-options">
-                        <a href="#all" class="filter-item active">Tất cả</a>
-                        <a href="#confirmed" class="filter-item">Đã xác nhận</a>
-                        <a href="#completed" class="filter-item">Hoàn thành</a>
-                        <a href="#cancelled" class="filter-item">Đã hủy</a>
-                    </div>
-                </div>
-
-                <!-- BẢNG LỊCH SỬ -->
                 <div class="booking-table-wrapper">
                     <table class="booking-table">
                         <thead>
                             <tr>
-                                <th>Mã đặt sân</th>
-                                <th>Thông tin sân</th>
+                                <th>Sân đặt</th>
                                 <th>Ngày đặt</th>
-                                <th>Giờ đặt</th>
-                                <th>Tổng tiền</th>
-                                <th>Trạng thái</th>
-                                <th>Chi tiết</th>
+                                <th>Khung giờ</th>
+                                <th>Thời lượng</th>
+                                <th>Giá thuê</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td data-label="Mã đặt sân">SG001</td>
-                                <td data-label="Thông tin sân">
-                                    <strong>Sân cầu lông A1</strong>
-                                    <small>Quận 7, TP.HCM</small>
-                                </td>
-                                <td data-label="Ngày đặt">05/11/2026</td>
-                                <td data-label="Giờ đặt">18:00 - 20:00</td>
-                                <td data-label="Tổng tiền">200.000đ</td>
-                                <td data-label="Trạng thái">
-                                    <span class="booking-status confirmed">
-                                        Đã xác nhận
-                                    </span>
-                                </td>
-                                <td data-label="Chi tiết">
-                                    <a href="#detail-SG001" class="booking-detail-btn">Xem</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td data-label="Mã đặt sân">SG002</td>
-                                <td data-label="Thông tin sân">
-                                    <strong>Sân bóng đá mini B2</strong>
-                                    <small>Quận 7, TP.HCM</small>
-                                </td>
-                                <td data-label="Ngày đặt">28/10/2026</td>
-                                <td data-label="Giờ đặt">19:00 - 21:00</td>
-                                <td data-label="Tổng tiền">500.000đ</td>
-                                <td data-label="Trạng thái">
-                                    <span class="booking-status completed">
-                                        Hoàn thành
-                                    </span>
-                                </td>
-                                <td data-label="Chi tiết">
-                                    <a href="#detail-SG002" class="booking-detail-btn">Xem</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td data-label="Mã đặt sân">SG003</td>
-                                <td data-label="Thông tin sân">
-                                    <strong>Sân cầu lông C3</strong>
-                                    <small>Quận 4, TP.HCM</small>
-                                </td>
-                                <td data-label="Ngày đặt">20/10/2026</td>
-                                <td data-label="Giờ đặt">17:00 - 19:00</td>
-                                <td data-label="Tổng tiền">180.000đ</td>
-                                <td data-label="Trạng thái">
-                                    <span class="booking-status cancelled">
-                                        Đã hủy
-                                    </span>
-                                </td>
-                                <td data-label="Chi tiết">
-                                    <a href="#detail-SG003" class="booking-detail-btn">Xem</a>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody id="booking-history-list"></tbody>
                     </table>
                 </div>
-
-                <p class="booking-note">
-                    <i class="fa-solid fa-circle-info"></i>
-                    Thông tin đặt sân được hiển thị dưới dạng dữ liệu minh họa.
-                </p>
+                <p id="booking-history-message" class="booking-history-message" role="status"></p>
             </section>
         </div>
     </main>
@@ -321,5 +217,6 @@
 
     </footer>
 
+    <script src="JS/booking-history.js"></script>
 </body>
 </html>

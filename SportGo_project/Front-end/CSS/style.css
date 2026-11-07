@@ -1404,6 +1404,22 @@ a {
     background: #FAFCF8;
 }
 
+.booking-history-message {
+    margin: 18px 0 0;
+    color: #78847D;
+    font-size: 13px;
+}
+
+.booking-history-message--error {
+    color: #B84036;
+}
+
+.booking-history-empty {
+    padding: 28px 16px !important;
+    color: #78847D !important;
+    text-align: center;
+}
+
 
 /* Trạng thái đặt sân */
 
@@ -3765,6 +3781,245 @@ a.information-value:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
+}
+
+.booking-schedule {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid #dce5df;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.booking-schedule h3,
+.booking-schedule-hint,
+.booking-schedule-message {
+    margin: 0;
+}
+
+.booking-schedule h3 {
+    color: #173d32;
+    font-size: 17px;
+}
+
+.booking-schedule-hint,
+.booking-schedule-message {
+    color: #68736e;
+    font-size: 13px;
+}
+
+.booking-schedule-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: #45554d;
+    font-size: 12px;
+}
+
+.booking-schedule-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.booking-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.booking-legend-dot--available {
+    background: #b7ed62;
+}
+
+.booking-legend-dot--booked {
+    background: #d7ddda;
+}
+
+.booking-legend-dot--selected {
+    background: #0b5945;
+}
+
+.booking-schedule-grid {
+    max-width: 100%;
+    overflow: auto;
+    border: 1px solid #dce5df;
+    border-radius: 10px;
+}
+
+.booking-schedule-table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    white-space: nowrap;
+}
+
+.booking-schedule-table th,
+.booking-schedule-table td {
+    padding: 0;
+    border-right: 1px solid #e5e9e6;
+    border-bottom: 1px solid #e5e9e6;
+    background: #ffffff;
+    text-align: center;
+}
+
+.booking-schedule-table th {
+    padding: 8px 6px;
+}
+
+.booking-schedule-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #f3f6f4;
+    color: #173d32;
+    font-size: 12px;
+}
+
+.booking-schedule-table th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: 110px;
+    background: #f3f6f4;
+    text-align: left;
+}
+
+.booking-schedule-table thead th:first-child {
+    z-index: 3;
+}
+
+.booking-schedule-table tr:last-child th,
+.booking-schedule-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.booking-schedule-table th:last-child,
+.booking-schedule-table td:last-child {
+    border-right: 0;
+}
+
+.booking-slot {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-width: 42px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f3fae8;
+    color: #173d32;
+    font: inherit;
+    vertical-align: middle;
+}
+
+.booking-slot--available {
+    cursor: pointer;
+}
+
+.booking-slot--available:hover,
+.booking-slot--selected {
+    border-color: #0b5945;
+    background: #e3f2d2;
+}
+
+.booking-slot--selected {
+    box-shadow: inset 0 0 0 1px #0b5945;
+}
+
+.booking-slot--booked {
+    border-color: #d7ddda;
+    background: #edf0ee;
+    color: #747d78;
+    cursor: not-allowed;
+}
+
+.booking-slot strong {
+    font-size: 14px;
+}
+
+.booking-schedule-empty {
+    margin: 0;
+    padding: 14px;
+    color: #68736e;
+    font-size: 14px;
+}
+
+.booking-schedule-message {
+    color: #0b5945;
+}
+
+.booking-selection-summary {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f3f6f4;
+}
+
+.booking-selection-summary h4,
+.booking-selection-summary p {
+    margin: 0;
+}
+
+.booking-selection-summary h4 {
+    color: #173d32;
+    font-size: 15px;
+}
+
+.booking-selection-summary > p:not(.booking-total) {
+    color: #68736e;
+    font-size: 13px;
+}
+
+.booking-selection-summary ul {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.booking-selection-summary li,
+.booking-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #45554d;
+    font-size: 13px;
+}
+
+.booking-selection-summary li strong,
+.booking-total strong {
+    color: #173d32;
+}
+
+.booking-total {
+    padding-top: 9px;
+    border-top: 1px solid #dce5df;
+}
+
+.booking-total strong {
+    font-size: 17px;
+}
+
+#booking-message {
+    min-height: 1.5em;
+    color: #0b5945;
+    font-weight: 600;
+}
+
+#booking-message.booking-message--error,
+#booking-schedule-message:empty {
+    color: #68736e;
+}
+
+.booking-message--error {
+    color: #b42318 !important;
 }
 
 .booking-field {

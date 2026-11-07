@@ -23,7 +23,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/court-detail.css">
 </head>
 
 <body>
@@ -55,37 +54,6 @@
         <p>Kết nối đam mê thể thao. Tìm kiếm và đặt sân dễ dàng cùng SportGo.</p>
     </div>
 </header>
-
-<section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
-    <form class="home-search-form" action="courts.html" method="get">
-        <div class="home-search-input">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <label class="visually-hidden" for="site-search-keyword">Tên sân hoặc khu vực</label>
-            <input
-                type="search"
-                id="site-search-keyword"
-                name="keyword"
-                placeholder="Tên sân, quận hoặc khu vực..."
-            >
-        </div>
-
-        <div class="home-search-date">
-            <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
-            <label class="visually-hidden" for="site-search-date">Ngày muốn đặt sân</label>
-            <input
-                type="date"
-                id="site-search-date"
-                name="date"
-                aria-label="Chọn ngày muốn đặt sân"
-            >
-        </div>
-
-        <button type="submit" class="home-search-button">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            Tìm kiếm
-        </button>
-    </form>
-</section>
 
 <main class="court-detail-page">
 
@@ -228,36 +196,56 @@
 
     
 <!-- KHU VỰC ĐẶT SÂN -->
+
+<!-- KHU VỰC ĐẶT SÂN -->
 <section class="detail-section" id="court-booking">
     <h2 class="section-title">Đặt sân</h2>
 
     <form id="booking-form" class="booking-form">
 
-    <div class="booking-form-grid">
+        <div class="booking-form-grid">
 
-        <div class="booking-field">
-            <label for="booking-date">Ngày đặt sân</label>
-            <input type="date" id="booking-date" required>
+            <!-- Ngày đặt sân -->
+            <div class="booking-field">
+                <label for="booking-date">Ngày đặt sân</label>
+                <input
+                    type="date"
+                    id="booking-date"
+                    name="booking-date"
+                    required
+                >
+            </div>
+
         </div>
 
-        <div class="booking-field">
-            <label for="booking-time">Khung giờ</label>
-            <select id="booking-time" required>
-                <option value="">-- Chọn khung giờ --</option>
-                <option value="morning">Buổi sáng</option>
-                <option value="afternoon">Buổi chiều</option>
-                <option value="evening">Buổi tối</option>
-            </select>
-        </div>
+        <section class="booking-schedule" aria-labelledby="booking-schedule-title">
+            <h3 id="booking-schedule-title">Lịch sân trong ngày</h3>
+            <p class="booking-schedule-hint">Chọn ngày để xem lịch theo từng sân và khung giờ. Mỗi khung là 1 giờ.</p>
+            <div class="booking-schedule-legend" aria-label="Chú thích trạng thái">
+                <span><i class="booking-legend-dot booking-legend-dot--available"></i>Còn trống</span>
+                <span><i class="booking-legend-dot booking-legend-dot--booked"></i>Đã đặt</span>
+                <span><i class="booking-legend-dot booking-legend-dot--selected"></i>Đang chọn</span>
+            </div>
+            <div id="booking-schedule-grid" class="booking-schedule-grid" aria-live="polite">
+                <p class="booking-schedule-empty">Vui lòng chọn ngày để xem lịch sân.</p>
+            </div>
+            <div id="booking-selection-summary" class="booking-selection-summary" aria-live="polite">
+                <h4>Chi phí dự kiến</h4>
+                <p>Chưa chọn khung giờ.</p>
+            </div>
+            <p id="booking-schedule-message" class="booking-schedule-message" aria-live="polite"></p>
+        </section>
 
-    </div>
+        <button type="submit" class="booking-submit">
+            Xác nhận đặt sân
+        </button>
 
-    <button type="submit" class="booking-submit">
-        Xác nhận đặt sân
-    </button>
+    </form>
 
-</form>
+    <p id="booking-message" aria-live="polite"></p>
+
 </section>
+
 
 
 

@@ -6,6 +6,13 @@ const courtGrid = document.querySelector(".court-grid");
 const resultSummary = document.querySelector(".courts-toolbar p");
 const courtCards = Array.from(document.querySelectorAll(".court-card"));
 const categoryButtons = Array.from(document.querySelectorAll(".sport-category"));
+const sportSlugs = {
+    "bong-da": "Bóng đá",
+    "bong-ro": "Bóng rổ",
+    "cau-long": "Cầu lông",
+    pickleball: "Pickleball",
+    tennis: "Tennis"
+};
 
 function normalizeSearchText(value) {
     return value
@@ -28,9 +35,30 @@ if (dateInput) {
 }
 
 const normalizedKeyword = normalizeSearchText(keyword).trim();
-let selectedCategory = "all";
+const requestedSport = searchParams.get("sport") || "";
+let selectedCategory = sportSlugs[requestedSport]
+    || categoryButtons.find((button) =>
+        normalizeSearchText(button.dataset.category || "")
+            === normalizeSearchText(requestedSport)
+    )?.dataset.category
+    || "all";
 
 let visibleCourtCount = 0;
+
+function getSportSlug(category) {
+    return Object.keys(sportSlugs).find((slug) =>
+        sportSlugs[slug] === category
+    ) || "";
+}
+
+function updateActiveCategory() {
+    categoryButtons.forEach((button) => {
+        const isActive = normalizeSearchText(button.dataset.category || "")
+            === normalizeSearchText(selectedCategory);
+        button.classList.toggle("sport-category--active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+    });
+}
 
 function updateResults() {
     visibleCourtCount = 0;
@@ -98,16 +126,42 @@ function updateResults() {
 categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
         selectedCategory = button.dataset.category || "all";
+        const nextUrl = new URL(window.location.href);
+        const sportSlug = getSportSlug(selectedCategory);
+        if (sportSlug) {
+            nextUrl.searchParams.set("sport", sportSlug);
+        } else {
+            nextUrl.searchParams.delete("sport");
+        }
+        window.history.replaceState({}, "", nextUrl);
 
-        categoryButtons.forEach((categoryButton) => {
-            const isActive = categoryButton === button;
-            categoryButton.classList.toggle("sport-category--active", isActive);
-            categoryButton.setAttribute("aria-pressed", String(isActive));
-        });
-
+        updateActiveCategory();
         updateResults();
     });
 });
 
+document.querySelectorAll(".home-search-form").forEach((form) => {
+    form.addEventListener("submit", () => {
+        let sportInput = form.querySelector('input[name="sport"]');
+
+        if (!sportInput) {
+            sportInput = document.createElement("input");
+            sportInput.type = "hidden";
+            sportInput.name = "sport";
+            form.append(sportInput);
+        }
+
+        sportInput.value = getSportSlug(selectedCategory);
+    });
+});
+
+updateActiveCategory();
 updateResults();
+
+if (keyword || bookingDate || requestedSport) {
+    document.querySelector(".courts-content")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 })();
