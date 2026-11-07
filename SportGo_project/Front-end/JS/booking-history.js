@@ -4,6 +4,13 @@
 
     const bookingList = document.querySelector("#booking-history-list");
     const bookingMessage = document.querySelector("#booking-history-message");
+    const bookingTable = document.querySelector("#booking-table-wrapper");
+    const bookingSummary = document.querySelector("#booking-summary");
+    const totalCount = document.querySelector("#booking-total-count");
+    const totalCost = document.querySelector("#booking-total-cost");
+    const emptyState = document.querySelector("#booking-history-empty");
+    const navCount = document.querySelector("#booking-nav-count");
+    const navLink = navCount.closest("a");
 
     if (!bookingList || !bookingMessage) return;
 
@@ -42,6 +49,7 @@
     };
 
     let editingKey = null;
+    let renderedStorage = null;
 
     // ================================
     // 1. CÁC HÀM ĐỊNH DẠNG
@@ -107,8 +115,8 @@
     }
 
     function getInterval(booking) {
-        const start = toMinutes(booking.startTime || booking.start);
-        const end = toMinutes(booking.endTime || booking.end);
+        const start = toMinutes(booking?.startTime || booking?.start);
+        const end = toMinutes(booking?.endTime || booking?.end);
 
         if (start === null || end === null || end <= start) {
             return null;
@@ -125,9 +133,7 @@
     // 2. ĐỌC VÀ LƯU LOCAL STORAGE
     // ================================
 
-    function readBookings() {
-        const stored = localStorage.getItem(STORAGE_KEY);
-
+    function readBookings(stored = localStorage.getItem(STORAGE_KEY)) {
         if (!stored) return [];
 
         const bookings = JSON.parse(stored);
@@ -178,6 +184,8 @@
     // ================================
 
     function groupBookings(bookings) {
+        const seenSlots = new Map();
+        const subCourtKey = booking => String(booking.subCourtId || booking.subCourtName || "");
         const sorted = bookings
             .map((booking, index) => {
                 const interval = getInterval(booking);
@@ -194,7 +202,7 @@
             .sort((a, b) =>
                 String(a.date).localeCompare(String(b.date)) ||
                 Number(a.courtId) - Number(b.courtId) ||
-                String(a.subCourtId || "").localeCompare(String(b.subCourtId || "")) ||
+                subCourtKey(a).localeCompare(subCourtKey(b)) ||
                 a.start - b.start
             );
 
@@ -203,14 +211,11 @@
         sorted.forEach(booking => {
             const previous = grouped[grouped.length - 1];
 
-            // Loại bản ghi trùng hoàn toàn khỏi phần hiển thị.
-            const duplicate = grouped.find(item =>
-                Number(item.courtId) === Number(booking.courtId) &&
-                item.date === booking.date &&
-                String(item.subCourtId || "") === String(booking.subCourtId || "") &&
-                item.start === booking.start &&
-                item.end === booking.end
-            );
+            const slotKey = JSON.stringify([
+                Number(booking.courtId), booking.date, subCourtKey(booking),
+                booking.start, booking.end
+            ]);
+            const duplicate = seenSlots.get(slotKey);
 
             if (duplicate) {
                 duplicate.originalIndexes.push(...booking.originalIndexes);
@@ -222,20 +227,23 @@
                 previous &&
                 Number(previous.courtId) === Number(booking.courtId) &&
                 previous.date === booking.date &&
-                String(previous.subCourtId || "") === String(booking.subCourtId || "") &&
+                subCourtKey(previous) === subCourtKey(booking) &&
                 previous.end === booking.start
             ) {
                 previous.end = booking.end;
                 previous.minutes += booking.minutes;
                 previous.price += Number(booking.price) || 0;
                 previous.originalIndexes.push(...booking.originalIndexes);
+                seenSlots.set(slotKey, previous);
                 return;
             }
 
-            grouped.push({
+            const group = {
                 ...booking,
                 price: Number(booking.price) || 0
-            });
+            };
+            grouped.push(group);
+            seenSlots.set(slotKey, group);
         });
 
         return grouped.sort((a, b) =>
@@ -274,7 +282,7 @@
             if (excludedIndexes.has(index)) return false;
 
             if (
-                Number(booking.courtId) !== Number(group.courtId) ||
+                Number(booking?.courtId) !== Number(group.courtId) ||
                 booking.date !== date
             ) {
                 return false;
@@ -370,13 +378,19 @@
     // 8. HIỂN THỊ DANH SÁCH
     // ================================
 
-    function render() {
-        let bookings;
+    function render(message = "") {
+        let groups;
 
         try {
-            bookings = readBookings();
+            renderedStorage = localStorage.getItem(STORAGE_KEY);
+            groups = groupBookings(readBookings(renderedStorage));
         } catch (error) {
             bookingList.innerHTML = "";
+            bookingTable.hidden = true;
+            bookingSummary.hidden = true;
+            emptyState.hidden = true;
+            navCount.hidden = true;
+            navLink.removeAttribute("aria-label");
             bookingMessage.textContent =
                 `Không thể tải lịch đặt sân: ${error.message}`;
             bookingMessage.classList.add("booking-history-message--error");
@@ -384,25 +398,27 @@
         }
 
         bookingMessage.classList.remove("booking-history-message--error");
+        bookingMessage.textContent = message;
 
-        const groups = groupBookings(bookings);
+        const count = groups.length;
+        const total = groups.reduce((sum, booking) => sum + booking.price, 0);
+        totalCount.textContent = count;
+        totalCost.textContent = formatPrice(total);
+        bookingSummary.hidden = false;
+        navCount.textContent = count;
+        navCount.hidden = false;
+        navLink.setAttribute("aria-label", `Lịch sử đặt sân, ${count} lịch đặt`);
+        bookingTable.hidden = count === 0;
+        emptyState.hidden = count > 0;
 
-        if (groups.length === 0) {
-            bookingList.innerHTML = `
-                <tr>
-                    <td colspan="6" class="booking-history-empty">
-                        Bạn chưa có lịch đặt sân nào.
-                    </td>
-                </tr>
-            `;
-
-            bookingMessage.textContent = "";
+        if (count === 0) {
+            bookingList.innerHTML = "";
             return;
         }
 
         let html = "";
 
-        groups.forEach((booking, index) => {
+        groups.forEach(booking => {
             const key = booking.originalIndexes.join("-");
             const image = getCourtImage(booking);
             const courtName = escapeHtml(
@@ -478,7 +494,16 @@
         });
 
         bookingList.innerHTML = html;
-        bookingMessage.textContent = "";
+    }
+
+    function readCurrentBookings() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored !== renderedStorage) {
+            editingKey = null;
+            render("Danh sách đặt sân đã thay đổi. Vui lòng chọn lại lịch.");
+            return null;
+        }
+        return readBookings(stored);
     }
 
     // ================================
@@ -502,11 +527,13 @@
         let bookings;
 
         try {
-            bookings = readBookings();
+            bookings = readCurrentBookings();
         } catch (error) {
             bookingMessage.textContent = error.message;
             return;
         }
+
+        if (!bookings) return;
 
         const group = groupBookings(bookings).find(
             item => item.originalIndexes.join("-") === key
@@ -537,11 +564,10 @@
             );
 
             try {
+                if (!readCurrentBookings()) return;
                 saveBookings(updatedBookings);
                 editingKey = null;
-                bookingMessage.textContent = "Đã xóa lịch đặt sân.";
-                render();
-                bookingMessage.textContent = "Đã xóa lịch đặt sân.";
+                render("Đã xóa lịch đặt sân.");
             } catch (error) {
                 bookingMessage.textContent =
                     "Không thể cập nhật dữ liệu đặt sân.";
@@ -586,11 +612,13 @@
         let bookings;
 
         try {
-            bookings = readBookings();
+            bookings = readCurrentBookings();
         } catch (error) {
             bookingMessage.textContent = error.message;
             return;
         }
+
+        if (!bookings) return;
 
         const key = form.dataset.key;
 
@@ -599,8 +627,8 @@
         );
 
         if (!group) {
-            bookingMessage.textContent = "Không tìm thấy lịch cần chỉnh sửa.";
-            render();
+            editingKey = null;
+            render("Không tìm thấy lịch cần chỉnh sửa.");
             return;
         }
 
@@ -664,12 +692,11 @@
             saveBookings([...remainingBookings, ...newBookings]);
 
             editingKey = null;
-            render();
-
-            bookingMessage.textContent =
+            render(
                 `Đã cập nhật lịch đặt. Thành tiền: ${formatPrice(
                     calculateTotal(group.courtId, start, end)
-                )}.`;
+                )}.`
+            );
 
         } catch (error) {
             bookingMessage.textContent =
@@ -681,6 +708,21 @@
     // ================================
     // 12. KHỞI TẠO
     // ================================
+
+    function refreshFromStorage() {
+        editingKey = null;
+        render();
+    }
+
+    window.addEventListener("storage", event => {
+        if (event.storageArea === localStorage && (event.key === STORAGE_KEY || event.key === null)) {
+            refreshFromStorage();
+        }
+    });
+
+    window.addEventListener("pageshow", event => {
+        if (event.persisted) refreshFromStorage();
+    });
 
     render();
 })();
