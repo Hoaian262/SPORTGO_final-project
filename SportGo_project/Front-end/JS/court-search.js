@@ -1,3 +1,4 @@
+(() => {
 const searchParams = new URLSearchParams(window.location.search);
 const keywordInput = document.querySelector("#site-search-keyword");
 const dateInput = document.querySelector("#site-search-date");
@@ -39,11 +40,15 @@ function updateResults() {
             card.querySelector(".court-card-title")?.textContent || "",
             card.querySelector(".court-card-address")?.textContent || ""
         ].join(" "));
+        const categoryText = normalizeSearchText(
+            card.dataset.category
+                || card.querySelector(".court-card-title")?.textContent
+                || ""
+        );
         const matchesKeyword = !normalizedKeyword
             || searchableText.includes(normalizedKeyword);
         const matchesCategory = selectedCategory === "all"
-            || normalizeSearchText(card.dataset.category || "")
-                === normalizeSearchText(selectedCategory);
+            || categoryText.includes(normalizeSearchText(selectedCategory));
         const isVisible = matchesKeyword && matchesCategory;
 
         card.style.display = isVisible ? "" : "none";
@@ -105,3 +110,4 @@ categoryButtons.forEach((button) => {
 });
 
 updateResults();
+})();
