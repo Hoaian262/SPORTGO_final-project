@@ -265,3 +265,37 @@ function formatPrice(price) {
 if (courtGrid && emptyMessage) {
     renderCourts(courts);
 }
+
+// ========================================
+// 3. SẮP XẾP SÂN
+// ========================================
+
+// Trả về MẢNG MỚI đã sắp xếp
+function sortCourts(list, type) {
+    const sorted = [...list];   // sao chép trước khi sort
+
+    if (type === "price-low") {
+        sorted.sort((a, b) => a.price - b.price);
+    } else if (type === "price-high") {
+        sorted.sort((a, b) => b.price - a.price);
+    } else if (type === "rating") {
+        sorted.sort((a, b) => Number(b.rating) - Number(a.rating));
+    }
+    // type == "default": giữ nguyên thứ tự ban đầu
+
+    return sorted;
+}
+
+// Xử lý khi người dùng đổi lựa chọn sắp xếp
+function handleSortChange() {
+    const sortType = document.getElementById("sort-courts").value;
+    renderCourts(sortCourts(courts, sortType));
+}
+
+// Gắn sự kiện (chỉ gắn một lần)
+const sortSelect = document.getElementById("sort-courts");
+if (sortSelect) {
+    sortSelect.addEventListener("change", handleSortChange);
+}
+
+
