@@ -49,3 +49,10 @@ Nội dung giữ lại, điều chỉnh hoặc loại bỏ, kèm lý do.
 
 ### Người kiểm tra
 Tên thành viên chịu trách nhiệm xác minh.
+
+## Buổi 3 – Đồng bộ tìm kiếm, lọc và sắp xếp sân
+
+- Công cụ: Codex.
+- Nội dung hỗ trợ: Rà soát hai đoạn xử lý danh sách đang chạy độc lập và hợp nhất chúng trên dữ liệu sân dùng chung.
+- Thay đổi: Cập nhật thẻ sân, số lượng và thông báo rỗng sau mỗi thao tác. Giữ từ khóa, môn thể thao, khoảng giá và cách sắp xếp trong cùng một lần xử lý.
+- Xác minh: Kiểm tra trên Chrome các tổ hợp điều kiện, giá theo hai chiều, trường hợp rỗng, khôi phục danh sách và liên kết chi tiết có ngày đặt.
