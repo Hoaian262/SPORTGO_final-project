@@ -265,3 +265,7 @@ function formatPrice(price) {
 if (courtGrid && emptyMessage) {
     renderCourts(courts);
 }
+
+
+
+
