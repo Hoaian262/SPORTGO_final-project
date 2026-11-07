@@ -251,6 +251,13 @@ if (!selectedCourt) {
     const bookingForm = document.querySelector("#booking-form");
 
     if (bookingForm) {
+        const requestedDate = params.get("date");
+        const bookingDateInput = document.querySelector("#booking-date");
+
+        if (requestedDate && bookingDateInput) {
+            bookingDateInput.value = requestedDate;
+        }
+
         bookingForm.addEventListener("submit", function(event) {
             event.preventDefault();
 

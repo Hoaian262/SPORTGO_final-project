@@ -200,8 +200,7 @@ a {
 
 .header-logo:focus-visible,
 .main-nav a:focus-visible,
-.header-actions a:focus-visible,
-.header-search:focus-visible {
+.header-actions a:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 4px;
 }
@@ -631,6 +630,16 @@ a {
     background-color: var(--color-white);
 }
 
+.court-search-empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 24px;
+    border: 1px solid #e5e9e6;
+    border-radius: 12px;
+    color: #68736e;
+    text-align: center;
+}
+
 .court-card-image {
     position: relative;
     display: flex;
@@ -1008,13 +1017,6 @@ a {
         gap: 10px 16px;
         padding: 10px 16px;
     }
-    .header-search {
-    margin-left: auto;
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
-}
-
     .header-logo {
         flex: 0 0 auto;
     }
@@ -1909,7 +1911,7 @@ a {
 
 /* =========================================
    13. TRANG CHỦ SPORTGO
-   Các class home- chỉ áp dụng cho index.html
+   Thanh tìm kiếm dùng chung với các trang có banner
 ========================================= */
 
 .home-main {
@@ -2699,34 +2701,6 @@ a {
         padding: 20px 15px;
     }
 }
-/* ICON TÌM KIẾM HEADER */
-.header-search {
-    display: inline-flex;
-    flex: 0 0 42px;
-    align-items: center;
-    justify-content: center;
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 50%;
-    color: #ffffff;
-    font-size: 18px;
-
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.header-search:hover {
-    background: rgba(183, 237, 98, 0.2);
-    color: var(--color-accent);
-}
-
-.header-search:hover {
-    background: rgba(183, 237, 98, 0.2);
-    color: #B7ED62;
-}
-
 /* ==================================================
    14. TRANG CHI TIẾT SÂN
    CSS bổ sung từ file chi tiết sân
@@ -3739,14 +3713,6 @@ a.information-value:hover {
     .header-logo {
         order: 1;
         max-width: 150px;
-    }
-
-    .header-search {
-        order: 1;
-        margin-left: auto;
-        flex: 0 0 38px;
-        width: 38px;
-        height: 38px;
     }
 
     .header-actions {

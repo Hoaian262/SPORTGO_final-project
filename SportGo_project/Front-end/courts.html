@@ -35,10 +35,6 @@
                 <li><a href="about.html">Về SportGo</a></li>
             </ul>
         </nav>
-        <a href="courts.html" class="header-search" aria-label="Tìm kiếm sân">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
-
         <div class="header-actions header-actions--guest">
             <a href="login.html" class="auth-link">Đăng nhập</a>
             <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
@@ -52,6 +48,36 @@
     </div>
 </header>
 
+<section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
+    <form class="home-search-form" action="courts.html" method="get">
+        <div class="home-search-input">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label class="visually-hidden" for="site-search-keyword">Tên sân hoặc khu vực</label>
+            <input
+                type="search"
+                id="site-search-keyword"
+                name="keyword"
+                placeholder="Tên sân, quận hoặc khu vực..."
+            >
+        </div>
+
+        <div class="home-search-date">
+            <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+            <label class="visually-hidden" for="site-search-date">Ngày muốn đặt sân</label>
+            <input
+                type="date"
+                id="site-search-date"
+                name="date"
+                aria-label="Chọn ngày muốn đặt sân"
+            >
+        </div>
+
+        <button type="submit" class="home-search-button">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Tìm kiếm
+        </button>
+    </form>
+</section>
 
     <!-- ================================
          2. NỘI DUNG CHÍNH
@@ -160,13 +186,19 @@
 
                 <!-- Danh mục môn thể thao -->
                 <nav class="sport-categories" aria-label="Danh mục môn thể thao">
-                    <a href="#" class="sport-category sport-category--active">Tất cả</a>
-                    <a href="#" class="sport-category">Bóng đá</a>
-                    <a href="#" class="sport-category">Bóng rổ</a>
-                    <a href="#" class="sport-category">Cầu lông</a>
-                    <a href="#" class="sport-category">Pickleball</a>   
-                    <a href="#" class="sport-category">Tennis</a>   
-                </nav>
+                    <button type="button" class="sport-category sport-category--active"
+                        data-category="all">Tất cả</button>
+                    <button type="button" class="sport-category"
+                            data-category="Bóng đá">Bóng đá</button>
+                    <button type="button" class="sport-category"
+                            data-category="Bóng rổ">Bóng rổ</button>
+                    <button type="button" class="sport-category"
+                            data-category="Cầu lông">Cầu lông</button>
+                    <button type="button" class="sport-category"
+                            data-category="Pickleball">Pickleball</button>
+                    <button type="button" class="sport-category"
+                            data-category="Tennis">Tennis</button>
+</nav>
                 <!-- Thanh số lượng và sắp xếp -->
                 <div class="courts-toolbar">
 
@@ -185,8 +217,8 @@
 
              <div class="court-grid">
 
-   <!-- Court Card 1 -->
-    <article class="court-card">
+   <!-- Court Card 1: Sân cầu lông Phong Vũ -->
+    <article class="court-card" data-category="Cầu lông">
         <div class="court-card-image">
              <img src="images/phong vũ.jpg"
                      alt="Hình ảnh sân thể thao">
@@ -216,8 +248,8 @@
         </div>
     </article>
 
-    <!-- Court Card 2 -->
-    <article class="court-card">
+    <!-- Court Card 2: Sân bóng rổ Lam Sơn -->
+    <article class="court-card" data-category="Bóng rổ">
         <div class="court-card-image">
             <img src="images/bongro.jpg" alt="Ảnh sân bóng rổ">
         </div>
@@ -244,8 +276,8 @@
         </div>
     </article>
 
-    <!-- Court Card 3 -->
-    <article class="court-card">
+    <!-- Court Card 3: Sân cầu lông Vy Phong -->
+    <article class="court-card" data-category="Cầu lông">
         <div class="court-card-image">
             <img src="images/caulong.webp" alt="Ảnh sân cầu lông">
         </div>
@@ -273,7 +305,7 @@
     </article>
 
     <!-- Court Card 4 -->
-    <article class="court-card">
+    <article class="court-card" data-category="Pickleball">
         <div class="court-card-image">
             <img src="images/pickleball.webp" alt="Ảnh sân pickleball">
         </div>
@@ -301,7 +333,7 @@
     </article>
 
     <!-- Court Card 5 -->
-    <article class="court-card">
+    <article class="court-card" data-category="Cầu lông">
         <div class="court-card-image">
             <img src="images/caulong1.webp" alt="Ảnh sân cầu lông">
         </div>
@@ -329,7 +361,7 @@
     </article>
 
     <!-- Court Card 6 -->
-    <article class="court-card">
+    <article class="court-card" data-category="Tennis">
         <div class="court-card-image">
             <img src="images/tennis.jpg" alt="Ảnh sân tennis">
         </div>
@@ -357,7 +389,7 @@
     </article>
 
     <!-- Court Card 7 -->
-    <article class="court-card">
+    <article class="court-card" data-category="Cầu lông">
         <div class="court-card-image">
             <img src="images/caulong2.jpg" alt="Ảnh sân cầu lông">
         </div>
@@ -385,7 +417,7 @@
     </article>
 
     <!-- Court Card 8 -->
-    <article class="court-card">
+    <article class="court-card" data-category="Tennis">
         <div class="court-card-image">
             <img src="images/tennis2.jpg" alt="Ảnh sân tennis">
         </div>
@@ -413,7 +445,7 @@
     </article>
 
     <!-- Court Card 9 -->
-    <article class="court-card">
+    <article class="court-card" data-category="Pickleball">
         <div class="court-card-image">
             <img src="images/pickleball2.webp" alt="Ảnh sân pickleball">
         </div>
@@ -582,5 +614,6 @@
 
     </footer>
 
+    <script src="JS/court-search.js"></script>
 </body>
 </html>
