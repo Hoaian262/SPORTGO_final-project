@@ -13,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <script src="JS/court.js" defer></script>
 </head>
 
 <body>
-
     <!-- ================================
          1. HEADER
     ================================= -->
@@ -202,7 +202,7 @@
                 <!-- Thanh số lượng và sắp xếp -->
                 <div class="courts-toolbar">
 
-                    <p>Hiển thị 9 sân thể thao</p>
+                  <p id="court-count">Hiển thị 9 sân thể thao</p>
 
                     <div class="courts-sort">
                         <label for="sort-courts">Sắp xếp:</label>
@@ -217,8 +217,8 @@
 
              <div class="court-grid">
 
-   <!-- Court Card 1: Sân cầu lông Phong Vũ -->
-    <article class="court-card" data-category="Cầu lông">
+   <!-- Court Card 1 -->
+    <article class="court-card">
         <div class="court-card-image">
              <img src="images/phong vũ.jpg"
                      alt="Hình ảnh sân thể thao">
@@ -248,8 +248,8 @@
         </div>
     </article>
 
-    <!-- Court Card 2: Sân bóng rổ Lam Sơn -->
-    <article class="court-card" data-category="Bóng rổ">
+    <!-- Court Card 2 -->
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/bongro.jpg" alt="Ảnh sân bóng rổ">
         </div>
@@ -276,8 +276,8 @@
         </div>
     </article>
 
-    <!-- Court Card 3: Sân cầu lông Vy Phong -->
-    <article class="court-card" data-category="Cầu lông">
+    <!-- Court Card 3 -->
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/caulong.webp" alt="Ảnh sân cầu lông">
         </div>
@@ -305,7 +305,7 @@
     </article>
 
     <!-- Court Card 4 -->
-    <article class="court-card" data-category="Pickleball">
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/pickleball.webp" alt="Ảnh sân pickleball">
         </div>
@@ -333,7 +333,7 @@
     </article>
 
     <!-- Court Card 5 -->
-    <article class="court-card" data-category="Cầu lông">
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/caulong1.webp" alt="Ảnh sân cầu lông">
         </div>
@@ -361,7 +361,7 @@
     </article>
 
     <!-- Court Card 6 -->
-    <article class="court-card" data-category="Tennis">
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/tennis.jpg" alt="Ảnh sân tennis">
         </div>
@@ -389,7 +389,7 @@
     </article>
 
     <!-- Court Card 7 -->
-    <article class="court-card" data-category="Cầu lông">
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/caulong2.jpg" alt="Ảnh sân cầu lông">
         </div>
@@ -417,7 +417,7 @@
     </article>
 
     <!-- Court Card 8 -->
-    <article class="court-card" data-category="Tennis">
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/tennis2.jpg" alt="Ảnh sân tennis">
         </div>
@@ -445,7 +445,7 @@
     </article>
 
     <!-- Court Card 9 -->
-    <article class="court-card" data-category="Pickleball">
+    <article class="court-card">
         <div class="court-card-image">
             <img src="images/pickleball2.webp" alt="Ảnh sân pickleball">
         </div>
