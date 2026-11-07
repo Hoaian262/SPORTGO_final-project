@@ -1,83 +1,93 @@
-// ========================================
-// Sắp xếp giá 
-// Lọc giá theo khoảng
-// ========================================
+(() => {
+    const form = document.querySelector(".home-search-form");
+    const keywordInput = document.getElementById("site-search-keyword");
+    const dateInput = document.getElementById("site-search-date");
+    const count = document.getElementById("court-count");
+    const sort = document.getElementById("sort-courts");
+    const minPrice = document.querySelector('[name="min-price"]');
+    const maxPrice = document.querySelector('[name="max-price"]');
+    const priceError = document.getElementById("court-price-error");
+    const categories = [...document.querySelectorAll(".sport-category")];
+    const pagination = document.querySelector(".courts-pagination");
+    const url = new URL(location.href);
 
-document.addEventListener("DOMContentLoaded", function () {
-    const grid = document.querySelector(".court-grid");
-    if (!grid) return;
-
-    const countText = document.getElementById("court-count");
-    const sortSelect = document.getElementById("sort-courts");
-    const minInput = document.querySelector('input[name="min-price"]');
-    const maxInput = document.querySelector('input[name="max-price"]');
-    const submitBtn = document.querySelector(".filter-submit");
-
-    // Tạo thông báo rỗng nếu HTML chưa có
-    let emptyMsg = document.getElementById("empty-message");
-    if (!emptyMsg) {
-        emptyMsg = document.createElement("p");
-        emptyMsg.id = "empty-message";
-        emptyMsg.textContent = "Không tìm thấy sân phù hợp.";
-        emptyMsg.hidden = true;
-        grid.after(emptyMsg);
+    function normalize(value) {
+        return value.trim().toLowerCase().normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
     }
 
-    // Đọc dữ liệu từ từng thẻ sân; lưu thứ tự ban đầu
-    const cards = Array.from(grid.querySelectorAll(".court-card")).map(card => {
-        const priceText = card.querySelector(".court-card-price").textContent;
-        const ratingText = card.querySelector(".court-card-rating").textContent;
-        return {
-            element: card,
-            price: Number(priceText.replace(/\D/g, "")),        // "Từ 34.000/giờ" -> 34000
-            rating: parseFloat(ratingText.match(/[\d.]+/)[0])   // "4.8 (120...)" -> 4.8
-        };
-    });
-
-    function readPrice(input) {
-        if (!input || input.value.trim() === "") return null;
-        const v = Number(input.value);
-        return Number.isNaN(v) ? null : v;
+    function categorySlug(value) {
+        return normalize(value).replace(/\s+/g, "-");
     }
 
-    function applyFilters() {
-        const min = readPrice(minInput);
-        const max = readPrice(maxInput);
+    const requestedSport = categorySlug(url.searchParams.get("sport") || "");
+    let category = categories.find(button =>
+        categorySlug(button.dataset.category) === requestedSport
+    )?.dataset.category || "all";
+    keywordInput.value = url.searchParams.get("keyword") || "";
+    dateInput.value = url.searchParams.get("date") || "";
 
-        if (min !== null && max !== null && min > max) {
-            alert("Giá thấp nhất không được lớn hơn giá cao nhất.");
-            return;
-        }
+    function updateResults() {
+        const keyword = normalize(keywordInput.value);
+        const min = minPrice.valueAsNumber;
+        const max = maxPrice.valueAsNumber;
+        const invalidPrice = minPrice.validity.badInput || maxPrice.validity.badInput
+            || min < 0 || max < 0 || min > max;
 
-        // 1. Sắp xếp: tạo bản sao của cards rồi sort (không đụng mảng gốc)
-        const type = sortSelect ? sortSelect.value : "default";
-        const sorted = [...cards];
-        if (type === "price-low")  sorted.sort((a, b) => a.price - b.price);
-        if (type === "price-high") sorted.sort((a, b) => b.price - a.price);
-        if (type === "rating")     sorted.sort((a, b) => b.rating - a.rating);
+        priceError.hidden = !invalidPrice;
+        if (invalidPrice) return;
 
-        // 2. Lọc giá: lọc trên danh sách đã sắp xếp
-        const result = sorted.filter(c =>
-            (min === null || c.price >= min) &&
-            (max === null || c.price <= max)
-        );
-
-        // 3. Hiển thị: ẩn tất cả, rồi đưa các thẻ phù hợp vào đúng thứ tự
-        cards.forEach(c => (c.element.style.display = "none"));
-        result.forEach(c => {
-            c.element.style.display = "";
-            grid.appendChild(c.element);
+        categories.forEach(button => {
+            const active = button.dataset.category === category;
+            button.classList.toggle("sport-category--active", active);
+            button.setAttribute("aria-pressed", String(active));
         });
 
-        emptyMsg.style.display = result.length > 0 ? "none" : "block";
-        if (countText) countText.textContent = `Hiển thị ${result.length} sân thể thao`;
+        const matches = window.courts.filter(court => {
+            const nameOrAddress = normalize(court.name + " " + court.address);
+            return nameOrAddress.includes(keyword)
+                && (category === "all" || normalize(court.sport) === normalize(category))
+                && (Number.isNaN(min) || court.price >= min)
+                && (Number.isNaN(max) || court.price <= max);
+        });
+
+        if (sort.value === "price-low") matches.sort((a, b) => a.price - b.price);
+        if (sort.value === "price-high") matches.sort((a, b) => b.price - a.price);
+        if (sort.value === "rating") matches.sort((a, b) => Number(b.rating) - Number(a.rating));
+
+        renderCourts(matches, dateInput.value);
+        const activeFilters = keyword || category !== "all"
+            || !Number.isNaN(min) || !Number.isNaN(max);
+        const total = activeFilters ? matches.length + "/" + window.courts.length : matches.length;
+        const dateLabel = dateInput.value
+            ? " · Ngày muốn đặt: " + new Date(dateInput.value + "T00:00:00").toLocaleDateString("vi-VN")
+            : "";
+        count.textContent = "Hiển thị " + total + " sân thể thao" + dateLabel;
+        pagination.hidden = Boolean(activeFilters);
     }
 
-    if (sortSelect) sortSelect.addEventListener("change", applyFilters);
-    if (submitBtn) submitBtn.addEventListener("click", applyFilters);
-    [minInput, maxInput].forEach(input => {
-        if (input) input.addEventListener("keydown", e => {
-            if (e.key === "Enter") applyFilters();
+    keywordInput.addEventListener("input", updateResults);
+    dateInput.addEventListener("change", updateResults);
+    sort.addEventListener("change", updateResults);
+    [minPrice, maxPrice].forEach(input => {
+        input.addEventListener("input", updateResults);
+        input.addEventListener("keydown", event => {
+            if (event.key === "Enter") updateResults();
         });
     });
-});
+    document.querySelector(".filter-submit").addEventListener("click", updateResults);
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        updateResults();
+        document.querySelector(".courts-content").scrollIntoView({ block: "start" });
+    });
+    categories.forEach(button => button.addEventListener("click", () => {
+        category = button.dataset.category;
+        updateResults();
+    }));
+
+    updateResults();
+    if (keywordInput.value || dateInput.value || requestedSport) {
+        document.querySelector(".courts-content").scrollIntoView({ block: "start" });
+    }
+})();
