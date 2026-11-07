@@ -558,15 +558,16 @@ if (!selectedCourt) {
             }
 
             const newBookings = requestedSlots.map((slot) => ({
-                courtId: court.id,
-                courtName: court.name,
-                subCourtId: slot.subCourtId,
-                subCourtName: slot.subCourtName,
-                date: bookingDate,
-                startTime: formatTime(slot.start),
-                endTime: formatTime(slot.end),
-                price: slot.price
-            }));
+    courtId: court.id,
+    courtName: court.name,
+    courtImage: court.image,
+    subCourtId: slot.subCourtId,
+    subCourtName: slot.subCourtName,
+    date: bookingDate,
+    startTime: formatTime(slot.start),
+    endTime: formatTime(slot.end),
+    price: slot.price
+}));
 
             try {
                 localStorage.setItem(
