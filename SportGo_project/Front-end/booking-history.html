@@ -48,7 +48,7 @@
     <!-- MAIN -->
     <main id="main-content" class="profile-main">
 
-        <div class="profile-container">
+        <div class="profile-container booking-history-layout">
 
             <!-- SIDEBAR GIỮ NGUYÊN -->
             <aside class="profile-sidebar">
@@ -78,6 +78,7 @@
                        aria-current="page">
                         <i class="fa-solid fa-calendar-days"></i>
                         <span>Lịch sử đặt sân</span>
+                        <span id="booking-nav-count" class="booking-nav-count" aria-hidden="true" hidden></span>
                     </a>
 
                     <a href="change-password.html" class="profile-menu-item">
@@ -95,7 +96,17 @@
                     <h2>Lịch sử đặt sân</h2>
                 </div>
 
-                <div class="booking-table-wrapper">
+                <div id="booking-summary" class="booking-summary" role="status" aria-atomic="true" hidden>
+                    <p>Tổng số lịch đặt sân <strong id="booking-total-count"></strong></p>
+                    <p>Tổng chi phí dự kiến <strong id="booking-total-cost"></strong></p>
+                </div>
+
+                <div id="booking-history-empty" class="booking-history-empty" hidden>
+                    <p>Bạn chưa có lịch đặt sân nào.</p>
+                    <a href="courts.html">Xem danh sách sân tập</a>
+                </div>
+
+                <div id="booking-table-wrapper" class="booking-table-wrapper" hidden>
                     <table class="booking-table">
     <thead>
         <tr>
