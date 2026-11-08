@@ -691,4 +691,7 @@
     // ================================
 
     render();
+        if (new URLSearchParams(window.location.search).get("success")) {
+        bookingMessage.textContent = "Đặt sân và thanh toán thành công! Lịch đặt của bạn đã được lưu.";
+    }
 })();

@@ -260,6 +260,29 @@ if (!selectedCourt) {
         const openingTime = 5 * 60;
         const closingTime = 24 * 60;
         const bookingsStorageKey = "sportgoBookings";
+        const holdsStorageKey = "sportgoHolds";
+        const HOLD_MINUTES = 10;
+
+        // Đọc các lượt giữ chỗ còn hạn (tự bỏ lượt đã hết hạn)
+        function readHolds() {
+            try {
+                const data = JSON.parse(localStorage.getItem(holdsStorageKey));
+                if (!Array.isArray(data)) return [];
+                return data.filter((hold) => Number(hold.expiresAt) > Date.now());
+            } catch (error) {
+                return [];
+            }
+        }
+
+        // Id của phiên hiện tại, để không tự chặn chính mình
+        function getHoldOwner() {
+            let owner = sessionStorage.getItem("sportgoHoldOwner");
+            if (!owner) {
+                owner = "h" + Date.now() + Math.random().toString(36).slice(2, 7);
+                sessionStorage.setItem("sportgoHoldOwner", owner);
+            }
+            return owner;
+        }
         const selectedSlots = new Map();
         const courtCount = Math.max(
             1,
@@ -429,7 +452,15 @@ if (!selectedCourt) {
                         return belongsToSubCourt && interval
                             && start < interval.end && end > interval.start;
                     });
-                    const isBooked = Boolean(bookingForSlot);
+                    const heldByOthers = readHolds().some((hold) =>
+                        hold.owner !== getHoldOwner()
+                        && Number(hold.courtId) === court.id
+                        && hold.date === bookingDateInput.value
+                        && String(hold.subCourtId) === subCourt.id
+                        && formatTime(start) < hold.endTime
+                        && formatTime(end) > hold.startTime
+                    );
+                    const isBooked = Boolean(bookingForSlot) || heldByOthers;
                     const selectionKey = `${subCourt.id}:${start}`;
                     const isSelected = selectedSlots.has(selectionKey);
                     const status = isBooked ? "Đã đặt" : isSelected ? "Đang chọn" : "Còn trống";
@@ -509,6 +540,10 @@ if (!selectedCourt) {
         bookingDateInput.addEventListener("change", () => {
             selectedSlots.clear();
             renderSchedule();
+            
+            if (params.get("expired")) {
+            showBookingMessage("Đã hết thời gian giữ sân (10 phút). Vui lòng chọn lại khung giờ.", true);
+        }
         });
         renderSchedule();
 
@@ -557,34 +592,45 @@ if (!selectedCourt) {
                 return;
             }
 
-            const newBookings = requestedSlots.map((slot) => ({
-    courtId: court.id,
-    courtName: court.name,
-    courtImage: court.image,
-    subCourtId: slot.subCourtId,
-    subCourtName: slot.subCourtName,
-    date: bookingDate,
-    startTime: formatTime(slot.start),
-    endTime: formatTime(slot.end),
-    price: slot.price
-}));
+            // Giữ chỗ 10 phút
+            const owner = getHoldOwner();
+            const expiresAt = Date.now() + HOLD_MINUTES * 60 * 1000;
+
+            const otherHolds = readHolds().filter((hold) => hold.owner !== owner);
+            const newHolds = requestedSlots.map((slot) => ({
+                owner,
+                courtId: court.id,
+                date: bookingDate,
+                subCourtId: slot.subCourtId,
+                startTime: formatTime(slot.start),
+                endTime: formatTime(slot.end),
+                expiresAt
+            }));
+
+            const pendingBooking = {
+                courtId: court.id,
+                courtName: court.name,
+                courtImage: court.image,
+                date: bookingDate,
+                expiresAt,
+                slots: requestedSlots.map((slot) => ({
+                    subCourtId: slot.subCourtId,
+                    subCourtName: slot.subCourtName,
+                    startTime: formatTime(slot.start),
+                    endTime: formatTime(slot.end),
+                    price: slot.price
+                }))
+            };
 
             try {
-                localStorage.setItem(
-                    bookingsStorageKey,
-                    JSON.stringify([...bookingList, ...newBookings])
-                );
+                localStorage.setItem(holdsStorageKey, JSON.stringify([...otherHolds, ...newHolds]));
+                sessionStorage.setItem("sportgoPendingBooking", JSON.stringify(pendingBooking));
             } catch (error) {
-                showBookingMessage("Không thể lưu lịch đặt trên trình duyệt. Vui lòng kiểm tra bộ nhớ trình duyệt.", true);
+                showBookingMessage("Không thể chuyển sang trang hóa đơn. Vui lòng thử lại.", true);
                 return;
             }
 
-            const total = requestedSlots.reduce((sum, slot) => sum + slot.price, 0);
-            showBookingMessage(
-                `Đặt thành công ${requestedSlots.length} khung giờ ngày ${bookingDate}. Tổng tiền: ${formatPrice(total)}.`
-            );
-            selectedSlots.clear();
-            renderSchedule();
+            window.location.href = "checkout.html";
         });
     }
 }

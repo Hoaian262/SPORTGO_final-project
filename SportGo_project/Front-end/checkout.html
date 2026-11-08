@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SportGo - Hóa đơn đặt sân">
+    <title>SportGo | Hóa đơn đặt sân</title>
+
+    <link rel="icon" type="image/png" href="images/logo-light.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER GIỮ NGUYÊN -->
+      <header class="site-header">
+    <div class="header-container">
+
+        <a href="index.html" class="header-logo">
+            <img src="images/logo-light.png" alt="SportGo">
+        </a>
+
+        <nav class="main-nav" aria-label="Menu chính">
+            <ul>
+                <li><a href="index.html" aria-current="page">Trang chủ</a></li>
+                <li><a href="courts.html">Danh sách sân tập</a></li>
+                <li><a href="about.html">Về SportGo</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions header-actions--guest">
+            <a href="login.html" class="auth-link">Đăng nhập</a>
+            <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+        </div>
+
+    </div>
+
+    <div class="hero-content">
+        <h1>HÓA ĐƠN ĐẶT SÂN</h1>
+    </div>
+</header>
+
+    <!-- MAIN -->
+<main id="main-content" class="checkout-page">
+    <div class="checkout-container">
+
+        <!-- Cột trái: hóa đơn -->
+        <section class="checkout-card" aria-labelledby="invoice-title">
+            <h2 id="invoice-title">Thông tin đặt sân</h2>
+            <p class="checkout-timer" role="timer" aria-live="off">
+            Sân được giữ trong: <strong id="hold-countdown">10:00</strong>
+            </p>
+            <div id="invoice-info"></div>
+            <table class="checkout-table">
+                <thead>
+                    <tr>
+                        <th>Sân</th>
+                        <th>Khung giờ</th>
+                        <th>Giá</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-body"></tbody>
+            </table>
+            <p class="checkout-total">
+                Tổng cộng: <strong id="invoice-total">0đ</strong>
+            </p>
+        </section>
+
+        <!-- Cột phải: thông tin người đặt -->
+        <section class="checkout-card" aria-labelledby="customer-title">
+            <h2 id="customer-title">Thông tin người đặt</h2>
+
+            <form id="checkout-form" novalidate>
+                <div class="checkout-field">
+                    <label for="customer-name">Họ và tên</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+
+                <div class="checkout-field">
+                    <label for="customer-phone">Số điện thoại</label>
+                    <input type="tel" id="customer-phone" placeholder="0901234567" required>
+                </div>
+
+                <div class="checkout-field">
+                    <label for="customer-email">Email</label>
+                    <input type="email" id="customer-email" required>
+                </div>
+
+                <div class="checkout-field">
+                    <label for="customer-note">Ghi chú (không bắt buộc)</label>
+                    <textarea id="customer-note" rows="2"></textarea>
+                </div>
+
+                <fieldset class="checkout-payment">
+                    <legend>Phương thức thanh toán</legend>
+                    <label><input type="radio" name="payment" value="Thanh toán tại sân" checked> Thanh toán tại sân</label>
+                    <label><input type="radio" name="payment" value="Chuyển khoản ngân hàng"> Chuyển khoản ngân hàng</label>
+                    <label><input type="radio" name="payment" value="Ví điện tử"> Ví điện tử</label>
+                </fieldset>
+
+                <p id="checkout-message" class="checkout-message" role="status"></p>
+
+                <div class="checkout-actions">
+                    <a href="courts.html" class="checkout-back">Quay lại</a>
+                    <button type="submit" class="checkout-submit">
+                        Đặt sân 
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</main>
+
+    <!-- FOOTER GIỮ NGUYÊN -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo-light.png" alt="SportGo">
+                </a>
+
+                <p class="footer-slogan">
+                    Tìm sân dễ dàng - Đặt lịch nhanh chóng - Ra sân ngay.
+                </p>
+
+                <h3>Kết nối với SportGo</h3>
+
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+                <h3>Khám phá</h3>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column">
+                <h3>CSKH</h3>
+                <ul>
+                    <li><a href="#">Hướng dẫn đặt sân</a></li>
+                    <li><a href="#">Chính sách hủy và hoàn tiền</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Báo cáo sự cố</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column footer-contact">
+                <h3>Thông tin liên hệ</h3>
+
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0123 456 789</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@sportgo.vn</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>6:00 - 22:00 hằng ngày</span>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 SportGo. Đồ án môn Phát triển ứng dụng
+                thương mại điện tử, UEH.
+            </p>
+
+            <div class="footer-bottom-links">
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản sử dụng</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="JS/checkout.js"></script>
+</body>
+</html>
