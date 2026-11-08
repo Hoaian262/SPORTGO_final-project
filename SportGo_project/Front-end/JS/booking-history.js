@@ -477,6 +477,14 @@
             }
         });
 
+        const grandTotal = groups.reduce((sum, g) => sum + g.price, 0);
+        html += `
+            <tr>
+                <td colspan="4"><strong>Tổng cộng (${groups.length} lịch đặt)</strong></td>
+                <td colspan="2"><strong class="booking-price">${formatPrice(grandTotal)}</strong></td>
+            </tr>
+        `;
+
         bookingList.innerHTML = html;
         bookingMessage.textContent = "";
     }
