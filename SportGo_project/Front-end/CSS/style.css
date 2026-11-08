@@ -4628,3 +4628,36 @@ a.information-value:hover {
         text-align: center;
     }
 }
+
+/* Biểu tượng tài khoản trên header */
+.account-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    color: var(--color-white);
+    font-size: 18px;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.account-icon:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-dark);
+}
+
+.account-icon[aria-current="page"] {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-dark);
+}
+
+.account-icon:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
