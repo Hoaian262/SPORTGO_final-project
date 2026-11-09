@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="JS/court.js" defer></script>
+    <script src="JS/court-filter.js" defer></script>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
                 <li><a href="about.html">Về SportGo</a></li>
             </ul>
         </nav>
-        <a href="courts.html" class="header-search" aria-label="Tìm kiếm sân">
+        <a href="#court-filters" class="header-search" aria-label="Đến bộ lọc tìm kiếm sân">
             <i class="fa-solid fa-magnifying-glass"></i>
         </a>
 
@@ -67,7 +68,7 @@
         <div class="courts-layout">
 
             <!-- CỘT TRÁI: BỘ LỌC -->
-       <aside class="court-filters">
+       <aside class="court-filters" id="court-filters">
 
     <h2 class="court-filters-title">Bộ lọc tìm kiếm</h2>
 
@@ -160,12 +161,12 @@
 
                 <!-- Danh mục môn thể thao -->
                 <nav class="sport-categories" aria-label="Danh mục môn thể thao">
-                    <a href="#" class="sport-category sport-category--active">Tất cả</a>
-                    <a href="#" class="sport-category">Bóng đá</a>
-                    <a href="#" class="sport-category">Bóng rổ</a>
-                    <a href="#" class="sport-category">Cầu lông</a>
-                    <a href="#" class="sport-category">Pickleball</a>   
-                    <a href="#" class="sport-category">Tennis</a>   
+                    <button type="button" class="sport-category sport-category--active" data-category="all" aria-pressed="true">Tất cả</button>
+                    <button type="button" class="sport-category" data-category="bong-da" aria-pressed="false">Bóng đá</button>
+                    <button type="button" class="sport-category" data-category="bong-ro" aria-pressed="false">Bóng rổ</button>
+                    <button type="button" class="sport-category" data-category="cau-long" aria-pressed="false">Cầu lông</button>
+                    <button type="button" class="sport-category" data-category="pickleball" aria-pressed="false">Pickleball</button>
+                    <button type="button" class="sport-category" data-category="tennis" aria-pressed="false">Tennis</button>
                 </nav>
                 <!-- Thanh số lượng và sắp xếp -->
                 <div class="courts-toolbar">
