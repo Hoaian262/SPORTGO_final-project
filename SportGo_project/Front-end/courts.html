@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="JS/court.js" defer></script>
-    <script src="JS/court-filter.js" defer></script>
 </head>
 
 <body>
@@ -36,8 +35,11 @@
                 <li><a href="about.html">Về SportGo</a></li>
             </ul>
         </nav>
+        <a href="courts.html" class="header-search" aria-label="Tìm kiếm sân">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+
         <div class="header-actions header-actions--guest">
-    <a href="profile.html" class="account-icon" aria-label="Tài khoản của tôi" title="Tài khoản của tôi"><i class="fa-solid fa-user"></i></a>
             <a href="login.html" class="auth-link">Đăng nhập</a>
             <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
         </div>
@@ -50,36 +52,6 @@
     </div>
 </header>
 
-<section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
-    <form class="home-search-form" action="courts.html" method="get">
-        <div class="home-search-input">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <label class="visually-hidden" for="site-search-keyword">Tên sân hoặc khu vực</label>
-            <input
-                type="search"
-                id="site-search-keyword"
-                name="keyword"
-                placeholder="Tên sân, quận hoặc khu vực..."
-            >
-        </div>
-
-        <div class="home-search-date">
-            <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
-            <label class="visually-hidden" for="site-search-date">Ngày muốn đặt sân</label>
-            <input
-                type="date"
-                id="site-search-date"
-                name="date"
-                aria-label="Chọn ngày muốn đặt sân"
-            >
-        </div>
-
-        <button type="submit" class="home-search-button">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            Tìm kiếm
-        </button>
-    </form>
-</section>
 
     <!-- ================================
          2. NỘI DUNG CHÍNH
@@ -111,11 +83,7 @@
 
         <label for="filter-district">Quận / Huyện</label>
         <select id="filter-district" name="district">
-            <option value="">Tất cả quận / huyện</option>
-            <option value="tan-phu">Quận Tân Phú</option>
-            <option value="quan-5">Quận 5</option>
-            <option value="quan-8">Quận 8</option>
-            <option value="tan-binh">Quận Tân Bình</option>
+            <option value="">Chọn quận / huyện</option>
             <option value="quan-7">Quận 7</option>
             <option value="binh-thanh">Bình Thạnh</option>
             <option value="thu-duc">TP. Thủ Đức</option>
@@ -192,19 +160,13 @@
 
                 <!-- Danh mục môn thể thao -->
                 <nav class="sport-categories" aria-label="Danh mục môn thể thao">
-                    <button type="button" class="sport-category sport-category--active"
-                        data-category="all">Tất cả</button>
-                    <button type="button" class="sport-category"
-                            data-category="Bóng đá">Bóng đá</button>
-                    <button type="button" class="sport-category"
-                            data-category="Bóng rổ">Bóng rổ</button>
-                    <button type="button" class="sport-category"
-                            data-category="Cầu lông">Cầu lông</button>
-                    <button type="button" class="sport-category"
-                            data-category="Pickleball">Pickleball</button>
-                    <button type="button" class="sport-category"
-                            data-category="Tennis">Tennis</button>
-</nav>
+                    <a href="#" class="sport-category sport-category--active">Tất cả</a>
+                    <a href="#" class="sport-category">Bóng đá</a>
+                    <a href="#" class="sport-category">Bóng rổ</a>
+                    <a href="#" class="sport-category">Cầu lông</a>
+                    <a href="#" class="sport-category">Pickleball</a>   
+                    <a href="#" class="sport-category">Tennis</a>   
+                </nav>
                 <!-- Thanh số lượng và sắp xếp -->
                 <div class="courts-toolbar">
 
@@ -221,263 +183,12 @@
                     </div>
                 </div>
 
-             <div class="court-grid">
+             <div class="court-grid" id="court-grid">
+</div>
 
-   <!-- Court Card 1 -->
-    <article class="court-card">
-        <div class="court-card-image">
-             <img src="images/phong vũ.jpg"
-                     alt="Hình ảnh sân thể thao">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân cầu lông Phong Vũ
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-               2 Lê Quát, Quận Tân Phú, TP. Hồ Chí Minh
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.8 (120 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">Từ 34.000/giờ</p>
-                <a href="courts-details.html?id=1" class="court-card-button">
-                Xem chi tiết
-            </a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 2 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/bongro.jpg" alt="Ảnh sân bóng rổ">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân bóng rổ Lam Sơn
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                320/1 Trần Bình Trọng, Phường 4, Quận 5, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.7 (98 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">100.000đ/giờ</p>
-                <a href="courts-details.html?id=2" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 3 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/caulong.webp" alt="Ảnh sân cầu lông">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân cầu lông Vy Phong
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                47 Phú Định, Phường 16, Quận 8, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.9 (156 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price"> Từ 60.000đ/giờ</p>
-                <a href="courts-details.html?id=3" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 4 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/pickleball.webp" alt="Ảnh sân pickleball">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân PPS Pickleball Phong Phú
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                261/9 Đình Phong Phú, Phường Tăng Nhơn Phú B, TP. Thủ Đức, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.8 (85 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">220.000đ/giờ</p>
-                <a href="courts-details.html?id=4" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 5 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/caulong1.webp" alt="Ảnh sân cầu lông">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân cầu lông Hàng Dương
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                146 ĐH34, Phước Kiển, Nhà Bè, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.7 (92 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">50.000đ/giờ</p>
-                <a href="courts-details.html?id=5" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 6 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/tennis.jpg" alt="Ảnh sân tennis">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân Tennis Kỳ Hòa
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                138A Sư Vạn Hạnh, Phường 12,  Quận 10, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.7 (110 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">200.000đ/giờ</p>
-                <a href="courts-details.html?id=6" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 7 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/caulong2.jpg" alt="Ảnh sân cầu lông">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân cầu lông Chu Văn An
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                Sân trong trường tiểu học Chu Văn An, Quận Bình Thạnh, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.8 (134 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">45.000đ/giờ</p>
-                <a href="courts-details.html?id=7" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 8 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/tennis2.jpg" alt="Ảnh sân tennis">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân tennis Cộng Hòa
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                18D Cộng Hòa, P. 4, Q. Tân Bình, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.9 (76 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">220.000đ/giờ</p>
-                <a href="courts-details.html?id=8" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Court Card 9 -->
-    <article class="court-card">
-        <div class="court-card-image">
-            <img src="images/pickleball2.webp" alt="Ảnh sân pickleball">
-        </div>
-
-        <div class="court-card-content">
-            <h3 class="court-card-title">
-                Sân POC Pickleball Kiến Thiết
-            </h3>
-
-            <p class="court-card-address">
-                <i class="fa-solid fa-location-dot"></i>
-                25 Tú Xương, Phường Tăng Nhơn Phú B, TP. Thủ Đức, TP.HCM
-            </p>
-
-            <p class="court-card-rating">
-                <i class="fa-solid fa-star"></i>
-                4.7 (105 đánh giá)
-            </p>
-
-            <div class="court-card-bottom">
-                <p class="court-card-price">250.000đ/giờ</p>
-                <a href="courts-details.html?id=9" class="court-card-button">Xem chi tiết</a>
-            </div>
-        </div>
-    </article>
-
+<p id="empty-message" hidden>
+    Không tìm thấy sân phù hợp.
+</p>
 </div>
                 <!-- Phân trang -->
                 <nav class="courts-pagination" aria-label="Phân trang">
@@ -620,6 +331,5 @@
 
     </footer>
 
-    <script src="JS/court-search.js"></script>
 </body>
 </html>
