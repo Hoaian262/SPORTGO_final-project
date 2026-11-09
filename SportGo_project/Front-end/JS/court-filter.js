@@ -11,6 +11,22 @@
 
     const countText = document.getElementById("court-count");
     const sortSelect = document.getElementById("sort-courts");
+    const categoryButtons = [...document.querySelectorAll("button[data-category]")];
+    const emptyMessage = document.getElementById("empty-message");
+    const pagination = document.querySelector(".courts-pagination");
+    const url = new URL(location.href);
+    const bookingDate = url.searchParams.get("date");
+    const sportSlugs = {
+        "bong-da": "Bóng đá",
+        "bong-ro": "Bóng rổ",
+        "cau-long": "Cầu lông",
+        pickleball: "Pickleball",
+        tennis: "Tennis"
+    };
+    const requestedSport = url.searchParams.get("sport");
+    let category = categoryButtons.some(button => button.dataset.category === requestedSport)
+        ? requestedSport
+        : "all";
 
     const citySelect = document.getElementById("filter-city");
     const districtSelect = document.getElementById("filter-district");
@@ -58,6 +74,10 @@
         if (!link) return null;
 
         const url = new URL(link.getAttribute("href"), location.href);
+        if (bookingDate) {
+            url.searchParams.set("date", bookingDate);
+            link.href = url.href;
+        }
 
         return url.searchParams.get("id");
     }
@@ -154,27 +174,14 @@
             )
         ).map(input => input.value);
 
-        // Lấy từ khóa tìm kiếm và môn thể thao
-        const params = new URLSearchParams(location.search);
+        const keyword = normalize(url.searchParams.get("keyword") || "");
+        const selectedSport = sportSlugs[category] || "all";
 
-        const keyword = normalize(params.get("keyword") || "");
-
-        const sportSlugs = {
-            "bong-da": "Bóng đá",
-            "bong-ro": "Bóng rổ",
-            "cau-long": "Cầu lông",
-            "pickleball": "Pickleball",
-            "tennis": "Tennis"
-        };
-
-        const activeCategory = document.querySelector(
-            ".sport-category--active"
-        );
-
-        const selectedSport =
-            sportSlugs[params.get("sport")] ||
-            activeCategory?.dataset.category ||
-            "all";
+        categoryButtons.forEach(button => {
+            const selected = button.dataset.category === category;
+            button.classList.toggle("sport-category--active", selected);
+            button.setAttribute("aria-pressed", String(selected));
+        });
 
         // Lọc từng sân
         let result = cards.filter(court => {
@@ -275,11 +282,11 @@
         }
 
         // Hiển thị thông báo khi không tìm thấy sân
-        const emptyMessage = grid.querySelector(".court-search-empty");
-
         if (emptyMessage) {
             emptyMessage.hidden = result.length > 0;
         }
+
+        if (pagination) pagination.hidden = Boolean(hasFilter);
     }
 
     // Cho phép các file JS khác gọi bộ lọc
@@ -290,6 +297,14 @@
 
     // Thay đổi cách sắp xếp thì cập nhật ngay
     sortSelect?.addEventListener("change", applyFilters);
+
+    categoryButtons.forEach(button => button.addEventListener("click", () => {
+        category = button.dataset.category;
+        if (category === "all") url.searchParams.delete("sport");
+        else url.searchParams.set("sport", category);
+        history.replaceState(null, "", url);
+        applyFilters();
+    }));
 
     // Nhấn Enter trong ô giá để lọc
     [minInput, maxInput].forEach(input => {
