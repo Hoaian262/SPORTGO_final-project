@@ -765,6 +765,12 @@ a {
 .pagination-link--active {
     background-color: var(--color-dark);
     color: white;
+    /* Trạng thái nút không thể nhấn */
+}
+.pagination-link--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
 }
 
 /* =========================================

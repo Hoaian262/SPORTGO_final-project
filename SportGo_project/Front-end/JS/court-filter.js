@@ -1,12 +1,11 @@
 
 // ========================================
-// BỘ LỌC TÌM KIẾM SÂN SPORTGO
-// Địa điểm - Giá - Tiện ích - Đánh giá
-// Kết hợp tìm kiếm và danh mục thể thao
+// BỘ LỌC VÀ PHÂN TRANG DANH SÁCH SÂN
 // ========================================
 
 (() => {
     const grid = document.querySelector(".court-grid");
+
     if (!grid) return;
 
     const countText = document.getElementById("court-count");
@@ -19,20 +18,26 @@
     const maxInput = document.querySelector('input[name="max-price"]');
 
     const submitBtn = document.querySelector(".filter-submit");
+    const emptyMessage = document.getElementById("empty-message");
+    const pagination = document.querySelector(".courts-pagination");
 
-    // Lấy dữ liệu sân từ court.js
-  const courtData = Array.isArray(window.courts)
-    ? window.courts
-    : [];
+    // Số sân tối đa trên mỗi trang
+    const courtsPerPage = 9;
 
-if (courtData.length === 0) {
-    console.error("Không tìm thấy dữ liệu sân trong window.courts!");
-    return;
-}
+    // Lấy toàn bộ dữ liệu sân
+    const courtData = Array.isArray(window.courts)
+        ? window.courts
+        : [];
 
-    const courtMap = new Map(
-        courtData.map(court => [String(court.id), court])
-    );
+    if (courtData.length === 0) {
+        console.error("Không tìm thấy dữ liệu sân!");
+        return;
+    }
+
+    // Trang hiện tại
+    let currentPage = Number(
+        new URLSearchParams(location.search).get("page")
+    ) || 1;
 
     // Mã quận/huyện tương ứng với từng sân
     const districtByCourtId = {
@@ -47,7 +52,7 @@ if (courtData.length === 0) {
         9: "thu-duc"
     };
 
-    // Chuẩn hóa chữ để so sánh không phân biệt dấu
+    // Chuẩn hóa chữ, bỏ dấu tiếng Việt
     function normalize(value) {
         return String(value || "")
             .normalize("NFD")
@@ -58,49 +63,11 @@ if (courtData.length === 0) {
             .trim();
     }
 
-    // Lấy mã ID của sân từ đường dẫn chi tiết
-    function getCourtId(card) {
-        const link = card.querySelector(".court-card-button");
-
-        if (!link) return null;
-
-        const url = new URL(link.getAttribute("href"), location.href);
-
-        return url.searchParams.get("id");
-    }
-
-    // Lấy dữ liệu từng thẻ sân
-   const cards = Array.from(
-    grid.querySelectorAll(".court-card")
-).map(card => {
-    const id = getCourtId(card);
-    const data = courtMap.get(String(id));
-
-    if (!data) {
-        console.warn("Không tìm thấy dữ liệu cho thẻ sân:", id);
-    }
-
-    const priceText =
-        card.querySelector(".court-card-price")?.textContent || "";
-
-    const ratingText =
-        card.querySelector(".court-card-rating")?.textContent || "";
-
-    return {
-        element: card,
-        data: data,
-        id: Number(id),
-        price: data?.price ??
-            Number(priceText.replace(/\D/g, "")),
-        rating: Number(data?.rating ??
-            ratingText.match(/[\d.]+/)?.[0] ?? 0),
-        district: districtByCourtId[id] || ""
-    };
-}).filter(court => court.data);
-
-    // Kiểm tra giá nhập vào
+    // Đọc giá từ ô nhập
     function readPrice(input) {
-        if (!input || input.value.trim() === "") return null;
+        if (!input || input.value.trim() === "") {
+            return null;
+        }
 
         const value = Number(input.value);
 
@@ -109,9 +76,9 @@ if (courtData.length === 0) {
             : null;
     }
 
-    // Kiểm tra tiện ích của sân
+    // Kiểm tra tiện ích
     function hasAmenity(court, selectedAmenity) {
-        const amenities = (court.data?.amenities || [])
+        const amenities = (court.amenities || [])
             .map(item => normalize(item));
 
         const amenityMap = {
@@ -128,7 +95,7 @@ if (courtData.length === 0) {
         );
     }
 
-    // Lọc theo mức đánh giá
+    // Kiểm tra đánh giá
     function matchesRating(rating, selectedRatings) {
         if (selectedRatings.length === 0) return true;
 
@@ -141,8 +108,159 @@ if (courtData.length === 0) {
         });
     }
 
-    // Hàm lọc tổng hợp
-    function applyFilters() {
+    // Cập nhật URL khi chuyển trang
+    function updatePageUrl(page) {
+        const url = new URL(window.location.href);
+
+        url.searchParams.set("page", page);
+
+        window.history.replaceState({}, "", url);
+    }
+
+    // Cập nhật thanh phân trang
+    function renderPagination(totalPages) {
+        if (!pagination) return;
+
+        pagination.innerHTML = "";
+
+        if (totalPages <= 1) {
+            pagination.style.display = "none";
+            return;
+        }
+
+        pagination.style.display = "flex";
+
+        // Nút Trước
+        const previous = document.createElement("a");
+
+        previous.href = "#";
+        previous.className = "pagination-link";
+        previous.textContent = "Trước";
+
+        if (currentPage === 1) {
+            previous.classList.add("pagination-link--disabled");
+        }
+
+        previous.addEventListener("click", event => {
+            event.preventDefault();
+
+            if (currentPage > 1) {
+                currentPage--;
+                displayCurrentPage();
+            }
+        });
+
+        pagination.appendChild(previous);
+
+        // Các nút số trang
+        for (let page = 1; page <= totalPages; page++) {
+            const link = document.createElement("a");
+
+            link.href = "#";
+            link.className = "pagination-link";
+            link.textContent = page;
+
+            if (page === currentPage) {
+                link.classList.add("pagination-link--active");
+            }
+
+            link.addEventListener("click", event => {
+                event.preventDefault();
+
+                currentPage = page;
+                displayCurrentPage();
+            });
+
+            pagination.appendChild(link);
+        }
+
+        // Nút Tiếp
+        const next = document.createElement("a");
+
+        next.href = "#";
+        next.className = "pagination-link";
+        next.textContent = "Tiếp";
+
+        if (currentPage === totalPages) {
+            next.classList.add("pagination-link--disabled");
+        }
+
+        next.addEventListener("click", event => {
+            event.preventDefault();
+
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayCurrentPage();
+            }
+        });
+
+        pagination.appendChild(next);
+    }
+
+    // Lưu kết quả sau khi lọc và sắp xếp
+    let filteredCourts = [];
+
+    // Hiển thị sân theo trang hiện tại
+    function displayCurrentPage() {
+        const totalPages = Math.ceil(
+            filteredCourts.length / courtsPerPage
+        );
+
+        // Đảm bảo trang hiện tại hợp lệ
+        if (totalPages === 0) {
+            currentPage = 1;
+        } else if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+
+        // Xác định vị trí sân đầu và cuối
+        const startIndex = (currentPage - 1) * courtsPerPage;
+
+        const endIndex = startIndex + courtsPerPage;
+
+        // Lấy tối đa 9 sân của trang hiện tại
+        const currentCourts = filteredCourts.slice(
+            startIndex,
+            endIndex
+        );
+
+        // Hiển thị danh sách sân
+        window.renderCourts(currentCourts);
+
+        // Cập nhật số lượng sân
+        if (countText) {
+            countText.textContent =
+                `Hiển thị ${currentCourts.length}/${filteredCourts.length} sân thể thao`;
+        }
+
+        // Cập nhật thanh phân trang
+        renderPagination(totalPages);
+
+        // Cập nhật URL
+        updatePageUrl(currentPage);
+
+        // Giữ ngày đặt sân trong đường dẫn chi tiết
+        const bookingDate = new URLSearchParams(
+            location.search
+        ).get("date");
+
+        if (bookingDate) {
+            document.querySelectorAll(".court-card-button")
+                .forEach(link => {
+                    const url = new URL(link.href);
+
+                    url.searchParams.set("date", bookingDate);
+
+                    link.href = url.href;
+                });
+        }
+    }
+
+    // ========================================
+    // LỌC TOÀN BỘ DANH SÁCH SÂN
+    // ========================================
+
+    function applyFilters(resetPage = true) {
         const min = readPrice(minInput);
         const max = readPrice(maxInput);
 
@@ -166,7 +284,6 @@ if (courtData.length === 0) {
             )
         ).map(input => input.value);
 
-        // Lấy từ khóa tìm kiếm và môn thể thao
         const params = new URLSearchParams(location.search);
 
         const keyword = normalize(params.get("keyword") || "");
@@ -188,50 +305,40 @@ if (courtData.length === 0) {
             activeCategory?.dataset.category ||
             "all";
 
-        // Lọc từng sân
-        let result = cards.filter(court => {
-            const data = court.data;
+        // Lọc trên toàn bộ dữ liệu sân
+        filteredCourts = courtData.filter(court => {
+            const title = normalize(court.name);
+            const address = normalize(court.address);
 
-            const title = court.element.querySelector(
-                ".court-card-title"
-            )?.textContent || "";
-
-            const address = court.element.querySelector(
-                ".court-card-address"
-            )?.textContent || "";
-
-            // Lọc địa điểm
             const matchesCity =
                 !selectedCity || selectedCity === "hcm";
 
             const matchesDistrict =
                 !selectedDistrict ||
-                court.district === selectedDistrict;
+                districtByCourtId[court.id] === selectedDistrict;
 
-            // Lọc giá
             const matchesPrice =
                 (min === null || court.price >= min) &&
                 (max === null || court.price <= max);
 
-            // Lọc tiện ích: phải có tất cả tiện ích đã chọn
             const matchesAmenities =
                 selectedAmenities.every(amenity =>
                     hasAmenity(court, amenity)
                 );
 
-            // Lọc đánh giá
             const matchesSelectedRating =
-                matchesRating(court.rating, selectedRatings);
+                matchesRating(
+                    Number(court.rating || 0),
+                    selectedRatings
+                );
 
-            // Giữ kết quả tìm kiếm theo tên và địa chỉ
             const matchesKeyword =
                 !keyword ||
-                normalize(title + " " + address).includes(keyword);
+                (title + " " + address).includes(keyword);
 
-            // Lọc theo môn thể thao
             const matchesSport =
                 selectedSport === "all" ||
-                normalize(data?.sport || "").includes(
+                normalize(court.sport).includes(
                     normalize(selectedSport)
                 );
 
@@ -244,75 +351,54 @@ if (courtData.length === 0) {
                 matchesSport;
         });
 
-        // Sắp xếp danh sách sân
+        // Sắp xếp kết quả
         const sortType = sortSelect?.value || "default";
 
         if (sortType === "price-low") {
-            result.sort((a, b) => a.price - b.price);
+            filteredCourts.sort((a, b) => a.price - b.price);
         }
 
         if (sortType === "price-high") {
-            result.sort((a, b) => b.price - a.price);
+            filteredCourts.sort((a, b) => b.price - a.price);
         }
 
         if (sortType === "rating") {
-            result.sort((a, b) => b.rating - a.rating);
+            filteredCourts.sort(
+                (a, b) => b.rating - a.rating
+            );
         }
 
-        // Ẩn tất cả sân trước khi hiển thị kết quả
-      // Ẩn tất cả sân trước khi hiển thị kết quả
-cards.forEach(court => {
-    court.element.style.display = "none";
-});
-
-// Chỉ hiển thị các sân thỏa mãn điều kiện lọc
-result.forEach(court => {
-    court.element.style.display = "";
-});
-        // Cập nhật số lượng sân
-        const hasFilter =
-            keyword ||
-            selectedSport !== "all" ||
-            selectedCity ||
-            selectedDistrict ||
-            min !== null ||
-            max !== null ||
-            selectedAmenities.length ||
-            selectedRatings.length;
-
-        if (countText) {
-            countText.textContent = hasFilter
-                ? `Hiển thị ${result.length}/${cards.length} sân thể thao`
-                : `Hiển thị ${cards.length} sân thể thao`;
+        // Khi lọc hoặc tìm kiếm mới, quay về trang 1
+        if (resetPage) {
+            currentPage = 1;
         }
 
-        // Hiển thị thông báo khi không tìm thấy sân
-      const emptyMessage = document.getElementById("empty-message");
-
-if (emptyMessage) {
-    emptyMessage.hidden = result.length > 0;
-}
-
+        displayCurrentPage();
     }
 
-    // Cho phép các file JS khác gọi bộ lọc
-    window.applyCourtFilters = applyFilters;
+    // Cho phép file tìm kiếm gọi bộ lọc
+    window.applyCourtFilters = () => applyFilters(true);
 
-    // Nhấn nút tìm kiếm để áp dụng tất cả tiêu chí
-    submitBtn?.addEventListener("click", applyFilters);
+    // Nhấn nút tìm kiếm bộ lọc
+    submitBtn?.addEventListener("click", () => {
+        applyFilters(true);
+    });
 
-    // Thay đổi cách sắp xếp thì cập nhật ngay
-    sortSelect?.addEventListener("change", applyFilters);
+    // Thay đổi sắp xếp
+    sortSelect?.addEventListener("change", () => {
+        applyFilters(true);
+    });
 
-    // Nhấn Enter trong ô giá để lọc
+    // Nhấn Enter trong ô giá
     [minInput, maxInput].forEach(input => {
         input?.addEventListener("keydown", event => {
             if (event.key === "Enter") {
-                applyFilters();
+                applyFilters(true);
             }
         });
     });
 
-    // Lọc ban đầu khi mở trang
-    applyFilters();
+    // Khởi tạo danh sách sân
+    applyFilters(false);
+
 })();
