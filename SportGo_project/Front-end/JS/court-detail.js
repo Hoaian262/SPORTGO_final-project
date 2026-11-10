@@ -44,15 +44,20 @@ if (!selectedCourt) {
     document.querySelector(".court-profile-description").textContent =
         court.description || "Thông tin giới thiệu sân đang được cập nhật.";
 
-    // Cập nhật đánh giá
-    const quickInfo = document.querySelectorAll(".court-quick-info > div strong");
+   
+const quickInfo = document.querySelectorAll(".court-quick-info > div strong");
 
-    if (quickInfo.length >= 2) {
-        quickInfo[1].innerHTML = `
-            <i class="fa-solid fa-star"></i> ${court.rating}
-            <small>(${court.reviews})</small>
-        `;
-    }
+if (quickInfo.length >= 2) {
+    // Cập nhật giờ mở cửa
+    quickInfo[0].textContent =
+        court.hours?.trim() || "Đang cập nhật";
+
+    // Cập nhật đánh giá
+    quickInfo[1].innerHTML = `
+        <i class="fa-solid fa-star"></i> ${court.rating}
+        <small>(${court.reviews})</small>
+    `;
+}
 
     // =====================================
     // 5. HIỂN THỊ THÔNG TIN CHI TIẾT

@@ -346,4 +346,99 @@ window.courts = [
             { name: "Tối", time: "17:00-22:00", price: 450000 }
         ]
     },
+       {
+        id: 16,
+        name: "Sân cầu lông An Khánh",
+        sport: "Cầu lông",
+        image: "images/cau-long-an-khanh.jpg",
+        address: "26 Lương Định Của, khu vực An Khánh, TP.HCM",
+        price: 70000,
+        rating: "4.8",
+        reviews: "282",
+        phone: "0983 124 942",
+        hours: "05:00–23:00 hằng ngày",
+        number: "11 sân",
+        description: "Sân cầu lông An Khánh có quy mô 11 sân, phục vụ nhu cầu luyện tập và giao lưu cầu lông.",
+        amenities: [],
+        gallery: [
+            "images/san-cau-long-an-khanh-1.webp",
+            "images/san-cau-long-an-khanh-2.webp",
+            "images/san-cau-long-an-khanh-3.webp"
+        ],
+        prices: []
+    },
+        {
+        id: 17,
+        name: "Rian Sports",
+        sport: "Cầu lông",
+        image: "images/rian-sports.jpg",
+        address: "185B Nguyễn Oanh, Gò Vấp, TP.HCM",
+        price: 50000,
+        rating: "4.7",
+        reviews: "12",
+        phone: "0941 851 185",
+        hours: "06:00–24:00 hằng ngày",
+        number: "11 sân",
+        description: "Rian Sports là địa điểm thể thao tại Gò Vấp, có khu vực phục vụ cầu lông và bóng rổ. Giá thuê cầu lông tham khảo từ 50.000đ/giờ vào ban ngày ngày thường; giá có thể thay đổi theo khung giờ.",
+        amenities: [],
+        gallery: [],
+        prices: []
+    },
+
+    {
+        id: 18,
+        name: "Sân bóng rổ 29Ballers",
+        sport: "Bóng rổ",
+        image: "images/29ballers.webp",
+        address: "353/3 Bình Quới, TP.HCM",
+        price: 250000,
+        rating: "4.8",
+        reviews: "51",
+        phone: "0819 481 565",
+        hours: "07:00–22:00 hằng ngày",
+        number: "2 sân",
+        description: "29Ballers cung cấp sân bóng rổ trong nhà gồm sân 5x5 và sân 3x3. Giá thuê tham khảo dao động từ 250.000đ đến 550.000đ/giờ tùy loại sân và khung giờ.",
+        amenities: [],
+        gallery: [],
+        prices: []
+    },
+    {
+        id: 19,
+        name: "Flik Pickleball Quận 10",
+        sport: "Pickleball",
+        image: "images/flik.jpg",
+        address: "C30 Thành Thái, phường Diên Hồng, TP.HCM",
+        price: 120000,
+        rating: "4.9",
+        reviews: "211",
+        phone: "0933 386 992",
+        hours: "06:00–23:30 hằng ngày",
+        number: "2 sân",
+        description: "Flik Pickleball là địa điểm cho thuê sân pickleball tại khu vực Thành Thái, Quận 10 cũ. Giá thuê tham khảo dao động từ 120.000đ đến 270.000đ/giờ tùy khung giờ và loại khách.",
+        amenities: [],
+        gallery: [],
+        prices: []
+    },
+
+    {
+        id: 20,
+        name: "PooC",
+        sport: "Pickleball",
+        image: "images/san-pickleball-pooc-1.webp",
+        address: "202B Hoàng Văn Thụ, Phường 9, Phú Nhuận, TP.HCM",
+        price: 180000,
+        rating: "4.8",
+        reviews: "1454",
+        phone: "0707 509 903",
+        hours: "05:00–24:00 hằng ngày",
+        number: "6 sân pickleball",
+        description: "PooC phục vụ nhu cầu tập luyện cầu lông và pickleball. Theo thông tin tham khảo, khu vực pickleball có 6 sân với giá thuê khoảng 180.000đ đến 250.000đ/giờ.",
+        amenities: [],
+        gallery: [
+            "images/san-pickleball-pooc-2.webp",
+            "images/san-pickleball-pooc-3.webp",
+            "images/san-pickleball-pooc-4.webp",
+        ],
+        prices: []
+    }
 ]; 
