@@ -178,71 +178,77 @@
     // ================================
 
     function groupBookings(bookings) {
-        const sorted = bookings
-            .map((booking, index) => {
-                const interval = getInterval(booking);
+    const sorted = bookings
+        .map((booking, index) => {
+            const interval = getInterval(booking);
 
-                if (!interval) return null;
+            if (!interval) return null;
 
-                return {
-                    ...booking,
-                    ...interval,
-                    originalIndexes: [index]
-                };
-            })
-            .filter(Boolean)
-            .sort((a, b) =>
-                String(a.date).localeCompare(String(b.date)) ||
-                Number(a.courtId) - Number(b.courtId) ||
-                String(a.subCourtId || "").localeCompare(String(b.subCourtId || "")) ||
-                a.start - b.start
-            );
+            return {
+                ...booking,
+                ...interval,
+                originalIndexes: [index]
+            };
+        })
+        .filter(Boolean)
+        .sort((a, b) =>
+            String(a.date).localeCompare(String(b.date)) ||
+            Number(a.courtId) - Number(b.courtId) ||
+            String(a.subCourtId || "").localeCompare(String(b.subCourtId || "")) ||
+            String(a.orderId || "").localeCompare(String(b.orderId || "")) ||
+            a.start - b.start
+        );
 
-        const grouped = [];
+    const grouped = [];
 
-        sorted.forEach(booking => {
-            const previous = grouped[grouped.length - 1];
+    sorted.forEach(booking => {
+        const previous = grouped[grouped.length - 1];
 
-            // Loại bản ghi trùng hoàn toàn khỏi phần hiển thị.
-            const duplicate = grouped.find(item =>
+        // Chỉ kiểm tra trùng nếu hai bản ghi có cùng mã đơn hàng.
+        const duplicate = booking.orderId
+            ? grouped.find(item =>
+                item.orderId === booking.orderId &&
                 Number(item.courtId) === Number(booking.courtId) &&
                 item.date === booking.date &&
                 String(item.subCourtId || "") === String(booking.subCourtId || "") &&
                 item.start === booking.start &&
                 item.end === booking.end
-            );
+            )
+            : null;
 
-            if (duplicate) {
-                duplicate.originalIndexes.push(...booking.originalIndexes);
-                return;
-            }
+        if (duplicate) {
+            duplicate.originalIndexes.push(...booking.originalIndexes);
+            return;
+        }
 
-            // Gộp các khung giờ liên tiếp.
-            if (
-                previous &&
-                Number(previous.courtId) === Number(booking.courtId) &&
-                previous.date === booking.date &&
-                String(previous.subCourtId || "") === String(booking.subCourtId || "") &&
-                previous.end === booking.start
-            ) {
-                previous.end = booking.end;
-                previous.minutes += booking.minutes;
-                previous.price += Number(booking.price) || 0;
-                previous.originalIndexes.push(...booking.originalIndexes);
-                return;
-            }
+        // Chỉ gộp khung giờ liên tiếp thuộc cùng một đơn hàng.
+        if (
+            previous &&
+            booking.orderId &&
+            previous.orderId === booking.orderId &&
+            Number(previous.courtId) === Number(booking.courtId) &&
+            previous.date === booking.date &&
+            String(previous.subCourtId || "") === String(booking.subCourtId || "") &&
+            previous.end === booking.start
+        ) {
+            previous.end = booking.end;
+            previous.minutes += booking.minutes;
+            previous.price += Number(booking.price) || 0;
+            previous.originalIndexes.push(...booking.originalIndexes);
+            return;
+        }
 
-            grouped.push({
-                ...booking,
-                price: Number(booking.price) || 0
-            });
+        grouped.push({
+            ...booking,
+            price: Number(booking.price) || 0
         });
+    });
 
-        return grouped.sort((a, b) =>
-            String(b.date).localeCompare(String(a.date)) ||
-            a.start - b.start
-        );
-    }
+    return grouped.sort((a, b) =>
+        String(b.date).localeCompare(String(a.date)) ||
+        a.start - b.start
+    );
+}
 
     // ================================
     // 5. TẠO DANH SÁCH GIỜ ĐỂ CHỈNH SỬA
@@ -650,16 +656,27 @@
             }
 
             newBookings.push({
-                courtId: group.courtId,
-                courtName: group.courtName,
-                courtImage: getCourtImage(group),
-                subCourtId: group.subCourtId,
-                subCourtName: group.subCourtName,
-                date,
-                startTime: formatTime(time),
-                endTime: formatTime(time + 60),
-                price: hourlyPrice
-            });
+    // Thông tin sân
+    courtId: group.courtId,
+    courtName: group.courtName,
+    courtImage: getCourtImage(group),
+    subCourtId: group.subCourtId,
+    subCourtName: group.subCourtName,
+
+    // Thông tin lịch đặt
+    date,
+    startTime: formatTime(time),
+    endTime: formatTime(time + 60),
+    price: hourlyPrice,
+
+    // Giữ nguyên thông tin đơn hàng và khách hàng
+    orderId: group.orderId,
+    customerName: group.customerName,
+    customerPhone: group.customerPhone,
+    customerEmail: group.customerEmail,
+    note: group.note,
+    paymentMethod: group.paymentMethod
+});
         }
 
         const excludedIndexes = new Set(group.originalIndexes);

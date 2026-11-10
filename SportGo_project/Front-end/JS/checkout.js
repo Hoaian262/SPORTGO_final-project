@@ -130,7 +130,10 @@
     function findConflict(bookings) {
         return pending.slots.find(slot =>
             bookings.some(b => {
-                if (Number(b.courtId) !== pending.courtId || b.date !== pending.date) return false;
+              if (
+    Number(b.courtId) !== Number(pending.courtId) ||
+    b.date !== pending.date
+) return false;
                 if (b.subCourtId && String(b.subCourtId) !== String(slot.subCourtId)) return false;
                 // "HH:MM" đã đệm số 0 nên so sánh chuỗi là đúng
                 return slot.startTime < b.endTime && slot.endTime > b.startTime;
@@ -155,7 +158,8 @@
 
         if (name.length < 2) return showMessage("Vui lòng nhập họ và tên.");
         if (!/^0\d{9}$/.test(phone)) return showMessage("Số điện thoại phải gồm 10 chữ số, bắt đầu bằng 0.");
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showMessage("Email không hợp lệ.");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    return showMessage("Email không hợp lệ.");
 
         const bookings = loadBookings();
         const conflict = findConflict(bookings);
