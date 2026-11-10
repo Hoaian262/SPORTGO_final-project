@@ -336,7 +336,7 @@ Dự án sử dụng HTML5, CSS3 và Vanilla JavaScript thuần nên không cầ
 
 ## 9. Đường dẫn Repository GitHub
 * **GitHub Repository:** https://github.com/Hoaian262/SPORTGO_final-project
-* **GitHub Pages:** 
+* **GitHub Pages:** https://hoaian262.github.io/SPORTGO_final-project/SportGo_project/Front-end/
 
 ---
 
