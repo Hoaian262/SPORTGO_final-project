@@ -258,7 +258,7 @@ SPORTGO_final-project/
     ├── README.md                        # Tài liệu tổng quan và hướng dẫn sử dụng dự án
     └── REQUIREMENTS.md                  # Tài liệu đặc tả yêu cầu chức năng của hệ thống
 ---
-
+   ```
 ## 5. Các chức năng đã hoàn thành (Và giới hạn thực tế)
 
 ### 5.1. Các chức năng đã hoàn thành (Có mã nguồn hoạt động)
@@ -300,7 +300,7 @@ Dự án sử dụng HTML5, CSS3 và Vanilla JavaScript thuần nên không cầ
 1. Tải mã nguồn về máy hoặc clone từ GitHub:
    ```bash
    git clone 
-   ```
+
 2. Mở thư mục `SPORTGO_final-project` bằng **Visual Studio Code**.
 3. Truy cập vào thư mục chứa mã nguồn giao diện: `SportGo_project/Front-end/`.
 4. **Cách chạy khuyến nghị:** Nhấn chuột phải vào tệp `SportGo_project/Front-end/index.html` $\rightarrow$ chọn **Open with Live Server** (hoặc mở trực tiếp tệp `index.html` bằng trình duyệt Chrome, Edge, Firefox).
