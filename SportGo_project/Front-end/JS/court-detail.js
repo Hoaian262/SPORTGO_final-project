@@ -1,13 +1,17 @@
 // =====================================
-// 2. LẤY MÃ SÂN TỪ URL
+// 1. LẤY MÃ SÂN TỪ URL
 // =====================================
 
 const params = new URLSearchParams(window.location.search);
 const courtId = Number(params.get("id"));
 
-const selectedCourt = courts.find(court => court.id === courtId);
+// =====================================
+// 2. LẤY DỮ LIỆU SÂN TỪ COURTS-DATA.JS
+// =====================================
 
-
+const selectedCourt = window.courts?.find(
+    court => court.id === courtId
+);
 // =====================================
 // 3. XỬ LÝ MÃ SÂN KHÔNG HỢP LỆ
 // =====================================

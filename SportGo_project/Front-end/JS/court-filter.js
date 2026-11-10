@@ -21,7 +21,14 @@
     const submitBtn = document.querySelector(".filter-submit");
 
     // Lấy dữ liệu sân từ court.js
-    const courtData = window.courts || [];
+  const courtData = Array.isArray(window.courts)
+    ? window.courts
+    : [];
+
+if (courtData.length === 0) {
+    console.error("Không tìm thấy dữ liệu sân trong window.courts!");
+    return;
+}
 
     const courtMap = new Map(
         courtData.map(court => [String(court.id), court])
@@ -63,28 +70,33 @@
     }
 
     // Lấy dữ liệu từng thẻ sân
-    const cards = Array.from(grid.querySelectorAll(".court-card"))
-        .map(card => {
-            const id = getCourtId(card);
-            const data = courtMap.get(String(id));
+   const cards = Array.from(
+    grid.querySelectorAll(".court-card")
+).map(card => {
+    const id = getCourtId(card);
+    const data = courtMap.get(String(id));
 
-            const priceText =
-                card.querySelector(".court-card-price")?.textContent || "";
+    if (!data) {
+        console.warn("Không tìm thấy dữ liệu cho thẻ sân:", id);
+    }
 
-            const ratingText =
-                card.querySelector(".court-card-rating")?.textContent || "";
+    const priceText =
+        card.querySelector(".court-card-price")?.textContent || "";
 
-            return {
-                element: card,
-                data: data,
-                id: Number(id),
-                price: data?.price ??
-                    Number(priceText.replace(/\D/g, "")),
-                rating: Number(data?.rating ??
-                    ratingText.match(/[\d.]+/)?.[0] ?? 0),
-                district: districtByCourtId[id] || ""
-            };
-        });
+    const ratingText =
+        card.querySelector(".court-card-rating")?.textContent || "";
+
+    return {
+        element: card,
+        data: data,
+        id: Number(id),
+        price: data?.price ??
+            Number(priceText.replace(/\D/g, "")),
+        rating: Number(data?.rating ??
+            ratingText.match(/[\d.]+/)?.[0] ?? 0),
+        district: districtByCourtId[id] || ""
+    };
+}).filter(court => court.data);
 
     // Kiểm tra giá nhập vào
     function readPrice(input) {
@@ -248,15 +260,15 @@
         }
 
         // Ẩn tất cả sân trước khi hiển thị kết quả
-        cards.forEach(court => {
-            court.element.style.display = "none";
-        });
+      // Ẩn tất cả sân trước khi hiển thị kết quả
+cards.forEach(court => {
+    court.element.style.display = "none";
+});
 
-        result.forEach(court => {
-            court.element.style.display = "";
-            grid.appendChild(court.element);
-        });
-
+// Chỉ hiển thị các sân thỏa mãn điều kiện lọc
+result.forEach(court => {
+    court.element.style.display = "";
+});
         // Cập nhật số lượng sân
         const hasFilter =
             keyword ||
@@ -275,11 +287,12 @@
         }
 
         // Hiển thị thông báo khi không tìm thấy sân
-        const emptyMessage = grid.querySelector(".court-search-empty");
+      const emptyMessage = document.getElementById("empty-message");
 
-        if (emptyMessage) {
-            emptyMessage.hidden = result.length > 0;
-        }
+if (emptyMessage) {
+    emptyMessage.hidden = result.length > 0;
+}
+
     }
 
     // Cho phép các file JS khác gọi bộ lọc

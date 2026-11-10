@@ -13,14 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="JS/court.js" defer></script>
 </head>
-
 <body>
     <!-- ================================
          1. HEADER
     ================================= -->
-
       <header class="site-header">
     <div class="header-container">
 
@@ -83,11 +80,15 @@
 
         <label for="filter-district">Quận / Huyện</label>
         <select id="filter-district" name="district">
-            <option value="">Chọn quận / huyện</option>
-            <option value="quan-7">Quận 7</option>
-            <option value="binh-thanh">Bình Thạnh</option>
-            <option value="thu-duc">TP. Thủ Đức</option>
-            <option value="go-vap">Gò Vấp</option>
+         <option value="">Tất cả quận / huyện</option>
+    <option value="tan-phu">Tân Phú</option>
+    <option value="quan-5">Quận 5</option>
+    <option value="quan-8">Quận 8</option>
+    <option value="thu-duc">TP. Thủ Đức</option>
+    <option value="nha-be">Nhà Bè</option>
+    <option value="quan-10">Quận 10</option>
+    <option value="binh-thanh">Bình Thạnh</option>
+    <option value="tan-binh">Tân Bình</option>
         </select>
     </div>
 
@@ -159,14 +160,25 @@
             <div class="courts-content">
 
                 <!-- Danh mục môn thể thao -->
-                <nav class="sport-categories" aria-label="Danh mục môn thể thao">
-                    <a href="#" class="sport-category sport-category--active">Tất cả</a>
-                    <a href="#" class="sport-category">Bóng đá</a>
-                    <a href="#" class="sport-category">Bóng rổ</a>
-                    <a href="#" class="sport-category">Cầu lông</a>
-                    <a href="#" class="sport-category">Pickleball</a>   
-                    <a href="#" class="sport-category">Tennis</a>   
-                </nav>
+                <<nav class="sport-categories" aria-label="Danh mục môn thể thao">
+    <a href="#" class="sport-category sport-category--active"
+       data-category="all">Tất cả</a>
+
+    <a href="#" class="sport-category"
+       data-category="Bóng đá">Bóng đá</a>
+
+    <a href="#" class="sport-category"
+       data-category="Bóng rổ">Bóng rổ</a>
+
+    <a href="#" class="sport-category"
+       data-category="Cầu lông">Cầu lông</a>
+
+    <a href="#" class="sport-category"
+       data-category="Pickleball">Pickleball</a>
+
+    <a href="#" class="sport-category"
+       data-category="Tennis">Tennis</a>
+</nav>
                 <!-- Thanh số lượng và sắp xếp -->
                 <div class="courts-toolbar">
 
@@ -330,6 +342,9 @@
         </div>
 
     </footer>
-
+<script src="JS/courts-data.js"></script>
+<script src="JS/courts-page.js"></script>
+<script src="JS/court-filter.js"></script>
+<script src="JS/court-search.js"></script>
 </body>
 </html>
