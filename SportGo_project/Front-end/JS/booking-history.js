@@ -583,7 +583,6 @@ function sgConfirm({ title = 'Xác nhận', message, okText = 'Xác nhận', can
     cancelText: "Giữ lại",
     danger: true
 });
-
             if (!confirmed) return;
 
             const indexes = new Set(group.originalIndexes);
