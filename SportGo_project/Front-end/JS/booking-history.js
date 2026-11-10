@@ -1,4 +1,42 @@
+function sgConfirm({ title = 'Xác nhận', message, okText = 'Xác nhận', cancelText = 'Hủy', danger = false }) {
+  return new Promise(resolve => {
+    const overlay = document.createElement('div');
+    overlay.className = 'sg-modal-overlay';
+    overlay.innerHTML = `
+      <div class="sg-modal" role="dialog" aria-modal="true">
+        ${danger ? '<div class="sg-modal-icon"><i class="fa-solid fa-trash"></i></div>' : ''}
+        <h3 class="sg-modal-title"></h3>
+        <p class="sg-modal-msg"></p>
+        <div class="sg-modal-actions">
+          <button class="sg-btn sg-btn-cancel"></button>
+          <button class="sg-btn sg-btn-ok ${danger ? 'danger' : ''}"></button>
+        </div>
+      </div>`;
+    overlay.querySelector('.sg-modal-title').textContent = title;
+    overlay.querySelector('.sg-modal-msg').textContent = message;
+    const btnCancel = overlay.querySelector('.sg-btn-cancel');
+    const btnOk = overlay.querySelector('.sg-btn-ok');
+    btnCancel.textContent = cancelText;
+    btnOk.textContent = okText;
 
+    const close = result => {
+      overlay.classList.remove('show');
+      document.removeEventListener('keydown', onKey);
+      setTimeout(() => overlay.remove(), 200);
+      resolve(result);
+    };
+    const onKey = e => { if (e.key === 'Escape') close(false); };
+
+    btnOk.onclick = () => close(true);
+    btnCancel.onclick = () => close(false);
+    overlay.onclick = e => { if (e.target === overlay) close(false); };
+    document.addEventListener('keydown', onKey);
+
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add('show'));
+    btnOk.focus();
+  });
+}
 (() => {
     const STORAGE_KEY = "sportgoBookings";
 
@@ -499,7 +537,7 @@
     // 9. XỬ LÝ CÁC NÚT SỬA / XÓA
     // ================================
 
-    bookingList.addEventListener("click", event => {
+    bookingList.addEventListener("click", async event => {
         const button = event.target.closest("button[data-action]");
 
         if (!button) return;
@@ -538,9 +576,13 @@
         }
 
         if (action === "delete") {
-            const confirmed = window.confirm(
-                `Bạn có chắc muốn xóa lịch đặt ${group.courtName} ngày ${formatDate(group.date)} không?`
-            );
+           const confirmed = await sgConfirm({
+    title: "Xóa lịch đặt sân",
+    message: `Bạn có chắc muốn xóa lịch đặt ${group.courtName} ngày ${formatDate(group.date)} không?`,
+    okText: "Xóa",
+    cancelText: "Giữ lại",
+    danger: true
+});
 
             if (!confirmed) return;
 
@@ -712,3 +754,4 @@
         bookingMessage.textContent = "Đặt sân và thanh toán thành công! Lịch đặt của bạn đã được lưu.";
     }
 })();
+

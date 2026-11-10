@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SportGo - Hóa đơn đặt sân">
-    <title>SportGo | Hóa đơn đặt sân</title>
+    <meta name="description" content="SportGo - Hóa đơn và thanh toán đặt sân">
+    <title>SportGo | Thanh toán đặt sân</title>
 
     <link rel="icon" type="image/png" href="images/logo-light.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,107 +17,180 @@
 
 <body>
 
-    <!-- HEADER GIỮ NGUYÊN -->
-      <header class="site-header">
-    <div class="header-container">
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-container">
 
-        <a href="index.html" class="header-logo">
-            <img src="images/logo-light.png" alt="SportGo">
-        </a>
+            <a href="index.html" class="header-logo">
+                <img src="images/logo-light.png" alt="SportGo">
+            </a>
 
-        <nav class="main-nav" aria-label="Menu chính">
-            <ul>
-                <li><a href="index.html" aria-current="page">Trang chủ</a></li>
-                <li><a href="courts.html">Danh sách sân tập</a></li>
-                <li><a href="about.html">Về SportGo</a></li>
-            </ul>
-        </nav>
-        <div class="header-actions header-actions--guest">
-    <a href="profile.html" class="account-icon" aria-label="Tài khoản của tôi" title="Tài khoản của tôi"><i class="fa-solid fa-user"></i></a>
-            <a href="login.html" class="auth-link">Đăng nhập</a>
-            <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+            <nav class="main-nav" aria-label="Menu chính">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions header-actions--guest">
+                <a href="profile.html" class="account-icon"
+                   aria-label="Tài khoản của tôi"
+                   title="Tài khoản của tôi">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="login.html" class="auth-link">Đăng nhập</a>
+                <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+            </div>
+
         </div>
 
-    </div>
-
-    <div class="hero-content">
-        <h1>HÓA ĐƠN ĐẶT SÂN</h1>
-    </div>
-</header>
+        <div class="hero-content">
+            <h1>THANH TOÁN ĐẶT SÂN</h1>
+        </div>
+    </header>
 
     <!-- MAIN -->
-<main id="main-content" class="checkout-page">
-    <div class="checkout-container">
+    <main id="main-content" class="checkout-page">
+        <div class="checkout-container">
 
-        <!-- Cột trái: hóa đơn -->
-        <section class="checkout-card" aria-labelledby="invoice-title">
-            <h2 id="invoice-title">Thông tin đặt sân</h2>
-            <p class="checkout-timer" role="timer" aria-live="off">
-            Sân được giữ trong: <strong id="hold-countdown">10:00</strong>
-            </p>
-            <div id="invoice-info"></div>
-            <table class="checkout-table">
-                <thead>
-                    <tr>
-                        <th>Sân</th>
-                        <th>Khung giờ</th>
-                        <th>Giá</th>
-                    </tr>
-                </thead>
-                <tbody id="invoice-body"></tbody>
-            </table>
-            <p class="checkout-total">
-                Tổng cộng: <strong id="invoice-total">0đ</strong>
-            </p>
-        </section>
+            <!-- THÔNG TIN ĐẶT SÂN -->
+            <section class="checkout-card" aria-labelledby="invoice-title">
 
-        <!-- Cột phải: thông tin người đặt -->
-        <section class="checkout-card" aria-labelledby="customer-title">
-            <h2 id="customer-title">Thông tin người đặt</h2>
+                <h2 id="invoice-title">Thông tin đặt sân</h2>
 
-            <form id="checkout-form" novalidate>
-                <div class="checkout-field">
-                    <label for="customer-name">Họ và tên</label>
-                    <input type="text" id="customer-name" required>
-                </div>
+                <p class="checkout-timer" role="timer" aria-live="off">
+                    Sân được giữ trong:
+                    <strong id="hold-countdown">10:00</strong>
+                </p>
 
-                <div class="checkout-field">
-                    <label for="customer-phone">Số điện thoại</label>
-                    <input type="tel" id="customer-phone" placeholder="0901234567" required>
-                </div>
+                <div id="invoice-info"></div>
 
-                <div class="checkout-field">
-                    <label for="customer-email">Email</label>
-                    <input type="email" id="customer-email" required>
-                </div>
+                <table class="checkout-table">
+                    <thead>
+                        <tr>
+                            <th>Sân</th>
+                            <th>Khung giờ</th>
+                            <th>Giá</th>
+                        </tr>
+                    </thead>
 
-                <div class="checkout-field">
-                    <label for="customer-note">Ghi chú (không bắt buộc)</label>
-                    <textarea id="customer-note" rows="2"></textarea>
-                </div>
+                    <tbody id="invoice-body"></tbody>
+                </table>
 
-                <fieldset class="checkout-payment">
-                    <legend>Phương thức thanh toán</legend>
-                    <label><input type="radio" name="payment" value="Thanh toán tại sân" checked> Thanh toán tại sân</label>
-                    <label><input type="radio" name="payment" value="Chuyển khoản ngân hàng"> Chuyển khoản ngân hàng</label>
-                    <label><input type="radio" name="payment" value="Ví điện tử"> Ví điện tử</label>
-                </fieldset>
+                <p class="checkout-total">
+                    Tổng cộng:
+                    <strong id="invoice-total">0đ</strong>
+                </p>
 
-                <p id="checkout-message" class="checkout-message" role="status"></p>
+            </section>
 
-                <div class="checkout-actions">
-                    <a href="courts.html" class="checkout-back">Quay lại</a>
-                    <button type="submit" class="checkout-submit">
-                        Đặt sân 
-                    </button>
-                </div>
-            </form>
-        </section>
+            <!-- THÔNG TIN NGƯỜI ĐẶT VÀ THANH TOÁN -->
+            <section class="checkout-card" aria-labelledby="customer-title">
 
-    </div>
-</main>
+                <h2 id="customer-title">Thông tin người đặt</h2>
 
-    <!-- FOOTER GIỮ NGUYÊN -->
+                <form id="checkout-form" novalidate>
+
+                    <div class="checkout-field">
+                        <label for="customer-name">Họ và tên</label>
+                        <input type="text" id="customer-name"
+                               name="customerName" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="customer-phone">Số điện thoại</label>
+                        <input type="tel" id="customer-phone"
+                               name="customerPhone"
+                               placeholder="0901234567" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="customer-email">Email</label>
+                        <input type="email" id="customer-email"
+                               name="customerEmail" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="customer-note">Ghi chú (không bắt buộc)</label>
+                        <textarea id="customer-note"
+                                  name="note" rows="2"></textarea>
+                    </div>
+
+                    <!-- PHƯƠNG THỨC THANH TOÁN -->
+                    <fieldset class="checkout-payment">
+
+                        <legend>Phương thức thanh toán online</legend>
+
+                        <label>
+                            <input type="radio"
+                                   name="payment"
+                                   value="Chuyển khoản ngân hàng"
+                                   checked>
+                            <i class="fa-solid fa-building-columns"></i>
+                            Chuyển khoản ngân hàng
+                        </label>
+
+                        <label>
+                            <input type="radio"
+                                   name="payment"
+                                   value="Ví điện tử">
+                            <i class="fa-solid fa-wallet"></i>
+                            Ví điện tử
+                        </label>
+
+                        <label>
+                            <input type="radio"
+                                   name="payment"
+                                   value="Cổng thanh toán">
+                            <i class="fa-solid fa-credit-card"></i>
+                            Cổng thanh toán trực tuyến
+                        </label>
+
+                    </fieldset>
+
+                    <!-- KHU VỰC HIỂN THỊ HƯỚNG DẪN THANH TOÁN -->
+                    <section class="checkout-payment-info"
+                             id="payment-info"
+                             aria-live="polite"
+                             hidden>
+
+                        <h3>Thông tin thanh toán</h3>
+
+                        <div id="payment-details">
+                            Vui lòng chọn phương thức thanh toán.
+                        </div>
+
+                    </section>
+
+                    <!-- THÔNG BÁO -->
+                    <p id="checkout-message"
+                       class="checkout-message"
+                       role="status"
+                       aria-live="polite"></p>
+
+                    <!-- NÚT THAO TÁC -->
+                    <div class="checkout-actions">
+
+                        <a href="courts.html" class="checkout-back">
+                            Quay lại
+                        </a>
+
+                        <button type="submit" class="checkout-submit">
+                            <i class="fa-solid fa-lock"></i>
+                            Thanh toán ngay
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
     <footer class="site-footer">
 
         <div class="footer-container">
@@ -152,7 +224,6 @@
 
             </div>
 
-
             <div class="footer-column">
                 <h3>Khám phá</h3>
                 <ul>
@@ -161,7 +232,6 @@
                     <li><a href="about.html">Về SportGo</a></li>
                 </ul>
             </div>
-
 
             <div class="footer-column">
                 <h3>CSKH</h3>
@@ -172,7 +242,6 @@
                     <li><a href="#">Báo cáo sự cố</a></li>
                 </ul>
             </div>
-
 
             <div class="footer-column footer-contact">
                 <h3>Thông tin liên hệ</h3>
@@ -198,11 +267,9 @@
                         <span>6:00 - 22:00 hằng ngày</span>
                     </li>
                 </ul>
-
             </div>
 
         </div>
-
 
         <div class="footer-bottom">
 
@@ -221,5 +288,6 @@
     </footer>
 
     <script src="JS/checkout.js"></script>
+
 </body>
 </html>
