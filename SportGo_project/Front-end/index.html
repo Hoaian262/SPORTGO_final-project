@@ -15,73 +15,55 @@
 </head>
 <body>
 
-   <header class="site-header">
-    <div class="header-container">
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="header-logo">
+                <img src="images/logo-light.png" alt="SportGo">
+            </a>
 
-        <a href="index.html" class="header-logo">
-            <img src="images/logo-light.png" alt="SportGo">
-        </a>
+            <nav class="main-nav" aria-label="Menu chính">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Trang chủ</a></li>
+                    <li><a href="courts.html">Danh sách sân tập</a></li>
+                    <li><a href="about.html">Về SportGo</a></li>
+                </ul>
+            </nav>
 
-        <nav class="main-nav" aria-label="Menu chính">
-            <ul>
-                <li><a href="index.html" aria-current="page">Trang chủ</a></li>
-                <li><a href="courts.html">Danh sách sân tập</a></li>
-                <li><a href="about.html">Về SportGo</a></li>
-            </ul>
-        </nav>
-        <div class="header-actions header-actions--guest">
-    <a href="profile.html" class="account-icon" aria-label="Tài khoản của tôi" title="Tài khoản của tôi"><i class="fa-solid fa-user"></i></a>
-            <a href="login.html" class="auth-link">Đăng nhập</a>
-            <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+            <div class="header-actions header-actions--guest">
+                <a href="profile.html" class="account-icon" aria-label="Tài khoản của tôi" title="Tài khoản của tôi"><i class="fa-solid fa-user"></i></a>
+                <a href="login.html" class="auth-link">Đăng nhập</a>
+                <a href="signup.html" class="auth-link auth-link--primary">Đăng ký</a>
+            </div>
         </div>
 
-    </div>
-
-    <div class="hero-content">
-        <h1>FIND YOUR COURT</h1>
-        <p>Kết nối đam mê thể thao. Tìm kiếm và đặt sân dễ dàng cùng SportGo.</p>
-    </div>
-</header>
-
-      <!-- 1. TÌM KIẾM SÂN -->
-<section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
-    <form class="home-search-form" action="courts.html" method="get">
-
-        <!-- Tìm theo tên sân hoặc địa điểm -->
-        <div class="home-search-input">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <label class="visually-hidden" for="home-search">
-                Tên sân hoặc khu vực
-            </label>
-            <input
-                type="search"
-                id="home-search"
-                name="keyword"
-                placeholder="Tên sân, quận hoặc khu vực..."
-            >
+        <div class="hero-content">
+            <h1>FIND YOUR COURT</h1>
+            <p>Kết nối đam mê thể thao. Tìm kiếm và đặt sân dễ dàng cùng SportGo.</p>
         </div>
+    </header>
 
-        <!-- Chọn ngày đặt sân -->
-        <div class="home-search-date">
-            <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
-            <label class="visually-hidden" for="booking-date">
-                Ngày muốn đặt sân
-            </label>
-            <input
-                type="date"
-                id="booking-date"
-                name="date"
-                aria-label="Chọn ngày muốn đặt sân"
-            >
-        </div>
+    <main>
+        <!-- 1. TÌM KIẾM SÂN -->
+        <section class="home-search-section" aria-label="Tìm kiếm sân thể thao">
+            <form class="home-search-form" action="courts.html" method="get">
+                <div class="home-search-input">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <label class="visually-hidden" for="home-search">Tên sân hoặc khu vực</label>
+                    <input type="search" id="home-search" name="keyword" placeholder="Tên sân, quận hoặc khu vực...">
+                </div>
 
-        <!-- Nút tìm kiếm -->
-        <button type="submit" class="home-search-button">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Tìm kiếm
-        </button>
-    </form>
-</section>
+                <div class="home-search-date">
+                    <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+                    <label class="visually-hidden" for="booking-date">Ngày muốn đặt sân</label>
+                    <input type="date" id="booking-date" name="date" aria-label="Chọn ngày muốn đặt sân">
+                </div>
+
+                <button type="submit" class="home-search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Tìm kiếm
+                </button>
+            </form>
+        </section>
 
         <!-- 2. DANH MỤC MÔN THỂ THAO -->
         <section class="home-category-section home-container">
@@ -110,63 +92,66 @@
             </div>
 
             <div class="home-court-grid">
+                <!-- Sân nổi bật 1: ID 10 -->
                 <article class="home-court-card">
-                    <a href="courts-details.html" class="home-court-image">
-                        <img src="images/bongda.jpg" alt="Sân bóng đá SportGo Arena" loading="lazy">
+                    <a href="courts-details.html?id=10" class="home-court-image">
+                        <img src="images/joy.webp" alt="Sân bóng đá Joy Kick Hub" loading="lazy">
                         <span class="home-court-tag">Nổi bật</span>
                     </a>
                     <div class="home-court-content">
                         <div class="home-court-type">BÓNG ĐÁ</div>
-                        <h3><a href="courts-details.html">Sân bóng đá Nam Sài Gòn</a></h3>
+                        <h3><a href="courts-details.html?id=10">Sân bóng đá Joy Kick Hub</a></h3>
                         <p class="home-court-location">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                            Quận 7, TP. Hồ Chí Minh
+                            Quận 2, TP. Hồ Chí Minh
                         </p>
                         <div class="home-court-meta">
-                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.8</span>
-                            <strong>500.000đ <small>/ giờ</small></strong>
+                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.4</span>
+                            <strong>400.000đ <small>/ giờ</small></strong>
                         </div>
-                        <a href="courts-details.html" class="home-court-button">Xem chi tiết</a>
+                        <a href="courts-details.html?id=10" class="home-court-button">Xem chi tiết</a>
                     </div>
                 </article>
 
+                <!-- Sân nổi bật 2: ID 2 -->
                 <article class="home-court-card">
-                    <a href="courts-details.html" class="home-court-image">
-                        <img src="images/bongro.jpg" alt="Sân Bóng rổ " loading="lazy">
+                    <a href="courts-details.html?id=2" class="home-court-image">
+                        <img src="images/bongro.jpg" alt="Sân bóng rổ Lam Sơn" loading="lazy">
                         <span class="home-court-tag">Được yêu thích</span>
                     </a>
                     <div class="home-court-content">
                         <div class="home-court-type">BÓNG RỔ</div>
-                        <h3><a href="courts-details.html">Bóng rổ Lam Sơn</a></h3>
+                        <h3><a href="courts-details.html?id=2">Sân bóng rổ Lam Sơn</a></h3>
                         <p class="home-court-location">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                             Quận 10, TP. Hồ Chí Minh
                         </p>
                         <div class="home-court-meta">
-                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9</span>
-                            <strong>120.000đ <small>/ giờ</small></strong>
+                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 3.9</span>
+                            <strong>100.000đ <small>/ giờ</small></strong>
                         </div>
-                        <a href="courts-details.html" class="home-court-button">Xem chi tiết</a>
+                        <a href="courts-details.html?id=2" class="home-court-button">Xem chi tiết</a>
                     </div>
                 </article>
 
+                <!-- Sân nổi bật 3: ID 3 -->
                 <article class="home-court-card">
-                    <a href="courts-details.html" class="home-court-image">
-                        <img src="images/caulong.webp" alt="Sân pickleball City Pickle" loading="lazy">
+                    <a href="courts-details.html?id=3" class="home-court-image">
+                        <img src="images/caulong.webp" alt="Sân cầu lông Vy Phong" loading="lazy">
                         <span class="home-court-tag">Mới</span>
                     </a>
                     <div class="home-court-content">
                         <div class="home-court-type">CẦU LÔNG</div>
-                        <h3><a href="courts-details.html">Sân cầu Vy Phong</a></h3>
+                        <h3><a href="courts-details.html?id=3">Sân cầu lông Vy Phong</a></h3>
                         <p class="home-court-location">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                            TP. Thủ Đức, TP. Hồ Chí Minh
+                            Quận 8, TP. Hồ Chí Minh
                         </p>
                         <div class="home-court-meta">
-                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.7</span>
-                            <strong>180.000đ <small>/ giờ</small></strong>
+                            <span><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9</span>
+                            <strong>60.000đ <small>/ giờ</small></strong>
                         </div>
-                        <a href="courts-details.html" class="home-court-button">Xem chi tiết</a>
+                        <a href="courts-details.html?id=3" class="home-court-button">Xem chi tiết</a>
                     </div>
                 </article>
             </div>
@@ -176,14 +161,10 @@
             </div>
         </section>
 
-        <!-- 4. BANNER PHỤ-->
+        <!-- 4. BANNER PHỤ -->
         <section class="home-promo-banner home-container" aria-label="Banner quảng bá SportGo">
             <a href="courts.html" class="home-promo-link">
-                <img
-                    src="images/Logo (5).png"
-                    alt="Khám phá và đặt sân thể thao cùng SportGo"
-                    loading="lazy"
-                >
+                <img src="images/Logo (5).png" alt="Khám phá và đặt sân thể thao cùng SportGo" loading="lazy">
                 <span class="visually-hidden">Khám phá danh sách sân SportGo</span>
             </a>
         </section>
@@ -191,7 +172,6 @@
         <!-- 5. SÂN GẦN BẠN VÀ SÂN ĐƯỢC TUYỂN CHỌN -->
         <section class="home-discovery-section home-container">
             <div class="home-discovery-grid">
-
                 <div class="home-ranking-panel">
                     <div class="home-panel-heading">
                         <div>
@@ -206,26 +186,26 @@
                         <li>
                             <span class="home-rank-number">1</span>
                             <div class="home-rank-info">
-                                <strong>SportGo Arena</strong>
-                                <small>Quận 7</small>
+                                <strong>Joy Kick Hub</strong>
+                                <small>Quận 2</small>
                             </div>
-                            <a href="courts-details.html" aria-label="Xem SportGo Arena"><i class="fa-solid fa-chevron-right"></i></a>
+                            <a href="courts-details.html?id=10" aria-label="Xem Joy Kick Hub"><i class="fa-solid fa-chevron-right"></i></a>
                         </li>
                         <li>
                             <span class="home-rank-number">2</span>
                             <div class="home-rank-info">
-                                <strong>Green Court</strong>
+                                <strong>Sân bóng rổ Lam Sơn</strong>
                                 <small>Quận 10</small>
                             </div>
-                            <a href="courts-details.html" aria-label="Xem Green Court"><i class="fa-solid fa-chevron-right"></i></a>
+                            <a href="courts-details.html?id=2" aria-label="Xem sân bóng rổ Lam Sơn"><i class="fa-solid fa-chevron-right"></i></a>
                         </li>
                         <li>
                             <span class="home-rank-number">3</span>
                             <div class="home-rank-info">
-                                <strong>City Pickle</strong>
-                                <small>TP. Thủ Đức</small>
+                                <strong>Sân cầu lông Vy Phong</strong>
+                                <small>Quận 8</small>
                             </div>
-                            <a href="courts-details.html" aria-label="Xem City Pickle"><i class="fa-solid fa-chevron-right"></i></a>
+                            <a href="courts-details.html?id=3" aria-label="Xem sân cầu lông Vy Phong"><i class="fa-solid fa-chevron-right"></i></a>
                         </li>
                     </ol>
                     <a href="courts.html" class="home-panel-link">Tìm sân quanh bạn</a>
@@ -245,31 +225,30 @@
                         <li>
                             <span class="home-rank-number">1</span>
                             <div class="home-rank-info">
-                                <strong>Green Court</strong>
-                                <small>Không gian tập luyện tiện nghi</small>
+                                <strong>Sân cầu lông Vy Phong</strong>
+                                <small>Địa điểm cầu lông tại Quận 8</small>
                             </div>
                             <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.9</span>
                         </li>
                         <li>
                             <span class="home-rank-number">2</span>
                             <div class="home-rank-info">
-                                <strong>SportGo Arena</strong>
-                                <small>Sân bóng đá chất lượng</small>
+                                <strong>Joy Kick Hub</strong>
+                                <small>Sân bóng đá tại Quận 2</small>
                             </div>
-                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.8</span>
+                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.4</span>
                         </li>
                         <li>
                             <span class="home-rank-number">3</span>
                             <div class="home-rank-info">
-                                <strong>City Pickle</strong>
-                                <small>Địa điểm pickleball mới</small>
+                                <strong>Sân bóng rổ Lam Sơn</strong>
+                                <small>Sân bóng rổ tại Quận 10</small>
                             </div>
-                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 4.7</span>
+                            <span class="home-rank-score"><i class="fa-solid fa-star"></i> 3.9</span>
                         </li>
                     </ol>
                     <a href="courts.html" class="home-panel-link">Khám phá sân nổi bật</a>
                 </div>
-
             </div>
         </section>
 
@@ -308,7 +287,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- FOOTER DÙNG CHUNG -->
@@ -368,9 +346,10 @@
             </div>
         </div>
     </footer>
-<script src="JS/courts-data.js"></script>
-<script src="JS/courts-page.js"></script>
-<script src="JS/court-filter.js"></script>
-<script src="JS/court-search.js"></script>
+
+    <script src="JS/courts-data.js"></script>
+    <script src="JS/courts-page.js"></script>
+    <script src="JS/court-filter.js"></script>
+    <script src="JS/court-search.js"></script>
 </body>
 </html>
