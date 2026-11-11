@@ -48,6 +48,8 @@ function renderCourts(list) {
             </article>
         `;
     });
+// Cho phép file court-filter.js sử dụng hàm hiển thị sân
+window.renderCourts = renderCourts;
 }
 // ========================================
 // 2. HÀM ĐỊNH DẠNG GIÁ TIỀN

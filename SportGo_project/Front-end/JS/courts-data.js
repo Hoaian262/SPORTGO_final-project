@@ -4,7 +4,7 @@ window.courts = [
         name: "Sân cầu lông Phong Vũ",
         sport: "Cầu lông",
         image: "images/phong vũ.jpg",
-        address: "2 Lê Quát, Quận Tân Phú, TP. Hồ Chí Minh",
+        address: "2 Lê Quát, Quận Tân Phú, TP.HCM",
         price: 34000,
         rating: "4.8",
         reviews: "120",
@@ -199,5 +199,246 @@ window.courts = [
         ],
         gallery: [],
        prices: []
+    },
+    {
+        id: 10,
+        name: "Sân bóng đá Joy Kick Hub",
+        sport: "Bóng đá",
+        image: "images/joy.webp",
+        address: "93 Nguyễn Hoàng, Bình Trưng, Quận 2, TP. Hồ Chí Minh",
+        price: 400000,
+        rating: "4.4",
+        reviews: "12",
+        phone: "083 983 8787",
+        hours: "06:00-22:00 T2-T6 | 05:00-22:59 : T7-CN",
+        number: "10 sân thể thao",
+        description: "Sân bóng đá Joy Kick Hub phục vụ nhu cầu luyện tập và giao lưu bóng đá.",
+        amenities: ["Wifi", "Bãi giữ xe", "Tủ khóa", "Căng-tin / Đồ uống", "Cho thuê trang phục","Camera an ninh"],
+        gallery: [
+            "images/joy1.jpg",
+            "images/joy2.jpg",
+            "images/joy3.jpg"
+        ],
+        prices: [
+            { name: "Sáng", time: "06:00-17:00", price: 400000 },
+            { name: "Tối", time: "18:00-22:00", price: 450000 }
+        ]
+    },
+    {
+        id: 11,
+        name: "Sân bóng đá Sky Arena",
+        sport: "Bóng đá",
+        image: "images/sky.jpg",
+        address: "200 Nguyễn Trãi, Phường Nguyễn Cư Trinh, Quận 1, TP. Hồ Chí Minh",
+        price: 300000,
+        rating: "3.9",
+        reviews: "8",
+        phone: "093 983 8231",
+        hours: "06:00-22:00 hằng ngày",
+        number: "10 sân thể thao",
+        description: "Sân bóng đá Sky Arena phục vụ nhu cầu luyện tập và giao lưu bóng đá.",
+        amenities: ["Wifi", "Bãi giữ xe", "Tủ khóa", "Căng-tin / Đồ uống", "Phòng tắm","Camera an ninh"],
+        gallery: [
+            "images/sky1.jpg",
+            "images/sky2.jpg",
+            "images/sky3.jpg",
+        ],
+        prices: [
+            { name: "Sáng", time: "06:00-17:00", price: 300000 },
+            { name: "Tối", time: "18:00-22:00", price: 450000 }
+        ]
+    },
+    {
+        id: 12,
+        name: "396 Pickleball",
+        sport: "Pickleball",
+        image: "images/396.jpg",
+        address: "736/194/16 Lê Đức Thọ, Phường 15, Q. Gò Vấp, TP. Hồ Chí Minh",
+        price: 80000,
+        rating: "5.0",
+        reviews: "126",
+        phone: "0842 396 396",
+        hours: "05:00-23:00 hằng ngày",
+        number: "5 sân thể thao",
+        description: "Sân pickleball 396 phục vụ nhu cầu luyện tập và giao lưu pickleball.",
+        amenities: ["Wifi", "Bãi giữ xe", "Tủ khóa", "Cho thuê trang phục","Nhà vệ sinh"],
+        gallery: [
+            "images/396logo.jpg",
+            "images/396.1.jpg",
+            "images/396.2.jpg"
+        ],
+        prices: [
+            { name: "Sáng", time: "06:00-10:00", price: 100000 },
+            { name: "Chiều", time: "10:00-16:00", price: 80000 },
+            { name: "Tối", time: "16:00-23:00", price: 120000 }
+        ]
+    },
+    {
+        id: 13,
+        name: "Sân bóng rổ Mamba Basketball",
+        sport: "Bóng rổ",
+        image: "images/manba.jpg",
+        address: "90 Song Hành, An Phú, Quận 2, TP. Hồ Chí Minh",
+        price: 450000,
+        rating: "5.0",
+        reviews: "63",
+        phone: "093 162 4106",
+        hours: "06:00-23:00 hằng ngày",
+        number: "6 sân thể thao",
+        description: "Sân bóng rổ Mamba Basketball phục vụ nhu cầu luyện tập và giao lưu bóng rổ.",
+        amenities: ["Wifi", "Bãi giữ xe", "Tủ khóa", "Cho thuê trang phục", "Camera an ninh"],
+        gallery: [
+            "images/mamba3.png",
+            "images/mamba1.jpg",
+            "images/mamba2.webp",
+        ],
+        prices: [
+            { name: "Sáng", time: "06:00-14:00", price: 450000 },
+            { name: "Chiều/Tối", time: "14:00-23:30", price: 600000 }
+        ]
+    },
+    {
+        id: 14,
+        name: "Sân bóng rổ SeventySeven Basketball (77)",
+        sport: "Bóng rổ",
+        image: "images/77.jpg",
+        address: "224 Thành Thái, Phường 14, Quận 10, TP. Hồ Chí Minh",
+        price: 300000,
+        rating: "5.0",
+        reviews: "126",
+        phone: "034 677 9247",
+        hours: "06:30-23:00 hằng ngày",
+        number: "3 sân thể thao",
+        description: "Sân bóng rổ SeventySeven Basketball (77) phục vụ nhu cầu luyện tập và giao lưu bóng rổ.",
+        amenities: ["Wifi", "Bãi giữ xe", "Tủ khóa", "Cho thuê sân quay chụp", "Nhà vệ sinh","Camera an ninh"],
+        gallery: [
+            "images/77logo.jpg",
+            "images/77.1.jpg",
+            "images/77.2.webp"
+        ],
+        prices: [
+            { name: "Sáng", time: "06:30-17:00", price: 300000 },
+            { name: "Tối", time: "17:00-23:00", price: 350000 }
+        ]
+    },
+    {
+        id: 15,
+        name: "Sân ATC Tennis",
+        sport: "Tennis",
+        image: "images/atc.webp",
+        address: "146 Nguyễn Văn Hưởng, Thảo Điền, Quận 2, TP. Hồ Chí Minh",
+        price: 250000,
+        rating: "4.8",
+        reviews: "12",
+        phone: "083 983 8787",
+        hours: "06:00-22:00 hằng ngày",
+        number: "10 sân thể thao",
+        description: "Sân ATC Tennis phục vụ nhu cầu luyện tập và giao lưu bóng đá.",
+        amenities: ["Wifi", "Bãi giữ xe máy", "Phòng tắm", "Phòng thay đồ", "Bãi giữ ô tô"],
+        gallery: [
+            "images/atc1.jpg",
+            "images/atc2.webp",
+            "images/atc3.jpg"
+        ],
+        prices: [
+            { name: "Sáng", time: "06:00-15:00", price: 250000 },
+            { name: "Chiều", time: "15:00-17:00", price: 300000 },
+            { name: "Tối", time: "17:00-22:00", price: 450000 }
+        ]
+    },
+       {
+        id: 16,
+        name: "Sân cầu lông An Khánh",
+        sport: "Cầu lông",
+        image: "images/cau-long-an-khanh.jpg",
+        address: "26 Lương Định Của, khu vực An Khánh, TP.HCM",
+        price: 70000,
+        rating: "4.8",
+        reviews: "282",
+        phone: "0983 124 942",
+        hours: "05:00–23:00 hằng ngày",
+        number: "11 sân",
+        description: "Sân cầu lông An Khánh có quy mô 11 sân, phục vụ nhu cầu luyện tập và giao lưu cầu lông.",
+        amenities: [],
+        gallery: [
+            "images/san-cau-long-an-khanh-1.webp",
+            "images/san-cau-long-an-khanh-2.webp",
+            "images/san-cau-long-an-khanh-3.webp"
+        ],
+        prices: []
+    },
+        {
+        id: 17,
+        name: "Rian Sports",
+        sport: "Cầu lông",
+        image: "images/rian-sports.jpg",
+        address: "185B Nguyễn Oanh, Gò Vấp, TP.HCM",
+        price: 50000,
+        rating: "4.7",
+        reviews: "12",
+        phone: "0941 851 185",
+        hours: "06:00–24:00 hằng ngày",
+        number: "11 sân",
+        description: "Rian Sports là địa điểm thể thao tại Gò Vấp, có khu vực phục vụ cầu lông và bóng rổ. Giá thuê cầu lông tham khảo từ 50.000đ/giờ vào ban ngày ngày thường; giá có thể thay đổi theo khung giờ.",
+        amenities: [],
+        gallery: [],
+        prices: []
+    },
+
+    {
+        id: 18,
+        name: "Sân bóng rổ 29Ballers",
+        sport: "Bóng rổ",
+        image: "images/29ballers.webp",
+        address: "353/3 Bình Quới, TP.HCM",
+        price: 250000,
+        rating: "4.8",
+        reviews: "51",
+        phone: "0819 481 565",
+        hours: "07:00–22:00 hằng ngày",
+        number: "2 sân",
+        description: "29Ballers cung cấp sân bóng rổ trong nhà gồm sân 5x5 và sân 3x3. Giá thuê tham khảo dao động từ 250.000đ đến 550.000đ/giờ tùy loại sân và khung giờ.",
+        amenities: [],
+        gallery: [],
+        prices: []
+    },
+    {
+        id: 19,
+        name: "Flik Pickleball Quận 10",
+        sport: "Pickleball",
+        image: "images/flik.jpg",
+        address: "C30 Thành Thái, phường Diên Hồng, TP.HCM",
+        price: 120000,
+        rating: "4.9",
+        reviews: "211",
+        phone: "0933 386 992",
+        hours: "06:00–23:30 hằng ngày",
+        number: "2 sân",
+        description: "Flik Pickleball là địa điểm cho thuê sân pickleball tại khu vực Thành Thái, Quận 10 cũ. Giá thuê tham khảo dao động từ 120.000đ đến 270.000đ/giờ tùy khung giờ và loại khách.",
+        amenities: [],
+        gallery: [],
+        prices: []
+    },
+
+    {
+        id: 20,
+        name: "PooC",
+        sport: "Pickleball",
+        image: "images/san-pickleball-pooc-1.webp",
+        address: "202B Hoàng Văn Thụ, Phường 9, Phú Nhuận, TP.HCM",
+        price: 180000,
+        rating: "4.8",
+        reviews: "1454",
+        phone: "0707 509 903",
+        hours: "05:00–24:00 hằng ngày",
+        number: "6 sân pickleball",
+        description: "PooC phục vụ nhu cầu tập luyện cầu lông và pickleball. Theo thông tin tham khảo, khu vực pickleball có 6 sân với giá thuê khoảng 180.000đ đến 250.000đ/giờ.",
+        amenities: [],
+        gallery: [
+            "images/san-pickleball-pooc-2.webp",
+            "images/san-pickleball-pooc-3.webp",
+            "images/san-pickleball-pooc-4.webp",
+        ],
+        prices: []
     }
 ]; 
