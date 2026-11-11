@@ -296,7 +296,7 @@ if (emptyMessage) {
     }
 
     // Cho phép các file JS khác gọi bộ lọc
-    window.applyCourtFilters = applyFilters;
+    window.applyCourtFilters = applyCourtFilters;
 
     // Nhấn nút tìm kiếm để áp dụng tất cả tiêu chí
     submitBtn?.addEventListener("click", applyFilters);

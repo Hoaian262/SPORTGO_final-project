@@ -124,7 +124,7 @@
     }
 
     // ========================================
-    // 8. GỌI BỘ LỌC SAU KHI CẬP NHẬT TÌM KIẾM
+    // 8. ÁP DỤNG TÌM KIẾM VÀ BỘ LỌC
     // ========================================
 
     function applySearchAndFilters() {
@@ -197,6 +197,7 @@
 
     updateBookingDateLinks();
 
+    // Áp dụng tìm kiếm và bộ lọc khi tải trang
     applySearchAndFilters();
 
     // Cuộn đến danh sách sân khi có điều kiện tìm kiếm
